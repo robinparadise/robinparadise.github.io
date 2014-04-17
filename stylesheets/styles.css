@@ -159,11 +159,13 @@ header ul a {
 header h1 {
     color: #EEE;
     text-transform: uppercase;
-    padding: 52px 0px 52px 52px;
+    padding: 52px 0px 0px 52px;
 }
 
 header p {
     padding: 0 16px 0 52px;
+    font-style: italic;
+    color: #999;
 }
 
 strong {
