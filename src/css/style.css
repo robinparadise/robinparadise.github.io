@@ -17,7 +17,7 @@
   --color-light: #ccc;
   --color-link: #0077b2;
   --offset: 16px;
-  --offset-h1: 0.83em;;
+  --offset-h1: 0.83em;
   --fs-md: 1.4em;
   --fs-lg:  2em;
 
@@ -32,7 +32,7 @@
 body {
   padding: 0;
   margin: 0;
-  font: 19px Font, sans-serif;
+  font: 19px Font, arial, roboto, sans-serif;
   color: var(--color-dark);
   font-weight: 400;
   font-variation-settings: "wght" 400;

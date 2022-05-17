@@ -5,12 +5,7 @@ const grayMatter = require('gulp-gray-matter')
 const gdata = require('gulp-data')
 const cache = require('gulp-cached')
 const gulpif = require('gulp-if')
-const { basename } = require('./utils')
-
-const { data } = require('./data')
-const { layouts } = require('./layouts')
-
-const condition = file => file.path.includes('/pages')
+const { basename, layouts, data, condition } = require('../utils')
 
 const html = (_, force) => src('src/pages/**/*.html')
   .pipe(gulpif(force ? false : condition, cache({ optimizeMemory: true })))
