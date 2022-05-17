@@ -12,8 +12,9 @@ const html = (_, force) => src('src/pages/**/*.html')
   .pipe(grayMatter())
   .pipe(gdata((file, cb) => {
     Object.assign(file.data, { page: basename(file.path) })
-    file.contents = new Buffer.from(layouts(file.data.layout)
-      .replace(`{{ content | safe }}`, String(file.contents)))
+    file.contents = new Buffer.from(
+      layouts(file.data.layout).replace(`{{ content | safe }}`, String(file.contents))
+    )
     cb(undefined, file)
   }))
   .pipe(njk({ path: ['src'], data }))

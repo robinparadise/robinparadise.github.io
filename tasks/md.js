@@ -17,8 +17,9 @@ const md = (_, force) => src(['src/pages/**/*.md'])
     json.page = basename(dirname(file.path))
     Object.assign(file.data, json)
     file.data = { ...json, ...file.data }
-    file.contents = new Buffer.from(layouts(file.data.layout)
-      .replace(`{{ content | safe }}`, `<div class="markdown-body">${String(file.contents)}</div>`))
+    file.contents = new Buffer.from(
+      layouts(file.data.layout).replace(`{{ content | safe }}`, `<div class="markdown-body">${String(file.contents)}</div>`)
+    )
     cb(undefined, file)
   }))
   .pipe(njk({ path: ['src'], data }))

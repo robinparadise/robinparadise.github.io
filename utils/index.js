@@ -20,7 +20,19 @@ const data = {
   year: new Date().getFullYear(),
   age: parseInt((new Date() - new Date(1990, 4, 23)) / (1000 * 60 * 60 * 24 * 365))
 }
-const layouts = layout => require('fs').readFileSync(`src/layouts/${layout || 'base'}.html`).toString()
+let time = 0
+const layoutsCache = {}
+const layouts = (layout) => {
+  const name = layout || 'base'
+  const old = layoutsCache[name] && Date.now() - time > 3000
+  if (!layoutsCache[name] || old) {
+    time = Date.now()
+    layoutsCache[name] = require('fs').readFileSync(`src/layouts/${name}.html`).toString()
+    return layoutsCache[name]
+  } else {
+    return layoutsCache[name]
+  }
+}
 
 module.exports = {
   dirname,
