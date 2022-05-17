@@ -18,6 +18,7 @@
     "jsonfile": "^6.1.0",
     "postcss": "^8.4.13",
     "postcss-csso": "^6.0.0",
-    "postcss-import": "^14.1.0"
+    "postcss-import": "^14.1.0",
+    "firebase": "^9.8.1"
   }
 }
