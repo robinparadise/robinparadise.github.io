@@ -1,0 +1,6 @@
+<div class="tags">
+  {% for tag, count in collection.$count %}
+    {% set size = 'sm' %}
+    {% include "components/tag.html" %}
+  {% endfor %}
+</div>

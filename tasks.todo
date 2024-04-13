@@ -1,0 +1,51 @@
+Robin Lab:
+
+ ✔ Context folder @done (22-05-22 12:46)
+ ✔ Hightlight code in markdown files @done (22-05-22 12:46)
+ ✔ Remove frontmatter and build custom gulp plugin @done (22-05-22 12:46)
+ ✔ Add Tags @done (22-05-22 12:53)
+ ✔ Add Dates @done (22-05-26 10:05)
+ - Add Comments
+ - Add Search Component
+ - Tags page & tag page
+ - Add firebase integration
+ - Add sitemap
+ - Add Archive/pagination
+ - Admin pages
+
+
+Blog:
+ - 1. Building my custom SSG
+ - 2. Building my custom lightweight livereload server in raw Node
+ - 3. Building my custom CMS for generic web/blogs with Firebase 
+
+
+
+Comments:
+ 
+
+ B I U < > 👍 🤣 ❤️ 🔥 😱 😡 😔
+
+
+ <ol>
+   <li class="li2">😂 – Face with tears of joy</li>
+   <li class="li2">❤️ – Red heart</li>
+   <li class="li2">🤣 – Rolling on the floor laughing</li>
+   <li class="li2">👍 – Thumbs up</li>
+   <li class="li2">😭 – Loudly crying face</li>
+   <li class="li2">🙏 – Folded hands</li>
+   <li class="li2">😘 – Face blowing a kiss</li>
+   <li class="li2">🥰 – Smiling face with hearts</li>
+   <li class="li2">😍 – Smiling face with heart-eyes</li>
+   <li class="li2">😊 – Smiling face with smiling eyes</li>
+ </ol>
+
+
+ comments {
+   reacts: {
+     👍 🤣 ❤️ 😍 🔥 😱 😡 😔
+   }
+   items: {
+
+   }
+ }

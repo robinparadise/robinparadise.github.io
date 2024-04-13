@@ -1,0 +1,153 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Code example - Robin Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Some post with code">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Code example">
+  <meta property="og:description" content="Some post with code">
+  <meta property="og:image" content="/assets/blog/19may22-firebase.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Code example">
+  <meta property="twitter:description" content="Some post with code">
+  <meta property="twitter:image" content="/assets/blog/19may22-firebase.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🔥&lt;/text&gt;&lt;/svg&gt;">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🔥&lt;/text&gt;&lt;/svg&gt;">
+  <meta name="theme-color" content="#010610" media="(prefers-color-scheme: dark)">
+
+  <style>:root{--color-primary:#f9f9f9;--color-dark:#222;--color-bg:rgb(1, 6, 16);--color-white:#fff;--color-light:#ccc;--color-link:#0077b2;--color-active:#7d49ac;--offset:1em;--offset-h1:0.83em;--fs-md:1.4em}body{height:100vh;overflow:hidden;font:19px Jost,Font,arial,roboto,sans-serif}.wrapper{width:100vw;height:100vh;overflow:auto;display:inline-grid}h1,h2,h3,h4,h5,h6{font-family:Arial Black}body,h5,h6,main h2.p0{margin:0}h1,h2{font-weight:800}h2{font-size:clamp(1.1em,4vw,1.6em)}h3{font-weight:600}main nav h2:not(:last-child){margin-inline-end:var(--offset-h1)}header h1 a{color:#fff}:is(h1, h2, h3, h4, h5, h6) a{color:var(--color-dark);text-decoration:none;line-height:1.2em}article{margin-top:3em}a{color:var(--color-link);font-weight:400;text-decoration:none}a.dark{color:var(--color-dark)}.center,header{text-align:center}header{color:var(--color-primary);background:var(--color-bg);padding:var(--offset);contain:content}main{width:min(768px,calc(100% - 2*var(--offset)),calc(100vw - 2*var(--offset)));display:inline-grid;background:var(--color-white);margin:auto auto 5em;padding:0 var(--offset);min-height:calc(100vh - 5em);align-content:baseline}header>img{height:200vh;position:absolute;pointer-events:none;z-index:-1;opacity:.8;left:0;top:0;transform:translateX(-38%)}figure img{width:100px;border-radius:50%;background:#fff}nav{display:flex;margin:0 auto 2em}[class^=icon-].md{width:37px;height:37px;display:inline-block;background-color:#fff;border-radius:50%}.center{display:block}nav,nav h2{position:relative}nav a:last-child:after{margin-left:0;transition:.4s ease-in-out}.lang{display:flex;list-style:none;flex-flow:row-reverse}.lang li a{padding:3px 5px;display:inline-block;min-width:40px}@media (min-width:960px){.wrapper{grid-template-columns:minmax(300px,25%) 1fr}header{position:sticky;top:0;height:calc(100vh - 2*var(--offset));overflow:hidden}footer{position:fixed;color:#fff;bottom:10px;min-width:25%;max-width:300px;text-align:center}}@media (max-width:960px){header>img{height:200%;right:0;top:0;width:120vw;transform:translateX(0)}main :is(article, h1){text-align-last:center}main :is(lit-comments, pre){text-align-last:left}main h2.p0{text-align:center}}</style>
+  <link defer rel="stylesheet" href="/assets/style_1d67ea64f2a08e36.css">
+</head>
+<body language="/en">
+  <div class="wrapper">
+    <header>
+      <img src="/assets/bg.svg" alt="Neo background"/>
+      <ul class="lang" aria-label="secondary">
+        <li><h5><a href="/en/blog/code2.html" class="active">EN</a></h5></li>
+        <li><h5><a href="/es/blog/code2.html" class="">ES</a></h5></li>
+      </ul>
+
+      <figure>
+        <img src="/assets/avatar.svg" with=100 height=100 alt="Avatar"/>
+      </figure>
+
+      <h1><a href="/en/">Robin Lab</a></h1>
+      <p class="quote">I’m a web developer who really likes to build websites</p>
+      <p class="center">
+        <a href="https://github.com/robinparadise" title="GitHub" target="_blank">
+          <span class="icon-github-circled white md"></span>
+        </a>
+        <a href="https://www.linkedin.com/pub/robin-giles-ribera/61/6a2/204" title="LinkedIn" target="_blank">
+          <span class="icon-linkedin-circled white md"></span>
+        </a>
+        <a href="mailto:robinchogiles@gmail.com" title="Mail" target="_top">
+          <span class="icon-mail-circled white md"></span>
+        </a>
+        <a href="https://codepen.io/robinparadise" title="Coursera" target="_blank">
+          <span class="icon-codeopen white md"></span>
+        </a>
+      </p>
+
+      <div class="tags">
+  
+    
+    <a href="/en/tags/javascript.html">
+  <span class="tag tag-javascript tag-sm">javascript<sup>8</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/html.html">
+  <span class="tag tag-html tag-sm">html<sup>2</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/css.html">
+  <span class="tag tag-css tag-sm">css<sup>3</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/android.html">
+  <span class="tag tag-android tag-sm">android<sup>1</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/rails.html">
+  <span class="tag tag-rails tag-sm">rails<sup>1</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/cocos2d.html">
+  <span class="tag tag-cocos2d tag-sm">cocos2d<sup>1</sup></span>
+</a>
+
+  
+    
+    <a href="/en/tags/node.html">
+  <span class="tag tag-node tag-sm">node<sup>2</sup></span>
+</a>
+
+  
+</div>
+    </header>
+    <main>
+      <nav aria-label="primary">
+        <h2 class="">
+          <a class="dark" href="/en/">Projects</a>
+        </h2>
+        <h2 class="gradient-text underline">
+          <a class="dark" href="/en/blog.html">Blog</a>
+        </h2>
+        <h2 class="">
+          <a class="dark" href="/en/about.html">About</a>
+        </h2>
+        <h2 onclick="search()">
+          <span class="icon-search"></span>
+        </h2>
+      </nav>
+      
+      <div class="markdown-body"><h1 id="some-post-with-code">Some post with code</h1>
+<p>Some <code>inline code</code>.</p>
+<h2 id="developing-custom-applications">Developing Custom Applications</h2>
+<pre><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span><span class="token punctuation">></span></span>Modal v0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dialog</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre><code class="language-javascript"><span class="token comment">// An highlighted block</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">setLabel</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">label</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'${label}'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="developing-custom-applications-1">Developing Custom Applications</h2>
+<p>Develop custom applications to access the OLT API endpoints (<a href="https://api.lightelligence.io/v1/api-collection">https://api.lightelligence.io/v1/api-collection</a>) and manage them.</p>
+</div>
+      
+        <lit-comments/>
+      
+    </main>
+  </div>
+  <footer>
+  <small>Copyright © 2022 Robin Giles</small>
+</footer>
+
+
+  <script type="module" src="/assets/lit-index-bee552ad.js" async></script>
+  
+    <script type="module" src="/assets/lit-comments-7e5182b8.js" async></script>
+  
+
+</body>
+</html>

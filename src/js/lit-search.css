@@ -1,0 +1,104 @@
+.input-cont {
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-input {
+  width: 100%;
+  background-color: #EFEFEF;
+  border: none;
+  padding: 1em 1.5em;
+  box-sizing: border-box;
+  font-size: 25px;
+  outline-style: none;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+}
+.search-input:focus {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: white;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+.search-input:not(:focus) + .results {
+  display: none;
+}
+
+.results {
+  max-height: 12em;
+  overflow: auto;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  color: grey;
+}
+.results.result-none {
+  padding: 1em 1.5em;
+}
+
+.result-list {
+  background-color: white;
+  padding: 0;
+  margin: 0;
+}
+.result-list li {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.result-list li a {
+  display: inline-block;
+  padding: 1em 1.5em;
+  width: 100%;
+}
+.result-list li div {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.result-list li h2 {
+  color: black;
+}
+.result-list li h2, .result-list li p {
+  margin: 0;
+  font-weight: normal;
+  font-size: 25px;
+  margin-right: 0.5em;
+}
+.result-list li:hover {
+  background-color: #EFFFFF;
+}
+.result-list li:focus-within {
+  background-color: #EFEFEF;
+}
+.result-list li:not(:last-child) {
+  border-bottom: 1px solid #EFEFEF;
+}
+.result-list li strong {
+  border-radius: 4px;
+  font-weight: normal;
+  background-color: yellow;
+}
+dialog {
+  width: min(600px, 90vw);
+  height: min(650px, 70vh);
+  margin: 10% auto auto;
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 8px;
+}
+dialog::backdrop {
+  background: repeating-linear-gradient(
+    30deg,
+    rgba(24, 25, 23, 0.1),
+    rgba(24, 25, 23, 0.1) 1px,
+    rgba(24, 25, 23, 0.3) 1px,
+    rgba(24, 25, 23, 0.3) 20px
+  );
+  backdrop-filter: blur(1px)
+}

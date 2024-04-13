@@ -1,6 +1,7 @@
 {
-  "hosting": {
+  "hosting": [{
     "public": "www",
+    "target": "robin-lab",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -38,6 +39,92 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ]
+  }, {
+    "public": "www",
+    "target": "robink",
+    "ignore": [
+      "firebase.json",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "*.@(json|js|css)",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|eot|otf|ttf|ttc|woff|woff2)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "404.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=120"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/about.html",
+        "function": "ssr"
+      },
+      {
+        "source": "/blog.html",
+        "function": "ssr"
+      },
+      {
+        "source": "/index.html",
+        "function": "ssr"
+      },
+      {
+        "source": "**",
+        "function": "ssr"
+      }
+    ]
+  }],
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    }
+  },
+  "functions": {
+    "source": "functions",
+    "ignore": [
+      "**/test/**",
+      "**/node_modules/**",
+      "**/firebase_debug.json**",
+      "**/firebase.json**",
+      "**/package-lock.json**",
+      "**README.md**"
     ]
   }
 }

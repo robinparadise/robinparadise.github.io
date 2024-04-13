@@ -1,0 +1,12 @@
+---
+title: Tags
+---
+
+<h2>Tags</h2>
+
+<div class="tags">
+  {% for tag, count in collection.$count %}
+    {% set size = 'lg' %}
+    {% include "components/tag.html" %}
+  {% endfor %}
+</div>

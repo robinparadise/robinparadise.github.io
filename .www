@@ -1,0 +1,97 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>code - Robin Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fullstack JavaScript Developer. Passionate about the Linux operating system, free software and web programming.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="code">
+  <meta property="og:description" content="Fullstack JavaScript Developer. Passionate about the Linux operating system, free software and web programming.">
+  <meta property="og:image" content="/assets/blog/19may22-firebase.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="code">
+  <meta property="twitter:description" content="Fullstack JavaScript Developer. Passionate about the Linux operating system, free software and web programming.">
+  <meta property="twitter:image" content="/assets/blog/19may22-firebase.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🔥&lt;/text&gt;&lt;/svg&gt;">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;🔥&lt;/text&gt;&lt;/svg&gt;">
+
+  <link rel="prefetch" as="document" href="/about.html">
+  <link rel="prefetch" as="document" href="/blog.html">
+  <link rel="prefetch" as="document" href="/">
+
+  <style>:root{--color-primary:#f9f9f9;--color-secondary:#444;--color-dark:#222;--color-bg:rgb(1, 6, 16);--color-white:#fff;--color-light:#ccc;--color-link:#0077b2;--color-active:#7d49ac;--offset:16px;--offset-h1:0.83em;--fs-md:1.4em;--fs-lg:2em;--color-orange-1:hsl(43, 90%, 70%);--color-red-3:hsla(6, 96%, 65%, 1);--color-orange-6:hsl(8, 80%, 61%);--color-orange-7:hsl(8, 80%, 48%);--gradient-sunset:linear-gradient(132deg, #5e368d 0%, #7d49ac 40%, #00a5ff 100%);--gradient-active:linear-gradient(132deg, var(--color-orange-7) 0%, var(--color-red-3) 40%, var(--color-orange-7) 100%);--gradient-sunset-x:linear-gradient(
+      to right, 
+      #5e368d,
+      var(--color-active),
+      #00a5ff
+    ) 0 100%}body{padding:0;margin:0;font:19px Font,arial,roboto,sans-serif;color:var(--color-dark);font-weight:400;font-variation-settings:"wght"400}h1,h2{font-weight:800;font-variation-settings:"wght"800}h2{font-size:clamp(1.5em,4vw,2em)}h3{font-weight:600;font-variation-settings:"wght"600}main h2:not(:last-child){margin-inline-end:var(--offset-h1)}a{color:var(--color-link);font-weight:400;text-decoration:none}a.dark{color:var(--color-dark)}.center,header{text-align:center}header,main{padding:var(--offset)}header{color:var(--color-primary);background:var(--color-bg);contain:layout;overflow:hidden}main{max-width:768px;min-height:calc(100vh - 2*var(--offset));display:inline-grid;place-self:center;align-content:baseline;background:var(--color-white);z-index:1}header img{height:200vh;position:absolute;pointer-events:none;z-index:-1;opacity:.8;left:0;top:0;transform:translateX(-38%)}nav{display:flex;margin:0 auto}.center{display:block}.gradient-text{background-color:var(--gradient-sunset);background-image:var(--gradient-sunset);background-size:100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent}nav,nav h2{position:relative}nav a:last-child:after{margin-left:0;transition:.4s ease-in-out}.lang{display:flex;list-style:none;font-size:19px;flex-flow:row-reverse;font-variation-settings:"wght"800;margin:0}.lang li{display:inline-block;border-right:1px solid var(--color-active);border-image:linear-gradient(to bottom,transparent,var(--color-active),transparent)0 100%}.lang li:first-child{border-right:none}.lang li a{padding:3px 5px;color:var(--color-light);display:inline-block;height:100%;min-width:40px;text-align:center;cursor:pointer}.lang li a:hover{text-decoration:none}.lang li a.active{color:var(--color-active);background-color:var(--gradient-sunset);background-image:var(--gradient-sunset);background-size:100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;pointer-events:none;cursor:default}@media (min-width:960px){.wrapper{display:grid;grid-template-columns:minmax(300px,25%) 1fr}header{position:sticky;top:0;height:calc(100vh - 2*var(--offset))}footer{position:fixed;color:#fff;bottom:10px;min-width:25%;max-width:300px;text-align:center}}@media (max-width:960px){.wrapper{display:grid}header{z-index:0}header img{height:200%;right:0;top:0;width:120vw;transform:translateX(0)}footer{color:var(--color-dark);text-align:center;min-width:100%;max-width:100%}}</style>
+  <link defer rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <img src="/assets/bg.svg" alt="Neo background"/>
+      <ul class="lang" aria-label="secondary">
+        <li><a href="/en/" class="active">EN</a></li>
+        <li><a href="/es/" class="">ES</a></li>
+      </ul>
+
+      <h1>Robin Lab</h1>
+      <p class="quote">Degree in Telecomunications System Engineering and Master's Degree in Web Engineering</p>
+      <p>Fullstack JavaScript Developer. Passionate about the Linux operating system, free software and web programming.</p>
+      <p class="center">
+        <a href="https://github.com/robinparadise" title="GitHub" target="_blank">
+          <span class="icon-github-circled white md"></span>
+        </a>
+        <a href="https://www.linkedin.com/pub/robin-giles-ribera/61/6a2/204" title="LinkedIn" target="_blank">
+          <span class="icon-linkedin-circled white md"></span>
+        </a>
+        <a href="mailto:robinchogiles@gmail.com" title="Mail" target="_top">
+          <span class="icon-mail-circled white md"></span>
+        </a>
+        <a href="https://www.coursera.org/user/04a4a52f6b58cb2e7b6f80a3dec606d6" title="Coursera" target="_blank">
+          <span class="icon-bank white md"></span>
+        </a>
+      </p>
+    </header>
+    <main>
+      <nav aria-label="primary">
+        <h2 class="">
+          <a class="dark" href="/">Projects</a>
+        </h2>
+        <h2 class="gradient-text underline">
+          <a class="dark" href="/blog.html">Blog</a>
+        </h2>
+        <h2 class="">
+          <a class="dark" href="/about.html">About</a>
+        </h2>
+      </nav>
+      
+      <div class="markdown-body"><h2 id="some-post-with-code">Some post with code</h2>
+<p>Some <code>inline code</code>.</p>
+<pre><code class="language-html"><span class="token comment">&lt;!-- Dialog --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dialog</span><span class="token punctuation">></span></span>Modal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dialog</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre><code class="language-javascript"><span class="token comment">// An highlighted block</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">setLabel</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">label</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>label<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+</div>
+    </main>
+  </div>
+  <footer>
+  <small>Copyright © 2022 Robin Giles</small>
+</footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "title": "Projectos",
+    "brief": "Estos proyectitos son una maravilla y deberían tener su lugar en los museos nacionales de todo el mundo."
+  },
+  "about": {
+    "title": "About"
+  },
+  "core": {
+    "readme": "Leer más"
+  }
+}

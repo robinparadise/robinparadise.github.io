@@ -1,13 +1,17 @@
-const { md } = require('./md')
-const { html } = require('./html')
-const { css, cssBuild, assets } = require('./assets')
-const { watcher } = require('./watcher')
+const { html, tags } = require('./html')
+const { assets, robots } = require('./assets')
+const { css, cssBuild } = require('./css')
+const { watcher, initWatcher } = require('./watcher')
+const { kill } = require('./reload')
 
 module.exports = {
-  md,
+  assets,
+  robots,
   html,
+  tags,
   css,
   cssBuild,
-  assets,
-  watcher
+  watcher,
+  initWatcher,
+  kill
 }

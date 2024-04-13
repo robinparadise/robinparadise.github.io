@@ -1,0 +1,24 @@
+---
+title: {{tag}}
+---
+
+<h1>
+  <div class="tags">
+    {% set size = 'lg' %}
+    {% include "components/tag.html" %}
+  </div>
+</h1>
+
+{% for data in filtered | sort(attribute="date", reverse=true) %}
+  <article>
+    {% set size = 'sm' %}
+    {% include "components/tags.html" %}
+    <h2 class="p0"><a href="{{langPath}}{{ data.url }}">{{ data["title." + lang] or data.title }}</a></h2>
+    <section>
+      <a href="{{langPath}}/about.html" rel="author">Robin</a> · <time datetime="{{date}}">{{ data.date | date(lang) }}</time>
+    </section>
+    <p>{{ data["description." + lang] or data.description }}</p>
+
+    <a href="{{langPath}}{{ data.url }}">{{ i18n.core.readme }} → </a>
+  </article>
+{% endfor %}

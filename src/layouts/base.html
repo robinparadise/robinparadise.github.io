@@ -1,9 +1,8 @@
 <!Doctype html>
-<html lang="en">
+<html lang="{{lang or 'en'}}">
 <head>
   <meta charset="utf-8">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="/assets/{{ style }}">
+  <title>{{ title }} - Robin Lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ description }}">
 
@@ -19,21 +18,28 @@
   <meta property="twitter:description" content="{{ description }}">
   <meta property="twitter:image" content="{{ image }}">
 
-  <link rel="icon" type="image/x-icon" href="{{ favicon }}">
+  <link rel="icon" href="{{ favicon }}">
   <link rel="apple-touch-icon" href="{{ favicon }}">
+  <meta name="theme-color" content="#010610" media="(prefers-color-scheme: dark)">
 
-  <link rel="prefetch" as="document" href="/about.html">
-  <link rel="prefetch" as="document" href="/blog.html">
-  <link rel="prefetch" as="document" href="/">
-
+  <style>{{ critical | safe }}</style>
+  <link defer rel="stylesheet" href="/assets/{{ style }}">
 </head>
-<body>
+<body language="{{langPath}}">
   <div class="wrapper">
     <header>
       {% include "components/starry.html" %}
-      <h1>Robin Lab</h1>
-      <p class="quote">Degree in Telecomunications System Engineering and Master's Degree in Web Engineering</p>
-      <p>Fullstack JavaScript Developer. Passionate about the Linux operating system, free software and web programming.</p>
+      <ul class="lang" aria-label="secondary">
+        <li><h5><a href="/en/{{ path }}" class="{{ 'active' if lang == 'en' }}">EN</a></h5></li>
+        <li><h5><a href="/es/{{ path }}" class="{{ 'active' if lang == 'es' }}">ES</a></h5></li>
+      </ul>
+
+      <figure>
+        <img src="/assets/avatar.svg" with=100 height=100 alt="Avatar"/>
+      </figure>
+
+      <h1><a href="{{ langPath }}/">Robin Lab</a></h1>
+      <p class="quote">I’m a web developer who really likes to build websites</p>
       <p class="center">
         <a href="https://github.com/robinparadise" title="GitHub" target="_blank">
           <span class="icon-github-circled white md"></span>
@@ -44,26 +50,42 @@
         <a href="mailto:robinchogiles@gmail.com" title="Mail" target="_top">
           <span class="icon-mail-circled white md"></span>
         </a>
-        <a href="https://www.coursera.org/user/04a4a52f6b58cb2e7b6f80a3dec606d6" title="Coursera" target="_blank">
-          <span class="icon-bank white md"></span>
+        <a href="https://codepen.io/robinparadise" title="Coursera" target="_blank">
+          <span class="icon-codeopen white md"></span>
         </a>
       </p>
+
+      {% include "components/alltags.html" %}
     </header>
     <main>
-      <nav>
-        <h2 class="{{ 'gradient-text underline' if page == 'index' else '' }}">
-          <a class="dark" href="/">Projects</a>
+      <nav aria-label="primary">
+        <h2 class="{{ 'gradient-text underline' if page == 'index' or page == 'projects' }}">
+          <a class="dark" href="{{ langPath }}/">{{ i18n.projects.title }}</a>
         </h2>
-        <h2 class="{{ 'gradient-text underline' if page == 'blog' else '' }}">
-          <a class="dark" href="/blog.html">Blog</a>
+        <h2 class="{{ 'gradient-text underline' if page == 'blog' }}">
+          <a class="dark" href="{{ langPath }}/blog.html">Blog</a>
         </h2>
-        <h2 class="{{ 'gradient-text underline' if page == 'about' else '' }}">
-          <a class="dark" href="/about.html">About</a>
+        <h2 class="{{ 'gradient-text underline' if page == 'about' }}">
+          <a class="dark" href="{{ langPath }}/about.html">{{ i18n.about.title }}</a>
+        </h2>
+        <h2 onclick="search()">
+          <span class="icon-search"></span>
         </h2>
       </nav>
+      
       {{ content | safe }}
+      {% if md == true %}
+        <lit-comments/>
+      {% endif %}
     </main>
   </div>
   {% include "components/footer.html" %}
+
+
+  <script type="module" src="/assets/{{ scripts('lit-index.js') }}" async></script>
+  {% if md == true %}
+    <script type="module" src="/assets/{{ scripts('lit-comments.js') }}" async></script>
+  {% endif %}
+
 </body>
 </html>

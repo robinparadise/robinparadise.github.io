@@ -1,0 +1,216 @@
+.tags {
+  .tag-lg {
+    font-size: 1.2em;
+    border-radius: 4px;
+  }
+  .tag-sm {
+    font-size: .7em;
+    display: inline-block;
+    letter-spacing: .15ch;
+    font-weight: 400;
+  }
+  .tag {
+    --red: #ff3860;
+    --red-dark: #ff1443;
+    --red-light: #ff5c7c;
+    --blue: #498afb;
+    --blue-dark: #2674fa;
+    --blue-light: #6ca0fc;
+    --orange: #fa8142;
+    --orange-dark: #f96a1f;
+    --orange-light: #fb9865;
+    --green: #09c372;
+    --green-dark: #07a15e;
+    --green-light: #0be586;
+    --purple: #9166cc;
+    --purple-dark: #7d4bc3;
+    --purple-light: #a481d5;
+    --text-color: var(--gray2);
+    --background: var(--gray6);
+    --background-opacity: rgba(18,24,27,0.58);
+    --pink: #ff4088;
+    --pink-dark: #ff1c72;
+    --pink-light: #ff649e;
+    --gray0: #f8f8f8;
+    --gray1: #dbe1e8;
+    --gray2: #b2becd;
+    --gray3: #6c7983;
+    --gray4: #454e56;
+    --gray5: #2a2e35;
+    --gray6: #12181b;
+    --tag-bg: var(--gray1);
+    --tag-color: var(--gray4);
+    display: inline-block;
+    border-radius: 3px;
+    padding: 0.2em 0.5em 0.3em;
+    border-radius: 2px;
+    background: var(--tag-bg, #f0db4f);
+    color: var(--tag-color, #000);
+    font-weight: 600;
+    margin: 0.25em 0.1em;
+  }
+  .tag-green, .tag-pro {
+    --tag-bg: var(--green);
+    --tag-color: #fff
+  }
+
+  .tag-purple {
+    --tag-bg: var(--purple);
+    --tag-color: #fff
+  }
+
+  .tag-blue {
+    --tag-bg: var(--blue);
+    --tag-color: #fff
+  }
+
+  .tag-contrast {
+    --tag-bg: var(--text-color);
+    --tag-color: var(--background)
+  }
+
+  .tag-javascript {
+    --tag-bg: #f0db4f;
+    --tag-color: var(--grey5)
+  }
+
+  .tag-typescript {
+    --tag-bg: #2775c3;
+    --tag-color: #fff
+  }
+
+  .tag-angular {
+    --tag-bg: #dc0530;
+    --tag-color: #fff
+  }
+
+  .tag-firebase {
+    --tag-bg: #ffcb2b;
+    --tag-color: #12181a
+  }
+
+  .tag-vue {
+    --tag-bg: #41b883;
+    --tag-color: #35495e
+  }
+
+  .tag-rxjs {
+    --tag-bg: var(--pink);
+    --tag-color: var(--gray5)
+  }
+
+  .tag-node {
+    --tag-bg: #90c53f;
+    --tag-color: #46483d
+  }
+
+  .tag-cloud-functions {
+    --tag-bg: var(--blue);
+    --tag-color: #fff
+  }
+
+  .tag-flutter {
+    --tag-bg: #54c5f8;
+    --tag-color: #003b6c
+  }
+
+  .tag-google-maps {
+    --tag-bg: #33a668;
+    --tag-color: #f8d845
+  }
+
+  .tag-android {
+    --tag-bg: #a4c34a;
+    --tag-color: var(--grey5);
+  }
+
+  .tag-fauna, .tag-stripe {
+    --tag-color: #fff;
+    --tag-bg: #6675e0
+  }
+
+  .tag-machine-learning {
+    --tag-color: #fff;
+    --tag-bg: var(--purple-light)
+  }
+
+  .tag-python {
+    --tag-color: #ffda5d;
+    --tag-bg: #3879ab
+  }
+
+  .tag-svelte {
+    --tag-color: #fff;
+    --tag-bg: #ff3e00
+  }
+
+  .tag-react {
+    --tag-color: #00d8ff;
+    --tag-bg: #222
+  }
+
+  .tag-ios {
+    --tag-color: #fff;
+    --tag-bg: #000
+  }
+
+  .tag-ionic {
+    --tag-bg: #fff;
+    --tag-color: #4a8afc
+  }
+
+  .tag-nest {
+    --tag-color: #e0234e;
+    --tag-bg: #000
+  }
+
+  .tag-graphql {
+    --tag-color: #fff;
+    --tag-bg: #e10097
+  }
+
+  .tag-electron {
+    --tag-color: #313244;
+    --tag-bg: #adecf3
+  }
+
+  .tag-css {
+    --tag-color: #2d2d3e;
+    --tag-bg: #f954be
+  }
+
+  .tag-github {
+    --tag-color: #fff;
+    --tag-bg: #24292e
+  }
+
+  .tag-deno {
+    --tag-color: #e1e9d5;
+    --tag-bg: #222220
+  }
+
+  .tag-docker {
+    --tag-color: #fff;
+    --tag-bg: #2496ed
+  }
+
+  .tag-nextjs {
+    --tag-color: #fff;
+    --tag-bg: #000
+  }
+
+  .tag-rpi {
+    --tag-color: #000;
+    --tag-bg: #bc1142
+  }
+
+  .tag-go {
+    --tag-color: #fff;
+    --tag-bg: #00add8
+  }
+
+  .tag-redis {
+    --tag-color: #fff;
+    --tag-bg: #bc1111
+  }
+}

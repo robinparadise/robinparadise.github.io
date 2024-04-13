@@ -1,4 +1,36 @@
 .markdown-body {
+  position: relative;
+  min-width: 100%;
+}
+.markdown-body img {
+  border-style: none;
+  max-height: min(max(400px, 600px));
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #ffffff;
+  text-align: center;
+  display: flex;
+  margin: auto;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(175,184,193,0.2);
+  border-radius: 6px;
+}
+
+/*.markdown-body {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   margin: 32px 0;
@@ -51,16 +83,11 @@
   margin: .67em 0;
   font-weight: 600;
   padding-bottom: .3em;
-  /*font-size: 2em;*/
 }
 
 .markdown-body mark {
   background-color: #fff8c5;
   color: #24292f;
-}
-
-.markdown-body small {
-  /*font-size: 90%;*/
 }
 
 .markdown-body sub,
@@ -787,3 +814,4 @@
   background-color: transparent;
   border: 0;
 }
+*/

@@ -1,21 +1,8 @@
-nav {
-  position: relative;
-  margin: 0 auto;
-}
-nav h2 {
-  position: relative;
-}
-
-nav a:last-child:after {
-  margin-left: 0;
-  transition: 0.4s ease-in-out;
-}
-
 :is(nav .underline a, nav a:hover):last-child:after {
   display: block;
   content: "";
   height: 4px;
-  background-color: #5e368d;
+  background: var(--gradient-sunset-x);
   right: 0;
   left: 0;
   position: absolute;
@@ -23,5 +10,5 @@ nav a:last-child:after {
   border-radius: 10px;
 }
 nav a:hover:last-child:after {
-  background-color: var(--color-orange-7)
+  background: var(--gradient-active)
 }

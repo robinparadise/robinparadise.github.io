@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "robin-lab"
+  },
+  "targets": {
+    "robin-lab": {
+      "hosting": {
+        "robink": [
+          "robink"
+        ],
+        "robin-lab": [
+          "robin-lab"
+        ]
+      }
+    }
   }
 }

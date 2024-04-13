@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="/assets/{{ style }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   <!-- Open Graph / Facebook -->
@@ -24,6 +23,8 @@
   <link rel="prefetch" as="document" href="/about.html">
   <link rel="prefetch" as="document" href="/blog.html">
   <link rel="prefetch" as="document" href="/">
+
+  <style>{{ critical | safe }}</style>
 
   <style>
     h1 {

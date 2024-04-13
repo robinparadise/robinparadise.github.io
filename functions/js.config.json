@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es2015", "es2016", "dom", "es2018.promise", "esnext", "es2017"],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "outDir": "lib",
+    "sourceMap": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true
+  },
+  "compileOnSave": true,
+  "exclude": ["node_modules", "dist", "lib"],
+  "include": [
+    "."
+  ]
+}
