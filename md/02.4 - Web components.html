@@ -1,0 +1,1775 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown</title>
+    <style>/* light */
+.markdown-body {
+  color-scheme: light;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: auto;
+  color: #1f2328;
+  background-color: #ffffff;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  scroll-behavior: auto !important;
+  width: min(100%, 1024px);
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.markdown-body h1:hover .anchor .octicon-link:before,
+.markdown-body h2:hover .anchor .octicon-link:before,
+.markdown-body h3:hover .anchor .octicon-link:before,
+.markdown-body h4:hover .anchor .octicon-link:before,
+.markdown-body h5:hover .anchor .octicon-link:before,
+.markdown-body h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+.markdown-body details,
+.markdown-body figcaption,
+.markdown-body figure {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body [hidden] {
+  display: none !important;
+}
+
+.markdown-body a {
+  background-color: transparent;
+  color: #0969da;
+  text-decoration: none;
+}
+
+.markdown-body abbr[title] {
+  border-bottom: none;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body dfn {
+  font-style: italic;
+}
+
+.markdown-body h1 {
+  margin: .67em 0;
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 2em;
+  border-bottom: 1px solid #d1d9e0b3;
+}
+
+.markdown-body mark {
+  background-color: #fff8c5;
+  color: #1f2328;
+}
+
+.markdown-body small {
+  font-size: 90%;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body sup {
+  top: -0.5em;
+}
+
+.markdown-body img {
+  border-style: none;
+  max-width: 100%;
+  box-sizing: content-box;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace;
+  font-size: 1em;
+}
+
+.markdown-body figure {
+  margin: 1em 2.5rem;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 1px solid #d1d9e0b3;
+  height: .25em;
+  padding: 0;
+  margin: 1.5rem 0;
+  background-color: #d1d9e0;
+  border: 0;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body [type=button],
+.markdown-body [type=reset],
+.markdown-body [type=submit] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+.markdown-body [type=checkbox],
+.markdown-body [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body [type=number]::-webkit-inner-spin-button,
+.markdown-body [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+.markdown-body [type=search]::-webkit-search-cancel-button,
+.markdown-body [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: .54;
+}
+
+.markdown-body ::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  appearance: button;
+  font: inherit;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body ::placeholder {
+  color: #59636e;
+  opacity: 1;
+}
+
+.markdown-body hr::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body a:focus,
+.markdown-body [role=button]:focus,
+.markdown-body input[type=radio]:focus,
+.markdown-body input[type=checkbox]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.markdown-body a:focus:not(:focus-visible),
+.markdown-body [role=button]:focus:not(:focus-visible),
+.markdown-body input[type=radio]:focus:not(:focus-visible),
+.markdown-body input[type=checkbox]:focus:not(:focus-visible) {
+  outline: solid 1px transparent;
+}
+
+.markdown-body a:focus-visible,
+.markdown-body [role=button]:focus-visible,
+.markdown-body input[type=radio]:focus-visible,
+.markdown-body input[type=checkbox]:focus-visible {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.markdown-body a:not([class]):focus,
+.markdown-body a:not([class]):focus-visible,
+.markdown-body input[type=radio]:focus,
+.markdown-body input[type=radio]:focus-visible,
+.markdown-body input[type=checkbox]:focus,
+.markdown-body input[type=checkbox]:focus-visible {
+  outline-offset: 0;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 0.25rem;
+  font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  line-height: 10px;
+  color: #1f2328;
+  vertical-align: middle;
+  background-color: #f6f8fa;
+  border: solid 1px #d1d9e0b3;
+  border-bottom-color: #d1d9e0b3;
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 #d1d9e0b3;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-body h2 {
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #d1d9e0b3;
+}
+
+.markdown-body h3 {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-weight: 600;
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  font-weight: 600;
+  font-size: .85em;
+  color: #59636e;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: #59636e;
+  border-left: .25em solid #d1d9e0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body tt,
+.markdown-body code,
+.markdown-body samp {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 12px;
+  word-wrap: normal;
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-body input::-webkit-outer-spin-button,
+.markdown-body input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body .mr-2 {
+  margin-right: 0.5rem !important;
+}
+
+.markdown-body::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .absent {
+  color: #d1242f;
+}
+
+.markdown-body .anchor {
+  float: left;
+  padding-right: 0.25rem;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1f2328;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+  padding: 0 .2em;
+  font-size: inherit;
+}
+
+.markdown-body summary h1,
+.markdown-body summary h2,
+.markdown-body summary h3,
+.markdown-body summary h4,
+.markdown-body summary h5,
+.markdown-body summary h6 {
+  display: inline-block;
+}
+
+.markdown-body summary h1 .anchor,
+.markdown-body summary h2 .anchor,
+.markdown-body summary h3 .anchor,
+.markdown-body summary h4 .anchor,
+.markdown-body summary h5 .anchor,
+.markdown-body summary h6 .anchor {
+  margin-left: -40px;
+}
+
+.markdown-body summary h1,
+.markdown-body summary h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.markdown-body ol[type="a s"] {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body ol[type="A s"] {
+  list-style-type: upper-alpha;
+}
+
+.markdown-body ol[type="i s"] {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol[type="I s"] {
+  list-style-type: upper-roman;
+}
+
+.markdown-body ol[type="1"] {
+  list-style-type: decimal;
+}
+
+.markdown-body div>ol:not([type]) {
+  list-style-type: decimal;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 1rem;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.markdown-body dl dd {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #d1d9e0;
+}
+
+.markdown-body table td>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table tr {
+  background-color: #ffffff;
+  border-top: 1px solid #d1d9e0b3;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body table img {
+  background-color: transparent;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body .emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+
+.markdown-body span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid #d1d9e0;
+}
+
+.markdown-body span.frame span img {
+  display: block;
+  float: left;
+}
+
+.markdown-body span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: #1f2328;
+}
+
+.markdown-body span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-center>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.markdown-body span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.markdown-body span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-right>span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+.markdown-body span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+  margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: #818b981f;
+  border-radius: 6px;
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+  display: none;
+}
+
+.markdown-body del code {
+  text-decoration: inherit;
+}
+
+.markdown-body samp {
+  font-size: 85%;
+}
+
+.markdown-body pre code {
+  font-size: 100%;
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 1rem;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 1rem;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  color: #1f2328;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body .csv-data td,
+.markdown-body .csv-data th {
+  padding: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown-body .csv-data .blob-num {
+  padding: 10px 0.5rem 9px;
+  text-align: right;
+  background: #ffffff;
+  border: 0;
+}
+
+.markdown-body .csv-data tr {
+  border-top: 0;
+}
+
+.markdown-body .csv-data th {
+  font-weight: 600;
+  background: #f6f8fa;
+  border-top: 0;
+}
+
+.markdown-body [data-footnote-ref]::before {
+  content: "[";
+}
+
+.markdown-body [data-footnote-ref]::after {
+  content: "]";
+}
+
+.markdown-body .footnotes {
+  font-size: 12px;
+  color: #59636e;
+  border-top: 1px solid #d1d9e0;
+}
+
+.markdown-body .footnotes ol {
+  padding-left: 1rem;
+}
+
+.markdown-body .footnotes ol ul {
+  display: inline-block;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.markdown-body .footnotes li {
+  position: relative;
+}
+
+.markdown-body .footnotes li:target::before {
+  position: absolute;
+  top: calc(0.5rem*-1);
+  right: calc(0.5rem*-1);
+  bottom: calc(0.5rem*-1);
+  left: calc(1.5rem*-1);
+  pointer-events: none;
+  content: "";
+  border: 2px solid #0969da;
+  border-radius: 6px;
+}
+
+.markdown-body .footnotes li:target {
+  color: #1f2328;
+}
+
+.markdown-body .footnotes .data-footnote-backref g-emoji {
+  font-family: monospace;
+}
+
+.markdown-body .pl-c {
+  color: #59636e;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #0550ae;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6639ba;
+}
+
+.markdown-body .pl-smi,
+.markdown-body .pl-s .pl-s1 {
+  color: #1f2328;
+}
+
+.markdown-body .pl-ent {
+  color: #0550ae;
+}
+
+.markdown-body .pl-k {
+  color: #cf222e;
+}
+
+.markdown-body .pl-s,
+.markdown-body .pl-pds,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sre,
+.markdown-body .pl-sr .pl-sra {
+  color: #0a3069;
+}
+
+.markdown-body .pl-v,
+.markdown-body .pl-smw {
+  color: #953800;
+}
+
+.markdown-body .pl-bu {
+  color: #82071e;
+}
+
+.markdown-body .pl-ii {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+
+.markdown-body .pl-c2 {
+  color: #f6f8fa;
+  background-color: #cf222e;
+}
+
+.markdown-body .pl-sr .pl-cce {
+  font-weight: bold;
+  color: #116329;
+}
+
+.markdown-body .pl-ml {
+  color: #3b2300;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  font-weight: bold;
+  color: #0550ae;
+}
+
+.markdown-body .pl-mi {
+  font-style: italic;
+  color: #1f2328;
+}
+
+.markdown-body .pl-mb {
+  font-weight: bold;
+  color: #1f2328;
+}
+
+.markdown-body .pl-md {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+
+.markdown-body .pl-mi1 {
+  color: #116329;
+  background-color: #dafbe1;
+}
+
+.markdown-body .pl-mc {
+  color: #953800;
+  background-color: #ffd8b5;
+}
+
+.markdown-body .pl-mi2 {
+  color: #d1d9e0;
+  background-color: #0550ae;
+}
+
+.markdown-body .pl-mdr {
+  font-weight: bold;
+  color: #8250df;
+}
+
+.markdown-body .pl-ba {
+  color: #59636e;
+}
+
+.markdown-body .pl-sg {
+  color: #818b98;
+}
+
+.markdown-body .pl-corl {
+  text-decoration: underline;
+  color: #0a3069;
+}
+
+.markdown-body [role=button]:focus:not(:focus-visible),
+.markdown-body [role=tabpanel][tabindex="0"]:focus:not(:focus-visible),
+.markdown-body button:focus:not(:focus-visible),
+.markdown-body summary:focus:not(:focus-visible),
+.markdown-body a:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+.markdown-body [tabindex="0"]:focus:not(:focus-visible),
+.markdown-body details-dialog:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.markdown-body g-emoji {
+  display: inline-block;
+  min-width: 1ch;
+  font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 1em;
+  font-style: normal !important;
+  font-weight: 400;
+  line-height: 1;
+  vertical-align: -0.075em;
+}
+
+.markdown-body g-emoji img {
+  width: 1em;
+  height: 1em;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item label {
+  font-weight: 400;
+}
+
+.markdown-body .task-list-item.enabled label {
+  cursor: pointer;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 0.25rem;
+}
+
+.markdown-body .task-list-item .handle {
+  display: none;
+}
+
+.markdown-body .task-list-item-checkbox {
+  margin: 0 .2em .25em -1.4em;
+  vertical-align: middle;
+}
+
+.markdown-body ul:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em .25em .2em;
+}
+
+.markdown-body ol:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em .25em .2em;
+}
+
+.markdown-body .contains-task-list:hover .task-list-item-convert-container,
+.markdown-body .contains-task-list:focus-within .task-list-item-convert-container {
+  display: block;
+  width: auto;
+  height: 24px;
+  overflow: visible;
+  clip: auto;
+}
+
+.markdown-body ::-webkit-calendar-picker-indicator {
+  filter: invert(50%);
+}
+
+.markdown-body .markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  border-left: .25em solid #d1d9e0;
+}
+
+.markdown-body .markdown-alert>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body .markdown-alert>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note {
+  border-left-color: #0969da;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: #0969da;
+}
+
+.markdown-body .markdown-alert.markdown-alert-important {
+  border-left-color: #8250df;
+}
+
+.markdown-body .markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: #8250df;
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning {
+  border-left-color: #9a6700;
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: #9a6700;
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip {
+  border-left-color: #1a7f37;
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: #1a7f37;
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution {
+  border-left-color: #cf222e;
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: #d1242f;
+}
+
+.markdown-body>*:first-child>.heading-element:first-child {
+  margin-top: 0 !important;
+}
+</style>
+  </head>
+  <body class="markdown-body">
+    <h1>2.4 Web components</h1>
+<h2>2.4.1 Introducción:</h2>
+<ul>
+<li>Son elementos HTML modulares, encapsulados y reutilizables.</li>
+<li>Basados en estándares web, funcionan en cualquier navegador moderno (Firefox, Safari, Chrome, etc.).</li>
+<li>Evitan la necesidad de desarrollar modelos de componengoogletes propios en frameworks.</li>
+<li>Casos de uso principales:<ol>
+<li>Crear UI reutilizable.</li>
+<li>Componer aplicaciones completas.</li>
+<li>Agregar interactividad a páginas estáticas.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Requisitos</strong>  </p>
+<ol>
+<li>Navegador compatible.</li>
+<li>Conocimientos básicos de HTML, CSS, JS.</li>
+<li>Familiaridad con módulos JS y funciones de flecha.</li>
+</ol>
+<p><strong>Lo que aprenderás</strong>  </p>
+<ol>
+<li>Elementos personalizados (Custom Elements).</li>
+<li>Plantillas (Templates).</li>
+<li>Shadow DOM.</li>
+</ol>
+<h2>2.4.2 Setup:</h2>
+<p>To get started, let&#39;s create a basic HTML page:</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello world!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2>2.4.3 Custom Elements</h2>
+<ul>
+<li><p><strong>Definición</strong>: Permiten crear etiquetas HTML personalizadas, como <code>&lt;cool-heading&gt;</code>, que el navegador no reconoce por defecto.</p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;cool-heading&gt;
+  &lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;/cool-heading&gt;
+</code></pre>
+</li>
+<li><p><strong>Funcionalidad</strong>:</p>
+<ul>
+<li>El navegador renderiza etiquetas desconocidas como elementos en línea.</li>
+<li>Se utiliza el <strong>Custom Elements API</strong> para definir el comportamiento de estas etiquetas.</li>
+</ul>
+</li>
+<li><p><strong>Creación de un Custom Element</strong>:</p>
+<ol>
+<li><strong>Definir una clase</strong> que extienda <code>HTMLElement</code>:<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
+  connectedCallback() {
+    console.log(&#39;cool heading connected!&#39;);
+  }
+}
+</code></pre>
+</li>
+<li><strong>Registrar el elemento</strong>:<pre><code class="language-javascript">customElements.define(&#39;cool-heading&#39;, CoolHeading);
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p><strong>Código Final</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;cool-heading&gt;
+      &lt;h1&gt;Hello world!&lt;/h1&gt;
+    &lt;/cool-heading&gt;
+    &lt;script&gt;
+      class CoolHeading extends HTMLElement {
+        connectedCallback() {
+          console.log(&#39;cool heading connected!&#39;);
+        }
+      }
+      customElements.define(&#39;cool-heading&#39;, CoolHeading);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+</ul>
+<h2>2.4.4 Customizing our element</h2>
+<ul>
+<li><p><strong>Propósito</strong>: Aprender a personalizar un elemento personalizado para que realice acciones útiles.</p>
+</li>
+<li><p><strong>Ciclo de Vida del Elemento</strong>:</p>
+<ul>
+<li><strong>connectedCallback()</strong>: Se llama cuando el elemento se conecta al DOM; puede llamarse múltiples veces.</li>
+<li><strong>disconnectedCallback()</strong>: Se llama cuando el elemento se desconecta del DOM.</li>
+</ul>
+</li>
+<li><p><strong>Ejemplo de Clase</strong>:</p>
+<pre><code class="language-javascript">class MyElement extends HTMLElement {
+  constructor() {
+    super(); // Se llama al crear la instancia
+  }
+
+  connectedCallback() {
+    // Código ejecutado al conectarse
+  }
+
+  disconnectedCallback() {
+    // Código ejecutado al desconectarse
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>Agregar Estilos</strong>: Puedes añadir estilos directamente a tu elemento en <code>connectedCallback()</code>:</p>
+<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
+  connectedCallback() {
+    this.style.color = &#39;blue&#39;; // El texto se muestra en azul
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>Manejo de Eventos</strong>:</p>
+<ul>
+<li>Agrega un listener para cambiar el color al hacer clic:</li>
+</ul>
+<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
+  constructor() {
+    super();
+    this.addEventListener(&#39;click&#39;, () =&gt; {
+      this.style.color = &#39;red&#39;; // Cambia el color a rojo al hacer clic
+    });
+  }
+
+  connectedCallback() {
+    this.style.color = &#39;blue&#39;; // Inicialmente azul
+  }
+}
+</code></pre>
+</li>
+<li><p><strong>Código Completo</strong>:</p>
+<pre><code class="language-html">&lt;cool-heading&gt;
+  &lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;/cool-heading&gt;
+&lt;script&gt;
+  class CoolHeading extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener(&#39;click&#39;, () =&gt; {
+        this.style.color = &#39;red&#39;;
+      });
+    }
+
+    connectedCallback() {
+      this.style.color = &#39;blue&#39;;
+    }
+  }
+  customElements.define(&#39;cool-heading&#39;, CoolHeading);
+&lt;/script&gt;
+</code></pre>
+</li>
+<li><p><strong>AttributesChangedCallback</strong>: Se llama cuando un atributo personalizado cambia.</p>
+<ul>
+<li><strong>observedAttributes</strong>: Lista de atributos a observar.</li>
+<li><strong>attributeChangedCallback(name, oldValue, newValue)</strong>: Lógica para manejar cambios de atributos.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-html">&lt;cool-heading color=&quot;red&quot;&gt;
+  &lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;/cool-heading&gt;
+&lt;script&gt;
+  class CoolHeading extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.style.color = this.getAttribute(&#39;color&#39;);
+    }
+
+    static get observedAttributes() {
+      return [&#39;color&#39;];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      this.style.color = newValue;
+    }
+  }
+  customElements.define(&#39;cool-heading&#39;, CoolHeading);
+  // &lt;cool-heading color=&quot;red&quot;&gt;Hello world!&lt;/cool-heading&gt;
+  // &lt;cool-heading color=&quot;blue&quot;&gt;Hello world!&lt;/cool-heading&gt;
+  // Usaremos el atributo color para cambiar el color del texto.
+
+  setTimeout(() =&gt; {
+    document.querySelector(&#39;cool-heading&#39;).setAttribute(&#39;color&#39;, &#39;blue&#39;);
+  }, 2000);
+&lt;/script&gt;
+</code></pre>
+<hr>
+<h2>2.5 Templating</h2>
+<ul>
+<li><p><strong>Propósito</strong>: Usar elementos de plantilla (<code>&lt;template&gt;</code>) para definir estructuras HTML dentro de los Web Components, permitiendo la clonación eficiente y la actualización del contenido.</p>
+</li>
+<li><p><strong>Ventajas de <code>&lt;template&gt;</code></strong>:</p>
+<ul>
+<li>Define la estructura de HTML de antemano.</li>
+<li>Clona contenido en lugar de recrearlo, mejorando el rendimiento.</li>
+<li>El contenido dentro de <code>&lt;template&gt;</code> es inerte (no se muestra, no se descargan imágenes ni se ejecutan scripts).</li>
+</ul>
+</li>
+<li><p><strong>Uso de <code>&lt;template&gt;</code></strong>:</p>
+<ol>
+<li><p><strong>Definir la plantilla</strong>:</p>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;/template&gt;
+</code></pre>
+</li>
+<li><p><strong>Actualizar <code>connectedCallback()</code> para usar la plantilla</strong>:</p>
+<pre><code class="language-javascript">connectedCallback() {
+  const template = document.querySelector(&#39;template&#39;);
+  const clone = document.importNode(template.content, true); // Clona el contenido de la plantilla
+  this.appendChild(clone); // Agrega el contenido clonado al componente
+}
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p><strong>Ejemplo Completo</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;template&gt;
+      &lt;h1&gt;Hello world!&lt;/h1&gt;
+    &lt;/template&gt;
+
+    &lt;cool-heading&gt;&lt;/cool-heading&gt;
+
+    &lt;script&gt;
+      class CoolHeading extends HTMLElement {
+        constructor() {
+          super();
+          this.addEventListener(&#39;click&#39;, () =&gt; {
+            this.style.color = &#39;red&#39;;
+          });
+        }
+
+        connectedCallback() {
+          const template = document.querySelector(&#39;template&#39;);
+          const clone = document.importNode(template.content, true);
+          this.appendChild(clone);
+        }
+      }
+      customElements.define(&#39;cool-heading&#39;, CoolHeading);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p><strong>Recomendación</strong>: Para simplificar el uso de plantillas, considera usar bibliotecas como <strong>lit-html</strong> y <strong>lit-element</strong>, que facilitan el manejo de plantillas y ofrecen más funcionalidades.</p>
+</li>
+</ul>
+<hr>
+<h2>2.6 Shadow DOM</h2>
+<ul>
+<li><p><strong>Propósito</strong>: Proporcionar encapsulación de estilos y estructura dentro de un componente, evitando conflictos en el contexto global de HTML y CSS.</p>
+</li>
+<li><p><strong>Características</strong>:</p>
+<ul>
+<li>El <strong>Shadow DOM</strong> crea un &quot;root&quot; especial que envuelve los elementos de un componente.</li>
+<li>Los estilos definidos dentro del shadow root no afectan al DOM externo, y viceversa.</li>
+<li>No se pueden seleccionar elementos dentro del shadow root con <code>querySelector()</code> normal.</li>
+</ul>
+</li>
+<li><p><strong>Uso de Shadow DOM</strong>:</p>
+<ol>
+<li><p><strong>Crear un Shadow Root</strong>:</p>
+<pre><code class="language-javascript">connectedCallback() {
+  const template = document.querySelector(&#39;template&#39;);
+  const clone = document.importNode(template.content, true);
+  this.attachShadow({ mode: &#39;open&#39; }); // Crea el shadow root
+  this.shadowRoot.appendChild(clone); // Agrega contenido al shadow root
+}
+</code></pre>
+</li>
+<li><p><strong>Ejemplo de Plantilla con Estilos</strong>:</p>
+<pre><code class="language-html">&lt;template&gt;
+  &lt;style&gt;
+    h1 {
+      color: red; // Estilo solo aplicable dentro del shadow DOM
+    }
+  &lt;/style&gt;
+  &lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;/template&gt;
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p><strong>Encapsulación en Acción</strong>:</p>
+<ul>
+<li><p>Si agregas contenido fuera del componente:</p>
+<pre><code class="language-html">&lt;h1&gt;Hello world!&lt;/h1&gt;
+&lt;cool-heading&gt;&lt;/cool-heading&gt;
+</code></pre>
+<ul>
+<li>Los estilos de <code>&lt;cool-heading&gt;</code> no afectan al <code>&lt;h1&gt;</code> externo.</li>
+</ul>
+</li>
+<li><p>Agregar estilos globales no afecta al contenido dentro del shadow DOM:</p>
+<pre><code class="language-html">&lt;style&gt;
+  h1 {
+    color: pink; // Estilo global
+  }
+&lt;/style&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>Propiedades Heredadas</strong>:</p>
+<ul>
+<li>Algunas propiedades CSS, como fuentes y colores, se heredan a través del shadow root desde elementos padre.</li>
+</ul>
+</li>
+<li><p><strong>Ejemplo Completo</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;style&gt;
+      body {
+        font-family: monospace;
+      }
+      h1 {
+        color: pink;
+      }
+    &lt;/style&gt;
+
+    &lt;template&gt;
+      &lt;style&gt;
+        h1 {
+          color: red; // Estilo interno
+        }
+      &lt;/style&gt;
+      &lt;h1&gt;Hello world!&lt;/h1&gt;
+    &lt;/template&gt;
+
+    &lt;h1&gt;Hello world&lt;/h1&gt;
+    &lt;cool-heading&gt;&lt;/cool-heading&gt;
+
+    &lt;script&gt;
+      class CoolHeading extends HTMLElement {
+        constructor() {
+          super();
+          this.addEventListener(&#39;click&#39;, () =&gt; {
+            this.style.color = &#39;red&#39;;
+          });
+        }
+
+        connectedCallback() {
+          const template = document.querySelector(&#39;template&#39;);
+          const clone = document.importNode(template.content, true);
+          this.attachShadow({ mode: &#39;open&#39; });
+          this.shadowRoot.appendChild(clone);
+        }
+      }
+
+      customElements.define(&#39;cool-heading&#39;, CoolHeading);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p><strong>Ejemplo de Shadow DOM</strong>:</p>
+<p><img src="https://open-wc.org/codelabs/basics/assets/shadow-dom.png" alt="Shadow DOM example"></p>
+</li>
+</ul>
+<hr>
+<h2>2.7 Web Components en la práctica</h2>
+<ul>
+<li><strong>Uso general</strong>: Muchas empresas y proyectos están implementando Web Components. A continuación, algunos ejemplos destacados:</li>
+</ul>
+<h3>1. YouTube</h3>
+<ul>
+<li><strong>Descripción</strong>: Utiliza elementos personalizados para dividir las distintas secciones de su página principal en componentes.</li>
+<li><strong>Compatibilidad</strong>: En navegadores más antiguos, se carga una versión estándar en HTML.</li>
+<li><strong>Imagen</strong>:<br><img src="https://open-wc.org/codelabs/basics/assets/youtube-example.png" alt="Ejemplo de Web Component de YouTube"></li>
+</ul>
+<h3>2. GitHub</h3>
+<ul>
+<li><strong>Descripción</strong>: Usa Web Components en varias partes de su sitio web, basándose en la API de Custom Elements y aplicando estilos globales.</li>
+<li><strong>Mejora progresiva</strong>: En navegadores sin soporte para Custom Elements, se muestra un texto alternativo.</li>
+<li><strong>Código abierto</strong>: Sus elementos están disponibles en <a href="https://github.com/github/time-elements">GitHub</a>.</li>
+<li><strong>Imágenes</strong>:<br><img src="https://open-wc.org/codelabs/basics/assets/github-example-1.png" alt="Ejemplo de Web Component de GitHub"><br><img src="https://open-wc.org/codelabs/basics/assets/github-example-2.png" alt="Ejemplo de Web Component de GitHub"></li>
+</ul>
+<h3>3. Twitter</h3>
+<ul>
+<li><strong>Descripción</strong>: Emplea Web Components para incrustar tweets, utilizando tanto Custom Elements como Shadow DOM para asegurar un estilo consistente.</li>
+<li><strong>Compatibilidad</strong>: En navegadores sin soporte, Twitter recurre a un iframe, aunque esto tiene un costo mayor.</li>
+<li><strong>Imágenes</strong>:<br><img src="https://open-wc.org/codelabs/basics/assets/twitter-example-1.png" alt="Ejemplo de Web Component de Twitter"><br><img src="https://open-wc.org/codelabs/basics/assets/twitter-example-2.png" alt="Código de Web Component de Twitter"></li>
+</ul>
+<h3>4. Elemento de Video</h3>
+<ul>
+<li><strong>Descripción</strong>: El elemento <code>&lt;video&gt;</code> está integrado en el navegador y utiliza Shadow DOM para renderizar la interfaz de usuario de los controles.</li>
+<li><strong>Inspección</strong>: Es posible inspeccionar el Shadow DOM de estos elementos en la mayoría de los navegadores tras habilitar una configuración en las herramientas de desarrollo.</li>
+<li><strong>Imágenes</strong>:<br><img src="https://open-wc.org/codelabs/basics/assets/video-example-1.png" alt="Ejemplo de Shadow DOM en Video"><br><img src="https://open-wc.org/codelabs/basics/assets/video-example-2.png" alt="Ejemplo de Shadow DOM en Video"></li>
+</ul>
+<h3>5.1 Basic Dialog Custom Element</h3>
+<p>Para crear un diálogo básico, añade un botón de apertura y un botón de cierre al contenido del diálogo. Y luego añade lógica para abrir y cerrar el diálogo.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;custom-dialog&gt;
+      &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
+      &lt;dialog open&gt;
+        &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
+        &lt;h1&gt;Dialog&lt;/h1&gt;
+        &lt;p&gt;This is a dialog.&lt;/p&gt;
+      &lt;/dialog&gt;
+    &lt;/custom-dialog&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4>5.1.1 Custom Dialog Element</h4>
+<p>Para crear un elemento personalizado, extiende <code>HTMLElement</code> y añade un <code>connectedCallback()</code> para manejar la lógica de apertura y cierre del diálogo.</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;custom-dialog&gt;
+      &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
+      &lt;dialog open&gt;
+        &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
+        &lt;h1&gt;Dialog&lt;/h1&gt;
+        &lt;p&gt;This is a dialog.&lt;/p&gt;
+      &lt;/dialog&gt;
+    &lt;/custom-dialog&gt;
+
+    &lt;style&gt;
+      .close-btn {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      dialog {
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 0 10px #00000061;
+        width: 400px;
+        padding: 20px;
+        position: relative;
+        text-align: center;
+      }
+      dialog::backdrop {
+        background-color: #00000061;
+
+      }
+    &lt;/style&gt;
+
+    &lt;script&gt;
+      class CustomDialog extends HTMLElement {
+        constructor() {
+          super();
+        }
+        connectedCallback() {
+          // TODO: Add dialog open/close logic
+          this.
+        }
+      }
+      customElements.define(&#39;custom-dialog&#39;, CustomDialog);
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4>5.1.2 Styling the Dialog</h4>
+<p>Para añadir estilos al diálogo, utiliza CSS en línea o en un bloque <code>&lt;style&gt;</code> en la página.</p>
+<h3>6. &lt;Dialog&gt; + &lt;Form&gt; -&gt; (dispatchEvent)</h3>
+<p>Para crear un diálogo con un formulario, añade un formulario al contenido del diálogo. Luego, añade lógica para enviar los datos del formulario al componente principal.</p>
+<h4>dispatchEvent:</h4>
+<ul>
+<li><strong>Propósito</strong>: Permite enviar datos desde un componente personalizado a un componente padre.</li>
+<li><strong>Ejemplo</strong>:<pre><code class="language-javascript">this.dispatchEvent(new CustomEvent(&#39;submit&#39;, { detail: { input: &#39;value&#39; } }));
+</code></pre>
+</li>
+<li><strong>Uso</strong>:</li>
+<li>Escucha el evento en el componente padre:<pre><code class="language-javascript">dialog.addEventListener(&#39;submit&#39;, (event) =&gt; {
+  console.log(event.detail.input); // &#39;value&#39;
+});
+</code></pre>
+</li>
+<li><strong>Código Completo</strong>:</li>
+</ul>
+<pre><code class="language-html">&lt;custom-dialog&gt;
+  &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
+  &lt;dialog&gt;
+    &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
+    &lt;h1&gt;Dialog&lt;/h1&gt;
+    &lt;form&gt;
+      &lt;label for=&quot;input&quot;&gt;Input&lt;/label&gt;
+      &lt;input id=&quot;input&quot; type=&quot;text&quot; /&gt;
+      &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/dialog&gt;
+&lt;/custom-dialog&gt;
+
+&lt;style&gt;
+  .close-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  dialog {
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #00000061;
+    width: 400px;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+  class CustomDialog extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    submit(event) {
+      event.preventDefault();
+      const input = this.querySelector(&#39;input&#39;);
+      // Send data outside
+      this.dispatchEvent(new CustomEvent(&#39;custom-submit&#39;, {
+        detail: { input: input.value }
+      }));
+      this.close();
+    }
+
+    close() {
+      const dialog = this.querySelector(&#39;dialog&#39;);
+      dialog.close();
+    }
+
+    connectedCallback() {
+      const dialogBtn = this.querySelector(&#39;.dialog-btn&#39;);
+      const dialog = this.querySelector(&#39;dialog&#39;);
+      const closeBtn = this.querySelector(&#39;.close-btn&#39;);
+      const form = this.querySelector(&#39;form&#39;);
+      const input = this.querySelector(&#39;input&#39;);
+
+      // TODO listeners
+      dialogBtn.addEventListener(&#39;click&#39;, () =&gt; {
+        dialog.showModal();
+      });
+      closeBtn.addEventListener(&#39;click&#39;, () =&gt; this.close());
+
+      // TODO dispatchEvent
+      form.addEventListener(&#39;submit&#39;, event =&gt; this.submit(event))
+    }
+  }
+
+  customElements.define(&#39;custom-dialog&#39;, CustomDialog);
+
+  // TODO usage dispatchEvent and addEventListener
+  const customDialog = document.querySelector(&#39;custom-dialog&#39;);
+  // Listen data from dialog
+  customDialog.addEventListener(&#39;custom-submit&#39;, (event) =&gt; {
+    console.log({detail: event.detail}); // &#39;value&#39;
+  });
+&lt;/script&gt;
+</code></pre>
+<h3>7. Relative Time Web Component</h3>
+<p>Para crear un componente de tiempo relativo, añade un elemento de tiempo con un atributo <code>datetime</code> al contenido del componente. Luego, añade lógica para mostrar el tiempo relativo en lugar de la fecha y hora absolutas.</p>
+<ul>
+<li><strong>output:</strong><ul>
+<li>Hace 5 minutos</li>
+<li>Hace 1 segundo</li>
+<li>Hace 2 horas</li>
+<li>Hace 3 días</li>
+<li>Hace 1 semana</li>
+<li>Hace 1 mes</li>
+<li>Hace 2 año</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-html">&lt;relative-time time=&quot;Wed Oct 16 2023 09:17:41 GMT+0200&quot;/&gt;
+
+&lt;script&gt;
+  class RelativeTime extends HTMLElement {
+    constructor() {
+      super();
+    }
+    /*
+    connectedCallback() {
+      this.render();
+      setInterval(() =&gt; {
+        this.render();
+      }, 1000)
+    }
+    */
+    connectedCallback() {
+      const time = new Date(this.getAttribute(&#39;time&#39;)).getTime();
+      const now = Date.now();
+
+      console.log({
+        time,
+        now,
+        seconds: (now - time) / 1000,
+        minutes: (now - time) / (1000 * 60),
+        hours: Math.floor((now - time) / (1000 * 60 * 60))
+      })
+
+      const diff = now - time;
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(diff / (1000 * 60));
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const days = Math.floor(hours / 24);
+      const months = Math.floor(days / 30);
+      const years = Math.floor(months / 12);
+
+      let aux = &#39;...&#39;;
+      if (months &gt;= 12) {
+        aux = `Hace ${years} año${years &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      } else if (days &gt; 30 &amp;&amp; months &gt;= 1) {
+        aux = `Hace ${months} mes${months &gt; 1 ? &#39;es&#39; : &#39;&#39;}`
+      } else if (days &gt;= 1) {
+        aux = `Hace ${days} día${days &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      } else if (hours &gt;= 1) {
+        aux = `Hace ${hours} hora${hours &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      } else if (minutes &gt;= 1) {
+        aux = `Hace ${minutes} minuto${minutes &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      } else if (seconds &gt;= 1) {
+        aux = `Hace ${seconds} segundo${seconds &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      }
+
+      this.textContent = aux;
+    } 
+  }
+  customElements.define(&#39;relative-time&#39;, RelativeTime);
+&lt;/script&gt;
+</code></pre>
+<h3>Práctica 3: Crear una página de noticias</h3>
+<ul>
+<li><p><strong>Propósito</strong>: Crear una página de noticias utilizando Web Components, Custom Elements y Templates.</p>
+</li>
+<li><p><strong>Requisitos</strong>:</p>
+<ol>
+<li>Crear un toobar con el logo centrado como en la imágen de abajo.</li>
+<li>Crear un grid de noticias con la imagen, título y descripción.</li>
+<li>Crear un componente para la fecha de publicación de la noticia (ej: 4 min ago).</li>
+<li>Crear un componente para el buscador de noticias.</li>
+<li>Utilizar Templates <code>&lt;template&gt;</code> para la lista en la búsqueda de noticias.</li>
+</ol>
+</li>
+<li><p><strong>Imagen de Ejemplo</strong>:</p>
+<p><img src="../assets/p3/p3-news-home.avif" alt="Ejemplo de página de noticias"></p>
+</li>
+<li><p><strong>Imágen del buscador</strong>:</p>
+<p><img src="../assets/p3/p3-news-search.avif" alt="Ejemplo de página de noticias"></p>
+</li>
+</ul>
+
+  </body>
+  </html>

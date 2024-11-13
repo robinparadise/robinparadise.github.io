@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "convert": "node convert.js"
+  },
+  "dependencies": {
+    "highlight.js": "^11.10.0",
+    "marked": "^15.0.0"
+  }
+}

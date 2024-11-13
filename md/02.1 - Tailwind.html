@@ -1,0 +1,2098 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown</title>
+    <style>/* light */
+.markdown-body {
+  color-scheme: light;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: auto;
+  color: #1f2328;
+  background-color: #ffffff;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  scroll-behavior: auto !important;
+  width: min(100%, 1024px);
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.markdown-body h1:hover .anchor .octicon-link:before,
+.markdown-body h2:hover .anchor .octicon-link:before,
+.markdown-body h3:hover .anchor .octicon-link:before,
+.markdown-body h4:hover .anchor .octicon-link:before,
+.markdown-body h5:hover .anchor .octicon-link:before,
+.markdown-body h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+.markdown-body details,
+.markdown-body figcaption,
+.markdown-body figure {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body [hidden] {
+  display: none !important;
+}
+
+.markdown-body a {
+  background-color: transparent;
+  color: #0969da;
+  text-decoration: none;
+}
+
+.markdown-body abbr[title] {
+  border-bottom: none;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body dfn {
+  font-style: italic;
+}
+
+.markdown-body h1 {
+  margin: .67em 0;
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 2em;
+  border-bottom: 1px solid #d1d9e0b3;
+}
+
+.markdown-body mark {
+  background-color: #fff8c5;
+  color: #1f2328;
+}
+
+.markdown-body small {
+  font-size: 90%;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body sup {
+  top: -0.5em;
+}
+
+.markdown-body img {
+  border-style: none;
+  max-width: 100%;
+  box-sizing: content-box;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace;
+  font-size: 1em;
+}
+
+.markdown-body figure {
+  margin: 1em 2.5rem;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 1px solid #d1d9e0b3;
+  height: .25em;
+  padding: 0;
+  margin: 1.5rem 0;
+  background-color: #d1d9e0;
+  border: 0;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body [type=button],
+.markdown-body [type=reset],
+.markdown-body [type=submit] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+.markdown-body [type=checkbox],
+.markdown-body [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body [type=number]::-webkit-inner-spin-button,
+.markdown-body [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+.markdown-body [type=search]::-webkit-search-cancel-button,
+.markdown-body [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: .54;
+}
+
+.markdown-body ::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  appearance: button;
+  font: inherit;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body ::placeholder {
+  color: #59636e;
+  opacity: 1;
+}
+
+.markdown-body hr::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body a:focus,
+.markdown-body [role=button]:focus,
+.markdown-body input[type=radio]:focus,
+.markdown-body input[type=checkbox]:focus {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.markdown-body a:focus:not(:focus-visible),
+.markdown-body [role=button]:focus:not(:focus-visible),
+.markdown-body input[type=radio]:focus:not(:focus-visible),
+.markdown-body input[type=checkbox]:focus:not(:focus-visible) {
+  outline: solid 1px transparent;
+}
+
+.markdown-body a:focus-visible,
+.markdown-body [role=button]:focus-visible,
+.markdown-body input[type=radio]:focus-visible,
+.markdown-body input[type=checkbox]:focus-visible {
+  outline: 2px solid #0969da;
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.markdown-body a:not([class]):focus,
+.markdown-body a:not([class]):focus-visible,
+.markdown-body input[type=radio]:focus,
+.markdown-body input[type=radio]:focus-visible,
+.markdown-body input[type=checkbox]:focus,
+.markdown-body input[type=checkbox]:focus-visible {
+  outline-offset: 0;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 0.25rem;
+  font: 11px ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  line-height: 10px;
+  color: #1f2328;
+  vertical-align: middle;
+  background-color: #f6f8fa;
+  border: solid 1px #d1d9e0b3;
+  border-bottom-color: #d1d9e0b3;
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 #d1d9e0b3;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-body h2 {
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #d1d9e0b3;
+}
+
+.markdown-body h3 {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-weight: 600;
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  font-weight: 600;
+  font-size: .85em;
+  color: #59636e;
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: #59636e;
+  border-left: .25em solid #d1d9e0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body tt,
+.markdown-body code,
+.markdown-body samp {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 12px;
+  word-wrap: normal;
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-body input::-webkit-outer-spin-button,
+.markdown-body input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body .mr-2 {
+  margin-right: 0.5rem !important;
+}
+
+.markdown-body::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .absent {
+  color: #d1242f;
+}
+
+.markdown-body .anchor {
+  float: left;
+  padding-right: 0.25rem;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1f2328;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+  padding: 0 .2em;
+  font-size: inherit;
+}
+
+.markdown-body summary h1,
+.markdown-body summary h2,
+.markdown-body summary h3,
+.markdown-body summary h4,
+.markdown-body summary h5,
+.markdown-body summary h6 {
+  display: inline-block;
+}
+
+.markdown-body summary h1 .anchor,
+.markdown-body summary h2 .anchor,
+.markdown-body summary h3 .anchor,
+.markdown-body summary h4 .anchor,
+.markdown-body summary h5 .anchor,
+.markdown-body summary h6 .anchor {
+  margin-left: -40px;
+}
+
+.markdown-body summary h1,
+.markdown-body summary h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.markdown-body ol[type="a s"] {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body ol[type="A s"] {
+  list-style-type: upper-alpha;
+}
+
+.markdown-body ol[type="i s"] {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ol[type="I s"] {
+  list-style-type: upper-roman;
+}
+
+.markdown-body ol[type="1"] {
+  list-style-type: decimal;
+}
+
+.markdown-body div>ol:not([type]) {
+  list-style-type: decimal;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 1rem;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 1rem;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.markdown-body dl dd {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #d1d9e0;
+}
+
+.markdown-body table td>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table tr {
+  background-color: #ffffff;
+  border-top: 1px solid #d1d9e0b3;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.markdown-body table img {
+  background-color: transparent;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body .emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+
+.markdown-body span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid #d1d9e0;
+}
+
+.markdown-body span.frame span img {
+  display: block;
+  float: left;
+}
+
+.markdown-body span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: #1f2328;
+}
+
+.markdown-body span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-center>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.markdown-body span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.markdown-body span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-right>span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+.markdown-body span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+  margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: #818b981f;
+  border-radius: 6px;
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+  display: none;
+}
+
+.markdown-body del code {
+  text-decoration: inherit;
+}
+
+.markdown-body samp {
+  font-size: 85%;
+}
+
+.markdown-body pre code {
+  font-size: 100%;
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 1rem;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 1rem;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  color: #1f2328;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body .csv-data td,
+.markdown-body .csv-data th {
+  padding: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown-body .csv-data .blob-num {
+  padding: 10px 0.5rem 9px;
+  text-align: right;
+  background: #ffffff;
+  border: 0;
+}
+
+.markdown-body .csv-data tr {
+  border-top: 0;
+}
+
+.markdown-body .csv-data th {
+  font-weight: 600;
+  background: #f6f8fa;
+  border-top: 0;
+}
+
+.markdown-body [data-footnote-ref]::before {
+  content: "[";
+}
+
+.markdown-body [data-footnote-ref]::after {
+  content: "]";
+}
+
+.markdown-body .footnotes {
+  font-size: 12px;
+  color: #59636e;
+  border-top: 1px solid #d1d9e0;
+}
+
+.markdown-body .footnotes ol {
+  padding-left: 1rem;
+}
+
+.markdown-body .footnotes ol ul {
+  display: inline-block;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.markdown-body .footnotes li {
+  position: relative;
+}
+
+.markdown-body .footnotes li:target::before {
+  position: absolute;
+  top: calc(0.5rem*-1);
+  right: calc(0.5rem*-1);
+  bottom: calc(0.5rem*-1);
+  left: calc(1.5rem*-1);
+  pointer-events: none;
+  content: "";
+  border: 2px solid #0969da;
+  border-radius: 6px;
+}
+
+.markdown-body .footnotes li:target {
+  color: #1f2328;
+}
+
+.markdown-body .footnotes .data-footnote-backref g-emoji {
+  font-family: monospace;
+}
+
+.markdown-body .pl-c {
+  color: #59636e;
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: #0550ae;
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: #6639ba;
+}
+
+.markdown-body .pl-smi,
+.markdown-body .pl-s .pl-s1 {
+  color: #1f2328;
+}
+
+.markdown-body .pl-ent {
+  color: #0550ae;
+}
+
+.markdown-body .pl-k {
+  color: #cf222e;
+}
+
+.markdown-body .pl-s,
+.markdown-body .pl-pds,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sre,
+.markdown-body .pl-sr .pl-sra {
+  color: #0a3069;
+}
+
+.markdown-body .pl-v,
+.markdown-body .pl-smw {
+  color: #953800;
+}
+
+.markdown-body .pl-bu {
+  color: #82071e;
+}
+
+.markdown-body .pl-ii {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+
+.markdown-body .pl-c2 {
+  color: #f6f8fa;
+  background-color: #cf222e;
+}
+
+.markdown-body .pl-sr .pl-cce {
+  font-weight: bold;
+  color: #116329;
+}
+
+.markdown-body .pl-ml {
+  color: #3b2300;
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  font-weight: bold;
+  color: #0550ae;
+}
+
+.markdown-body .pl-mi {
+  font-style: italic;
+  color: #1f2328;
+}
+
+.markdown-body .pl-mb {
+  font-weight: bold;
+  color: #1f2328;
+}
+
+.markdown-body .pl-md {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+
+.markdown-body .pl-mi1 {
+  color: #116329;
+  background-color: #dafbe1;
+}
+
+.markdown-body .pl-mc {
+  color: #953800;
+  background-color: #ffd8b5;
+}
+
+.markdown-body .pl-mi2 {
+  color: #d1d9e0;
+  background-color: #0550ae;
+}
+
+.markdown-body .pl-mdr {
+  font-weight: bold;
+  color: #8250df;
+}
+
+.markdown-body .pl-ba {
+  color: #59636e;
+}
+
+.markdown-body .pl-sg {
+  color: #818b98;
+}
+
+.markdown-body .pl-corl {
+  text-decoration: underline;
+  color: #0a3069;
+}
+
+.markdown-body [role=button]:focus:not(:focus-visible),
+.markdown-body [role=tabpanel][tabindex="0"]:focus:not(:focus-visible),
+.markdown-body button:focus:not(:focus-visible),
+.markdown-body summary:focus:not(:focus-visible),
+.markdown-body a:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+.markdown-body [tabindex="0"]:focus:not(:focus-visible),
+.markdown-body details-dialog:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.markdown-body g-emoji {
+  display: inline-block;
+  min-width: 1ch;
+  font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 1em;
+  font-style: normal !important;
+  font-weight: 400;
+  line-height: 1;
+  vertical-align: -0.075em;
+}
+
+.markdown-body g-emoji img {
+  width: 1em;
+  height: 1em;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item label {
+  font-weight: 400;
+}
+
+.markdown-body .task-list-item.enabled label {
+  cursor: pointer;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 0.25rem;
+}
+
+.markdown-body .task-list-item .handle {
+  display: none;
+}
+
+.markdown-body .task-list-item-checkbox {
+  margin: 0 .2em .25em -1.4em;
+  vertical-align: middle;
+}
+
+.markdown-body ul:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em .25em .2em;
+}
+
+.markdown-body ol:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em .25em .2em;
+}
+
+.markdown-body .contains-task-list:hover .task-list-item-convert-container,
+.markdown-body .contains-task-list:focus-within .task-list-item-convert-container {
+  display: block;
+  width: auto;
+  height: 24px;
+  overflow: visible;
+  clip: auto;
+}
+
+.markdown-body ::-webkit-calendar-picker-indicator {
+  filter: invert(50%);
+}
+
+.markdown-body .markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  color: inherit;
+  border-left: .25em solid #d1d9e0;
+}
+
+.markdown-body .markdown-alert>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body .markdown-alert>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note {
+  border-left-color: #0969da;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: #0969da;
+}
+
+.markdown-body .markdown-alert.markdown-alert-important {
+  border-left-color: #8250df;
+}
+
+.markdown-body .markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: #8250df;
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning {
+  border-left-color: #9a6700;
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: #9a6700;
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip {
+  border-left-color: #1a7f37;
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: #1a7f37;
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution {
+  border-left-color: #cf222e;
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: #d1242f;
+}
+
+.markdown-body>*:first-child>.heading-element:first-child {
+  margin-top: 0 !important;
+}
+</style>
+  </head>
+  <body class="markdown-body">
+    <h1>2.1 Tailwind CSS</h1>
+<p>Tailwind CSS es un framework CSS de utilidad que proporciona una amplia gama de clases predefinidas para construir interfaces de usuario personalizadas de manera eficiente. A continuación, encontrarás una documentación detallada de las clases más utilizadas en Tailwind CSS, junto con sus equivalentes en líneas de CSS, organizadas por categorías para facilitar su comprensión y uso.</p>
+<hr>
+<h2>Índice</h2>
+<ol>
+<li><a href="#colores">Colores</a></li>
+<li><a href="#tipografia">Tipografía</a></li>
+<li><a href="#espaciado">Espaciado</a></li>
+<li><a href="#flexbox-y-grid">Flexbox y Grid</a></li>
+<li><a href="#layout">Layout</a></li>
+<li><a href="#tamano">Tamaño</a></li>
+<li><a href="#bordes-y-esquinas-redondeadas">Bordes y Esquinas Redondeadas</a></li>
+<li><a href="#efectos">Efectos</a></li>
+<li><a href="#estado-de-comportamiento">Estado de Comportamiento (Pseudo-clases)</a></li>
+<li><a href="#otros-utilitarios">Otros Utilitarios</a></li>
+</ol>
+<hr>
+<p><a name="colores"></a></p>
+<h2>1. Colores</h2>
+<p>Tailwind CSS ofrece una paleta extensa de colores que se pueden aplicar a fondo, texto, bordes y sombras.</p>
+<h3>Clases de Color de Fondo (<code>bg-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>bg-{color}-{shade}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;bg-blue-500&quot;&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Descripción</strong>: Aplica un color de fondo específico al elemento.</p>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.bg-blue-500 {
+  background-color: #3B82F6;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Clases de Color de Texto (<code>text-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>text-{color}-{shade}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;text-gray-700&quot;&gt;Texto en gris oscuro&lt;/p&gt;
+</code></pre>
+</li>
+<li><p><strong>Descripción</strong>: Cambia el color del texto.</p>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.text-gray-700 {
+  color: #374151;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Clases de Color de Borde (<code>border-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>border-{color}-{shade}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;border border-red-500&quot;&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Descripción</strong>: Define el color del borde del elemento.</p>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.border {
+  border-width: 1px;
+}
+.border-red-500 {
+  border-color: #EF4444;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Ejemplos de Colores Comunes</h3>
+<ul>
+<li><strong>Azul</strong>: <code>blue-50</code> a <code>blue-900</code></li>
+<li><strong>Rojo</strong>: <code>red-50</code> a <code>red-900</code></li>
+<li><strong>Verde</strong>: <code>green-50</code> a <code>green-900</code></li>
+<li><strong>Gris</strong>: <code>gray-50</code> a <code>gray-900</code></li>
+</ul>
+<hr>
+<p><a name="tipografia"></a></p>
+<h2>2. Tipografía</h2>
+<p>Las clases tipográficas controlan la apariencia del texto, incluyendo tamaño, peso, alineación y estilo.</p>
+<h3>Tamaño de Fuente (<code>text-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>text-{size}</code></p>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;text-sm&quot;&gt;Texto pequeño&lt;/p&gt;
+&lt;p class=&quot;text-base&quot;&gt;Texto base&lt;/p&gt;
+&lt;p class=&quot;text-lg&quot;&gt;Texto grande&lt;/p&gt;
+&lt;p class=&quot;text-xl&quot;&gt;Texto extra grande&lt;/p&gt;
+</code></pre>
+</li>
+<li><p><strong>Descripción</strong>: Ajusta el tamaño de la fuente.</p>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+.text-base {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+.text-lg {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem; /* 28px */
+}
+.text-xl {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+}
+</code></pre>
+</li>
+</ul>
+<h3>Peso de Fuente (<code>font-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>font-{weight}</code></p>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;font-thin&quot;&gt;Fuente delgada&lt;/p&gt;
+&lt;p class=&quot;font-normal&quot;&gt;Fuente normal&lt;/p&gt;
+&lt;p class=&quot;font-bold&quot;&gt;Fuente negrita&lt;/p&gt;
+</code></pre>
+</li>
+<li><p><strong>Descripción</strong>: Establece el grosor de la fuente.</p>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.font-thin {
+  font-weight: 100;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-bold {
+  font-weight: 700;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Alineación de Texto (<code>text-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>text-{alignment}</code></p>
+</li>
+<li><p><strong>Opciones</strong>: <code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;text-center&quot;&gt;Texto centrado&lt;/p&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.text-center {
+  text-align: center;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Estilo y Decoración</h3>
+<ul>
+<li><p><strong>Cursiva</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;italic&quot;&gt;Texto en cursiva&lt;/p&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.italic {
+  font-style: italic;
+}
+</code></pre>
+</li>
+<li><p><strong>No Cursiva</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;not-italic&quot;&gt;Texto normal&lt;/p&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.not-italic {
+  font-style: normal;
+}
+</code></pre>
+</li>
+<li><p><strong>Subrayado</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;underline&quot;&gt;Texto subrayado&lt;/p&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.underline {
+  text-decoration: underline;
+}
+</code></pre>
+</li>
+<li><p><strong>Tachado</strong>:</p>
+<pre><code class="language-html">&lt;p class=&quot;line-through&quot;&gt;Texto tachado&lt;/p&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.line-through {
+  text-decoration: line-through;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="espaciado"></a></p>
+<h2>3. Espaciado</h2>
+<p>Las clases de espaciado controlan el margen y padding de los elementos.</p>
+<h3>Padding (<code>p-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>p{lado}-{tamaño}</code></p>
+</li>
+<li><p><strong>Lados</strong>:</p>
+<ul>
+<li><code>p</code> (todos)</li>
+<li><code>pt</code> (arriba)</li>
+<li><code>pr</code> (derecha)</li>
+<li><code>pb</code> (abajo)</li>
+<li><code>pl</code> (izquierda)</li>
+<li><code>px</code> (eje X: izquierda y derecha)</li>
+<li><code>py</code> (eje Y: arriba y abajo)</li>
+</ul>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;p-4&quot;&gt;Padding en todos los lados de 1rem&lt;/div&gt;
+&lt;div class=&quot;pt-2&quot;&gt;Padding superior de 0.5rem&lt;/div&gt;
+&lt;div class=&quot;px-6&quot;&gt;Padding izquierdo y derecho de 1.5rem&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.p-4 {
+  padding: 1rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Margin (<code>m-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>m{lado}-{tamaño}</code></p>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;m-4&quot;&gt;Margin en todos los lados de 1rem&lt;/div&gt;
+&lt;div class=&quot;mb-2&quot;&gt;Margin inferior de 0.5rem&lt;/div&gt;
+&lt;div class=&quot;mx-auto&quot;&gt;Margen automático en eje X (centra el elemento)&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.m-4 {
+  margin: 1rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Tamaños Comunes</h3>
+<ul>
+<li><code>0</code> : <code>0rem</code></li>
+<li><code>1</code> : <code>0.25rem</code> (4px)</li>
+<li><code>2</code> : <code>0.5rem</code> (8px)</li>
+<li><code>3</code> : <code>0.75rem</code> (12px)</li>
+<li><code>4</code> : <code>1rem</code> (16px)</li>
+<li><code>5</code> : <code>1.25rem</code> (20px)</li>
+<li><code>6</code> : <code>1.5rem</code> (24px)</li>
+<li><code>8</code> : <code>2rem</code> (32px)</li>
+<li><code>10</code> : <code>2.5rem</code> (40px)</li>
+</ul>
+<hr>
+<p><a name="flexbox-y-grid"></a></p>
+<h2>4. Flexbox y Grid</h2>
+<p>Tailwind facilita el uso de Flexbox y Grid para crear layouts complejos.</p>
+<h3>Display Flex (<code>flex</code>)</h3>
+<ul>
+<li><p><strong>Activar Flexbox</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;flex&quot;&gt;
+  &lt;!-- Elementos hijos --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.flex {
+  display: flex;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Dirección del Flex (<code>flex-row</code>, <code>flex-col</code>)</h3>
+<ul>
+<li><p><strong>Fila (Horizontal)</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;flex flex-row&quot;&gt;
+  &lt;!-- Elementos en fila --&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.flex-row {
+  flex-direction: row;
+}
+</code></pre>
+</li>
+<li><p><strong>Columna (Vertical)</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;flex flex-col&quot;&gt;
+  &lt;!-- Elementos en columna --&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.flex-col {
+  flex-direction: column;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Alineación y Justificación</h3>
+<ul>
+<li><p><strong>Justificar Contenido (Eje Principal)</strong>:</p>
+<ul>
+<li><code>justify-start</code></li>
+<li><code>justify-center</code></li>
+<li><code>justify-end</code></li>
+<li><code>justify-between</code></li>
+<li><code>justify-around</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;flex justify-center&quot;&gt;
+  &lt;!-- Elementos centrados horizontalmente --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.justify-center {
+  justify-content: center;
+}
+</code></pre>
+</li>
+<li><p><strong>Alinear Items (Eje Cruzado)</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;flex items-center&quot;&gt;
+  &lt;!-- Elementos alineados verticalmente al centro --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.items-center {
+  align-items: center;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Grid Layout</h3>
+<ul>
+<li><p><strong>Activar Grid</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;grid&quot;&gt;
+  &lt;!-- Elementos hijos --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.grid {
+  display: grid;
+}
+</code></pre>
+</li>
+<li><p><strong>Definir Columnas</strong>:</p>
+<ul>
+<li><strong>Sintaxis</strong>: <code>grid-cols-{número}</code></li>
+</ul>
+<pre><code class="language-html">&lt;div class=&quot;grid grid-cols-3&quot;&gt;
+  &lt;!-- Crea una cuadrícula con 3 columnas --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+</code></pre>
+</li>
+<li><p><strong>Espaciado Entre Filas y Columnas</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;grid grid-cols-3 gap-4&quot;&gt;
+  &lt;!-- Espacio de 1rem entre filas y columnas --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.gap-4 {
+  gap: 1rem;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="layout"></a></p>
+<h2>5. Layout</h2>
+<p>Controla el comportamiento y posición de los elementos en la página.</p>
+<h3>Display</h3>
+<ul>
+<li><p><strong>Bloque (<code>block</code>)</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;block&quot;&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.block {
+  display: block;
+}
+</code></pre>
+</li>
+<li><p><strong>Inline Block (<code>inline-block</code>)</strong>:</p>
+<pre><code class="language-html">&lt;span class=&quot;inline-block&quot;&gt;&lt;/span&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.inline-block {
+  display: inline-block;
+}
+</code></pre>
+</li>
+<li><p><strong>Ocultar Elementos (<code>hidden</code>)</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;hidden&quot;&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.hidden {
+  display: none;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Posición</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>static</code> (por defecto)</li>
+<li><code>relative</code></li>
+<li><code>absolute</code></li>
+<li><code>fixed</code></li>
+<li><code>sticky</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;relative&quot;&gt;
+  &lt;div class=&quot;absolute top-0 left-0&quot;&gt;
+    &lt;!-- Elemento posicionado absolutamente --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.top-0 {
+  top: 0px;
+}
+.left-0 {
+  left: 0px;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Z-Index</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>z-{número}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;z-10&quot;&gt;&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.z-10 {
+  z-index: 10;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="tamano"></a></p>
+<h2>6. Tamaño</h2>
+<p>Controla el ancho y alto de los elementos.</p>
+<h3>Ancho (<code>w-</code>)</h3>
+<ul>
+<li><p><strong>Clases Comunes</strong>:</p>
+<ul>
+<li><code>w-0</code> hasta <code>w-full</code></li>
+<li>Porcentajes: <code>w-1/2</code>, <code>w-1/3</code>, <code>w-2/3</code>, <code>w-1/4</code>, etc.</li>
+</ul>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;w-full&quot;&gt;Ancho completo del contenedor padre&lt;/div&gt;
+&lt;div class=&quot;w-1/2&quot;&gt;Ancho del 50%&lt;/div&gt;
+&lt;div class=&quot;w-64&quot;&gt;Ancho fijo de 16rem (256px)&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.w-full {
+  width: 100%;
+}
+.w-1\/2 {
+  width: 50%;
+}
+.w-64 {
+  width: 16rem; /* 256px */
+}
+</code></pre>
+</li>
+</ul>
+<h3>Alto (<code>h-</code>)</h3>
+<ul>
+<li><p><strong>Clases Comunes</strong>:</p>
+<ul>
+<li><code>h-0</code> hasta <code>h-full</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplos</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;h-screen&quot;&gt;Alto igual a la altura de la ventana&lt;/div&gt;
+&lt;div class=&quot;h-32&quot;&gt;Alto fijo de 8rem (128px)&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.h-screen {
+  height: 100vh;
+}
+.h-32 {
+  height: 8rem; /* 128px */
+}
+</code></pre>
+</li>
+</ul>
+<h3>Tamaño Mínimo y Máximo</h3>
+<ul>
+<li><p><strong>Mínimo Ancho/Alto</strong>:</p>
+<pre><code class="language-css">.min-w-0 {
+  min-width: 0px;
+}
+.min-w-full {
+  min-width: 100%;
+}
+.min-h-0 {
+  min-height: 0px;
+}
+.min-h-full {
+  min-height: 100%;
+}
+</code></pre>
+</li>
+<li><p><strong>Máximo Ancho/Alto</strong>:</p>
+<pre><code class="language-css">.max-w-0 {
+  max-width: 0px;
+}
+.max-w-full {
+  max-width: 100%;
+}
+.max-w-screen-md {
+  max-width: 768px;
+}
+.max-h-0 {
+  max-height: 0px;
+}
+.max-h-full {
+  max-height: 100%;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="bordes-y-esquinas-redondeadas"></a></p>
+<h2>7. Bordes y Esquinas Redondeadas</h2>
+<h3>Bordes</h3>
+<ul>
+<li><p><strong>Ancho del Borde</strong>:</p>
+<ul>
+<li><strong>Sintaxis</strong>: <code>border-{lado}-{tamaño}</code></li>
+<li><strong>Lados</strong>: sin especificar (todos), <code>t</code> (arriba), <code>r</code> (derecha), <code>b</code> (abajo), <code>l</code> (izquierda)</li>
+<li><strong>Tamaños</strong>: <code>0</code>, <code>2</code>, <code>4</code>, <code>8</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;border-2&quot;&gt;Borde de 2px en todos los lados&lt;/div&gt;
+&lt;div class=&quot;border-t-4&quot;&gt;Borde superior de 4px&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.border-2 {
+  border-width: 2px;
+}
+.border-t-4 {
+  border-top-width: 4px;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Esquinas Redondeadas (<code>rounded-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>rounded{lado}-{tamaño}</code></p>
+</li>
+<li><p><strong>Lados</strong>:</p>
+<ul>
+<li>sin especificar (todas)</li>
+<li><code>t</code> (arriba)</li>
+<li><code>r</code> (derecha)</li>
+<li><code>b</code> (abajo)</li>
+<li><code>l</code> (izquierda)</li>
+<li><code>tl</code>, <code>tr</code>, <code>bl</code>, <code>br</code> (esquinas)</li>
+</ul>
+</li>
+<li><p><strong>Tamaños</strong>:</p>
+<ul>
+<li><code>sm</code> (pequeño)</li>
+<li>sin especificar (normal)</li>
+<li><code>md</code></li>
+<li><code>lg</code></li>
+<li><code>xl</code></li>
+<li><code>2xl</code></li>
+<li><code>3xl</code></li>
+<li><code>full</code> (máximo redondeo)</li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;rounded-lg&quot;&gt;Esquinas redondeadas grandes&lt;/div&gt;
+&lt;div class=&quot;rounded-full&quot;&gt;Elemento circular (si es cuadrado)&lt;/div&gt;
+&lt;div class=&quot;rounded-t-md&quot;&gt;Esquinas superiores medianas redondeadas&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="efectos"></a></p>
+<h2>8. Efectos</h2>
+<h3>Sombras (<code>shadow-</code>)</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>shadow-sm</code></li>
+<li><code>shadow</code> (por defecto)</li>
+<li><code>shadow-md</code></li>
+<li><code>shadow-lg</code></li>
+<li><code>shadow-xl</code></li>
+<li><code>shadow-2xl</code></li>
+<li><code>shadow-inner</code></li>
+<li><code>shadow-none</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;shadow-lg&quot;&gt;Div con sombra grande&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+</code></pre>
+</li>
+</ul>
+<h3>Opacidad (<code>opacity-</code>)</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>opacity-{valor}</code></p>
+</li>
+<li><p><strong>Valores</strong>: <code>0</code>, <code>25</code>, <code>50</code>, <code>75</code>, <code>100</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;opacity-50&quot;&gt;Div con 50% de opacidad&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.opacity-50 {
+  opacity: 0.5;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Transiciones y Transformaciones</h3>
+<ul>
+<li><p><strong>Transición (<code>transition</code>)</strong>:</p>
+<pre><code class="language-html">&lt;button class=&quot;transition duration-300 ease-in-out hover:bg-blue-500&quot;&gt;
+  Botón con transición
+&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover\:bg-blue-500:hover {
+  background-color: #3B82F6;
+}
+</code></pre>
+</li>
+<li><p><strong>Transformaciones</strong>:</p>
+<ul>
+<li><p><strong>Rotación</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;transform rotate-45&quot;&gt;Elemento rotado 45 grados&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.transform {
+  transform: rotate(45deg);
+}
+.rotate-45 {
+  --tw-rotate: 45deg;
+  transform: rotate(var(--tw-rotate));
+}
+</code></pre>
+</li>
+<li><p><strong>Escala</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;transform scale-125&quot;&gt;Elemento escalado al 125%&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.scale-125 {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><a name="estado-de-comportamiento"></a></p>
+<h2>9. Estado de Comportamiento (Pseudo-clases)</h2>
+<p>Las clases que permiten cambiar el estilo en respuesta a interacciones del usuario.</p>
+<h3>Hover</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>hover:{clase}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;button class=&quot;bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded&quot;&gt;
+  Botón con efecto hover
+&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.bg-blue-500 {
+  background-color: #3B82F6;
+}
+.hover\:bg-blue-700:hover {
+  background-color: #1D4ED8;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Focus</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>focus:{clase}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;input class=&quot;border border-gray-300 focus:border-blue-500&quot; type=&quot;text&quot;&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.border {
+  border-width: 1px;
+}
+.border-gray-300 {
+  border-color: #D1D5DB;
+}
+.focus\:border-blue-500:focus {
+  border-color: #3B82F6;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Active</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>active:{clase}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;button class=&quot;bg-blue-500 active:bg-blue-700&quot;&gt;Botón activo&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.active\:bg-blue-700:active {
+  background-color: #1D4ED8;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Disabled</h3>
+<ul>
+<li><p><strong>Sintaxis</strong>: <code>disabled:{clase}</code></p>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;button class=&quot;bg-blue-500 disabled:bg-gray-500&quot; disabled&gt;Botón deshabilitado&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.disabled\:bg-gray-500:disabled {
+  background-color: #6B7280;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><a name="otros-utilitarios"></a></p>
+<h2>10. Otros Utilitarios</h2>
+<h3>Overflow</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>overflow-auto</code></li>
+<li><code>overflow-hidden</code></li>
+<li><code>overflow-visible</code></li>
+<li><code>overflow-scroll</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;overflow-auto h-32&quot;&gt;
+  &lt;!-- Contenido que puede hacer scroll si excede el alto de 8rem --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.overflow-auto {
+  overflow: auto;
+}
+.h-32 {
+  height: 8rem; /* 128px */
+}
+</code></pre>
+</li>
+</ul>
+<h3>Cursor</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>cursor-pointer</code></li>
+<li><code>cursor-default</code></li>
+<li><code>cursor-move</code></li>
+<li><code>cursor-not-allowed</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;button class=&quot;cursor-pointer&quot;&gt;Botón con cursor de puntero&lt;/button&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.cursor-pointer {
+  cursor: pointer;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Listas</h3>
+<ul>
+<li><p><strong>Tipo de Lista</strong>:</p>
+<ul>
+<li><code>list-none</code></li>
+<li><code>list-disc</code></li>
+<li><code>list-decimal</code></li>
+</ul>
+</li>
+<li><p><strong>Posición de Marcadores</strong>:</p>
+<ul>
+<li><code>list-inside</code></li>
+<li><code>list-outside</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;ul class=&quot;list-disc list-inside&quot;&gt;
+  &lt;li&gt;Elemento de lista&lt;/li&gt;
+  &lt;li&gt;Otro elemento&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.list-disc {
+  list-style-type: disc;
+}
+.list-inside {
+  list-style-position: inside;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Fondo</h3>
+<ul>
+<li><p><strong>Imagen de Fondo</strong>:</p>
+<ul>
+<li><code>bg-none</code></li>
+<li><code>bg-gradient-to-{direction}</code> (por ejemplo, <code>bg-gradient-to-r</code>)</li>
+</ul>
+</li>
+<li><p><strong>Posición y Tamaño</strong>:</p>
+<ul>
+<li><code>bg-center</code></li>
+<li><code>bg-cover</code></li>
+<li><code>bg-contain</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;bg-cover bg-center&quot; style=&quot;background-image: url(&#39;imagen.jpg&#39;);&quot;&gt;
+  &lt;!-- Contenido --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.bg-cover {
+  background-size: cover;
+}
+.bg-center {
+  background-position: center;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Alineación Vertical</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>align-baseline</code></li>
+<li><code>align-top</code></li>
+<li><code>align-middle</code></li>
+<li><code>align-bottom</code></li>
+<li><code>align-text-top</code></li>
+<li><code>align-text-bottom</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;span class=&quot;align-middle&quot;&gt;Texto alineado verticalmente al medio&lt;/span&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.align-middle {
+  vertical-align: middle;
+}
+</code></pre>
+</li>
+</ul>
+<h3>Visibilidad</h3>
+<ul>
+<li><p><strong>Clases</strong>:</p>
+<ul>
+<li><code>visible</code></li>
+<li><code>invisible</code></li>
+</ul>
+</li>
+<li><p><strong>Ejemplo</strong>:</p>
+<pre><code class="language-html">&lt;div class=&quot;invisible&quot;&gt;Este elemento no es visible pero ocupa espacio&lt;/div&gt;
+</code></pre>
+</li>
+<li><p><strong>Equivalente CSS</strong>:</p>
+<pre><code class="language-css">.invisible {
+  visibility: hidden;
+}
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>Conclusión</h2>
+<p><strong>Recuerda</strong> que Tailwind CSS es altamente configurable y permite extender y personalizar las clases según las necesidades de tu proyecto. Para una referencia completa, visita la <a href="https://tailwindcss.com/docs">documentación oficial de Tailwind CSS</a>.</p>
+<hr>
+<h2>Recursos Adicionales</h2>
+<ul>
+<li><strong>Configuración Personalizada</strong>: Aprende a personalizar Tailwind CSS mediante el archivo <code>tailwind.config.js</code> o utilizando la configuración en línea con el CDN.</li>
+<li><strong>Plugins Oficiales</strong>: Explora plugins como <code>@tailwindcss/forms</code> y <code>@tailwindcss/typography</code> para ampliar las capacidades de Tailwind CSS.</li>
+<li><strong>Componentes Preconstruidos</strong>: Utiliza recursos como <a href="https://tailwindui.com/">Tailwind UI</a> o <a href="https://flowbite.com/">Flowbite</a> para acceder a componentes preconstruidos y acelerar tu flujo de trabajo (OJO: no usaremos esto en clase).</li>
+</ul>
+
+  </body>
+  </html>
