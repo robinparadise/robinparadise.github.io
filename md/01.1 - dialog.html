@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h2>1.1 <code>&lt;dialog&gt;</code></h2>
@@ -1111,15 +1129,14 @@
 <h3>1. Introducción al Elemento <code>&lt;dialog&gt;</code></h3>
 <p>El elemento <code>&lt;dialog&gt;</code> representa un cuadro de diálogo en la interfaz. Es un contenedor de contenido que se puede mostrar y ocultar mediante JavaScript, lo que permite implementar modales sin la necesidad de frameworks externos o CSS avanzado.</p>
 <h4>Ejemplo Básico del Uso del Elemento <code>&lt;dialog&gt;</code></h4>
-<pre><code class="language-html">&lt;dialog&gt;
-  &lt;button autofocus onclick=&quot;this.parentNode.close()&quot;&gt;Cerrar&lt;/button&gt;
-  &lt;p&gt;¡Este diálogo tiene un fondo interactivo (backdrop) genial!&lt;/p&gt;
-&lt;/dialog&gt;
-&lt;button onclick=&quot;document.querySelector(&#39;dialog&#39;).showModal()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">autofocus</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;this.parentNode.close()&quot;</span>&gt;</span>Cerrar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>¡Este diálogo tiene un fondo interactivo (backdrop) genial!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.querySelector(&#x27;dialog&#x27;).showModal()&quot;</span>&gt;</span>
   Mostrar diálogo
-&lt;/button&gt;
-</code></pre>
-<ul>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre><ul>
 <li><strong>HTML explicado</strong>:<ul>
 <li>El elemento <code>&lt;dialog&gt;</code> define el contenido del diálogo.</li>
 <li>El botón &quot;Mostrar diálogo&quot; abre el cuadro de diálogo mediante <code>showModal()</code>, lo que lo hace aparecer en pantalla con un fondo gris (backdrop).</li>
@@ -1132,24 +1149,21 @@
 <h4>2.1. Métodos Principales</h4>
 <ul>
 <li><p><strong><code>show()</code></strong>: Muestra el diálogo sin aplicarle una modalidad. El diálogo aparece sobre el contenido principal sin impedir que el usuario interactúe con la página.</p>
-<pre><code class="language-html">&lt;button onclick=&quot;document.querySelector(&#39;dialog&#39;).show()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.querySelector(&#x27;dialog&#x27;).show()&quot;</span>&gt;</span>
   Mostrar diálogo sin modalidad
-&lt;/button&gt;
-</code></pre>
-</li>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></li>
 <li><p><strong><code>showModal()</code></strong>: Muestra el diálogo de manera modal. Esto significa que el usuario no puede interactuar con el resto del contenido de la página hasta que el diálogo se cierre.</p>
-<pre><code class="language-html">&lt;button onclick=&quot;document.querySelector(&#39;dialog&#39;).showModal()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.querySelector(&#x27;dialog&#x27;).showModal()&quot;</span>&gt;</span>
   Mostrar diálogo con modalidad
-&lt;/button&gt;
-</code></pre>
-</li>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre></li>
 <li><p><strong><code>close()</code></strong>: Cierra el diálogo. Esto se puede llamar directamente desde el código JavaScript o mediante la acción de un botón dentro del diálogo.</p>
-<pre><code class="language-html">&lt;dialog id=&quot;myDialog&quot;&gt;
-  &lt;button onclick=&quot;document.getElementById(&#39;myDialog&#39;).close()&quot;&gt;Cerrar&lt;/button&gt;
-  &lt;p&gt;Diálogo cerrado con el método close().&lt;/p&gt;
-&lt;/dialog&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myDialog&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;myDialog&#x27;).close()&quot;</span>&gt;</span>Cerrar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Diálogo cerrado con el método close().<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+</code></pre></li>
 </ul>
 <h4>2.2. Atributos del Elemento <code>&lt;dialog&gt;</code></h4>
 <ul>
@@ -1157,70 +1171,65 @@
 <ul>
 <li>Si el atributo <code>open</code> está presente, el diálogo se considera visible en la página.</li>
 </ul>
-<pre><code class="language-html">&lt;dialog open&gt;
-  &lt;p&gt;Este diálogo está abierto desde el inicio.&lt;/p&gt;
-&lt;/dialog&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">open</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Este diálogo está abierto desde el inicio.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+</code></pre></li>
 <li><p><strong><code>returnValue</code></strong>: Esta propiedad se utiliza para determinar el valor devuelto cuando el diálogo se cierra.</p>
-<pre><code class="language-javascript">const myDialog = document.querySelector(&#39;dialog&#39;);
-myDialog.returnValue = &#39;valor devuelto&#39;;
-myDialog.close();
-console.log(myDialog.returnValue); // &#39;valor devuelto&#39;
-</code></pre>
-</li>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> myDialog = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;dialog&#x27;</span>);
+myDialog.<span class="hljs-property">returnValue</span> = <span class="hljs-string">&#x27;valor devuelto&#x27;</span>;
+myDialog.<span class="hljs-title function_">close</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myDialog.<span class="hljs-property">returnValue</span>); <span class="hljs-comment">// &#x27;valor devuelto&#x27;</span>
+</code></pre></li>
 </ul>
 <h3>3. Backdrop y Estilos del Elemento <code>&lt;dialog&gt;</code></h3>
 <p>Cuando un cuadro de diálogo se muestra de manera modal con <code>showModal()</code>, se crea un <strong>backdrop</strong> (fondo gris) que bloquea la interacción con el contenido de la página principal. Esto permite al usuario concentrarse en la acción requerida por el diálogo.</p>
 <h4>Personalización del Estilo del Backdrop</h4>
 <p>Aunque el elemento <code>&lt;dialog&gt;</code> tiene un fondo predeterminado cuando se muestra modal, se puede personalizar su estilo mediante CSS.</p>
-<pre><code class="language-css">dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+<pre><code class="hljs language-css">dialog<span class="hljs-selector-pseudo">::backdrop</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>);
 }
-</code></pre>
-<ul>
+</code></pre><ul>
 <li>En este ejemplo, cambiamos el color del fondo del backdrop a un gris oscuro semitransparente.</li>
 </ul>
 <h4>Ejemplo de Estilo de un Diálogo</h4>
-<pre><code class="language-html">&lt;dialog id=&quot;styledDialog&quot;&gt;
-  &lt;h2&gt;Estilizado del Diálogo&lt;/h2&gt;
-  &lt;p&gt;Este diálogo tiene estilos personalizados para una mejor apariencia.&lt;/p&gt;
-  &lt;button onclick=&quot;document.getElementById(&#39;styledDialog&#39;).close()&quot;&gt;Cerrar&lt;/button&gt;
-&lt;/dialog&gt;
-&lt;button onclick=&quot;document.getElementById(&#39;styledDialog&#39;).showModal()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;styledDialog&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Estilizado del Diálogo<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Este diálogo tiene estilos personalizados para una mejor apariencia.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;styledDialog&#x27;).close()&quot;</span>&gt;</span>Cerrar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;styledDialog&#x27;).showModal()&quot;</span>&gt;</span>
   Mostrar diálogo estilizado
-&lt;/button&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-&lt;style&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
   dialog {
-    border: solid 1px #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    <span class="hljs-attribute">border</span>: solid <span class="hljs-number">1px</span> <span class="hljs-number">#ccc</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">8px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">5px</span> <span class="hljs-number">15px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>);
   }
-  dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);
+  dialog<span class="hljs-selector-pseudo">::backdrop</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.7</span>);
   }
-&lt;/style&gt;
-</code></pre>
-<h3>4. Ejemplo de Uso Completo con Formulario</h3>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre><h3>4. Ejemplo de Uso Completo con Formulario</h3>
 <p>Una de las formas más comunes de usar un diálogo es como un formulario para que el usuario ingrese información. A continuación, se muestra un ejemplo completo:</p>
-<pre><code class="language-html">&lt;dialog id=&quot;formDialog&quot;&gt;
-  &lt;form method=&quot;dialog&quot;&gt;
-    &lt;h3&gt;Formulario de Ejemplo&lt;/h3&gt;
-    &lt;label for=&quot;username&quot;&gt;Nombre de usuario:&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;username&quot; name=&quot;username&quot; required&gt;
-    &lt;menu&gt;
-      &lt;button value=&quot;cancel&quot;&gt;Cancelar&lt;/button&gt;
-      &lt;button value=&quot;confirm&quot;&gt;Confirmar&lt;/button&gt;
-    &lt;/menu&gt;
-  &lt;/form&gt;
-&lt;/dialog&gt;
-&lt;button onclick=&quot;document.getElementById(&#39;formDialog&#39;).showModal()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;formDialog&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Formulario de Ejemplo<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;</span>Nombre de usuario:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;username&quot;</span> <span class="hljs-attr">required</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">menu</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;cancel&quot;</span>&gt;</span>Cancelar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;confirm&quot;</span>&gt;</span>Confirmar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">menu</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;document.getElementById(&#x27;formDialog&#x27;).showModal()&quot;</span>&gt;</span>
   Abrir formulario
-&lt;/button&gt;
-</code></pre>
-<ul>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Explicación</strong>:<ul>
 <li>El atributo <code>method=&quot;dialog&quot;</code> permite que el formulario se cierre automáticamente cuando se haga clic en uno de los botones del formulario (<code>Cancelar</code> o <code>Confirmar</code>).</li>
 <li>El cuadro de diálogo se abre con <code>showModal()</code> para que el usuario no pueda interactuar con la página hasta que complete el formulario.</li>
@@ -1234,5 +1243,6 @@ console.log(myDialog.returnValue); // &#39;valor devuelto&#39;
 <li><strong>Cerrar mediante teclado</strong>: Los usuarios deben poder cerrar el diálogo usando la tecla <strong>Esc</strong>.</li>
 </ul>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

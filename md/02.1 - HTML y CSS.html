@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2. Lenguajes y Herramientas para el Desarrollo de Interfaces</h1>
@@ -1121,114 +1139,105 @@
 <li><strong>Definición:</strong> Flexbox es un modelo de diseño de CSS que facilita la alineación y distribución de elementos en un contenedor, incluso cuando su tamaño es desconocido y/o dinámico.</li>
 <li><strong>Características Clave:</strong> Permite alinear elementos horizontal y verticalmente, distribuir el espacio de manera eficiente, y ajustar el tamaño de los elementos flexibles. </li>
 <li><strong>Uso:</strong> Ideal para diseños de una sola dimensión (filas o columnas) y para crear layouts responsivos y adaptativos.</li>
-<li><strong>Ejemplo de Código:</strong><pre><code class="language-css">.container {
-  display: flex;
-  justify-content: start;
-  align-items: start;
-  height: 100svh;
+<li><strong>Ejemplo de Código:</strong><pre><code class="hljs language-css"><span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: start;
+  <span class="hljs-attribute">align-items</span>: start;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100s</span>vh;
 }
 
-.item {
-  width: 100px;
-  height: 100px;
-  background: lightblue;
-  border: 1px solid blue;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+<span class="hljs-selector-class">.item</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background</span>: lightblue;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid blue;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">align-items</span>: center;
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 <p>  <img src="https://cdn-media-1.freecodecamp.org/images/6WwoIEc45lUHUcFQCmD8GmziiISm2lO64Y1-" alt="Display Flexbox"></p>
 <p>  <img src="https://cdn-media-1.freecodecamp.org/images/UgsULw0Kk49l-l1wSzeurYNJKCmcA-01oE8a" alt="Align items"></p>
 <p>  <img src="https://cdn-media-1.freecodecamp.org/images/OBGVr-DdHiQ2y9VOWuhXqXeGnFnyDSBTx7hv" alt="Justify content"></p>
 <h5><strong>Ejemplo 1: Distribución Básica de Elementos en una Fila</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;flex-container&quot;&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento 3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.flex-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f0f0f0;
-  padding: 10px;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.flex-container</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: space-between;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f0f0f0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
 }
 
-.item {
-  background-color: #ffcc00;
-  padding: 20px;
-  margin: 5px;
-  flex: 1;
+<span class="hljs-selector-class">.item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffcc00</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">5px</span>;
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>justify-content: space-between</code>: distribuye los elementos uniformemente, dejando el espacio extra entre ellos.</li>
 <li><code>align-items: center</code>: alinea los elementos verticalmente en el centro del contenedor.</li>
 </ul>
 <h5><strong>Ejemplo 2: Diseño de Columna con Alineación de Elementos</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;flex-column&quot;&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento A&lt;/div&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento B&lt;/div&gt;
-  &lt;div class=&quot;item&quot;&gt;Elemento C&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.flex-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-column&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento A<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento B<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Elemento C<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.flex-column</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-direction</span>: column;
+  <span class="hljs-attribute">justify-content</span>: flex-start;
+  <span class="hljs-attribute">align-items</span>: stretch;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>flex-direction: column</code>: organiza los elementos en una columna.</li>
 <li><code>align-items: stretch</code>: estira los elementos para que ocupen el ancho completo disponible.</li>
 </ul>
 <h5><strong>Ejemplo 3: Flexbox con Elementos Flexibles y No Flexibles</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;flex-container&quot;&gt;
-  &lt;div class=&quot;item&quot;&gt;Flexible 1&lt;/div&gt;
-  &lt;div class=&quot;item fixed&quot;&gt;No Flexible&lt;/div&gt;
-  &lt;div class=&quot;item&quot;&gt;Flexible 2&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.flex-container {
-  display: flex;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Flexible 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item fixed&quot;</span>&gt;</span>No Flexible<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>Flexible 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.flex-container</span> {
+  <span class="hljs-attribute">display</span>: flex;
 }
 
-.item {
-  flex: 1;
-  padding: 10px;
-  background-color: #ffd700;
+<span class="hljs-selector-class">.item</span> {
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffd700</span>;
 }
 
-.fixed {
-  flex: none;
-  width: 200px;
-  background-color: #ff4500;
+<span class="hljs-selector-class">.fixed</span> {
+  <span class="hljs-attribute">flex</span>: none;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff4500</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li>Los elementos con <code>flex: 1</code> crecen y ocupan el espacio disponible, mientras que el elemento con <code>flex: none</code> mantiene un tamaño fijo de 200px.</li>
 </ul>
 <h5><strong>Ejemplo 4: Reordenamiento de Elementos con Flexbox</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;flex-container&quot;&gt;
-  &lt;div class=&quot;item&quot; style=&quot;order: 2&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;item&quot; style=&quot;order: 1&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;item&quot; style=&quot;order: 3&quot;&gt;Elemento 3&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.flex-container {
-  display: flex;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;order: 2&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;order: 1&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;order: 3&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.flex-container</span> {
+  <span class="hljs-attribute">display</span>: flex;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><p><code>order</code>: cambia el orden visual de los elementos sin alterar el HTML. En este ejemplo, &quot;Elemento 2&quot; se mostrará primero aunque en el HTML aparezca después de &quot;Elemento 1&quot;.</p>
 </li>
@@ -1236,64 +1245,63 @@
 </li>
 </ul>
 <p><img src="../assets/menu-flexbox.jpg" alt="Toolbar con Flexbox"></p>
-<pre><code class="language-html">&lt;html&gt;
-&lt;head&gt;
-  &lt;style&gt;
-    body {
-      margin: 0;
-      font-family: arial;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+    <span class="hljs-selector-tag">body</span> {
+      <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+      <span class="hljs-attribute">font-family</span>: arial;
     }
-    .container {
-      display: flex;
-      justify-content: center;
-      box-shadow: 0 0 16px #1e1e1e;
-    }
-
-    .item {
-      height: 60px;
-      margin: 10px 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    <span class="hljs-selector-class">.container</span> {
+      <span class="hljs-attribute">display</span>: flex;
+      <span class="hljs-attribute">justify-content</span>: center;
+      <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">16px</span> <span class="hljs-number">#1e1e1e</span>;
     }
 
-    .item:first-child {
-      flex: auto;
-      justify-content: start;
+    <span class="hljs-selector-class">.item</span> {
+      <span class="hljs-attribute">height</span>: <span class="hljs-number">60px</span>;
+      <span class="hljs-attribute">margin</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+      <span class="hljs-attribute">display</span>: flex;
+      <span class="hljs-attribute">justify-content</span>: center;
+      <span class="hljs-attribute">align-items</span>: center;
     }
-    .item {
-      justify-content: center;
+
+    <span class="hljs-selector-class">.item</span><span class="hljs-selector-pseudo">:first-child</span> {
+      <span class="hljs-attribute">flex</span>: auto;
+      <span class="hljs-attribute">justify-content</span>: start;
     }
-    .link-pretty {
-      text-decoration: none;
-      color: black;
+    <span class="hljs-selector-class">.item</span> {
+      <span class="hljs-attribute">justify-content</span>: center;
     }
-    .link-pretty:hover {
-      text-decoration: underline;
+    <span class="hljs-selector-class">.link-pretty</span> {
+      <span class="hljs-attribute">text-decoration</span>: none;
+      <span class="hljs-attribute">color</span>: black;
     }
-    .menu {
-      width: 24px;
+    <span class="hljs-selector-class">.link-pretty</span><span class="hljs-selector-pseudo">:hover</span> {
+      <span class="hljs-attribute">text-decoration</span>: underline;
     }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class=&quot;container&quot;&gt;
-    &lt;div class=&quot;item&quot;&gt;
-      &lt;img src=&quot;https://static-cse.canva.com/blob/951789/1250logotiposqueteinspiraran.png&quot; style=&quot;width: auto; height: 50px;&quot;&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;item&quot;&gt;
-      &lt;a class=&quot;link-pretty&quot; href=&quot;https://google.es&quot; target=_blank&gt;Item 2&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;item&quot;&gt;
-      &lt;a class=&quot;link-pretty&quot; href=&quot;https://google.es&quot; target=_blank&gt;
-        &lt;img class=&quot;menu&quot; src=&quot;https://www.svgrepo.com/show/509298/align-right.svg&quot;&gt;
-      &lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h4><strong>Grid Layout:</strong></h4>
+    <span class="hljs-selector-class">.menu</span> {
+      <span class="hljs-attribute">width</span>: <span class="hljs-number">24px</span>;
+    }
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://static-cse.canva.com/blob/951789/1250logotiposqueteinspiraran.png&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: auto; height: 50px;&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;link-pretty&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://google.es&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">_blank</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;link-pretty&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://google.es&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">_blank</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;menu&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://www.svgrepo.com/show/509298/align-right.svg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h4><strong>Grid Layout:</strong></h4>
 <ul>
 <li><p><strong>Definición:</strong> CSS Grid es un sistema de diseño de dos dimensiones que permite crear layouts más complejos mediante el uso de una cuadrícula de filas y columnas.</p>
 </li>
@@ -1302,172 +1310,159 @@
 <li><p><strong>Uso:</strong> Perfecto para crear layouts de múltiples columnas y filas, y para diseños que requieren una estructura más compleja.</p>
 </li>
 <li><p><strong>Ejemplo de grid-template-columns:</strong></p>
-<pre><code class="language-html">&lt;div class=&quot;grid-container&quot;&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 4&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 4&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  align-items: center;
-  gap: 10px;
-  height: 100svh;
-  place-content: center;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100s</span>vh;
+  place-<span class="hljs-attribute">content</span>: center;
 }
 
-.grid-item {
-  background-color: #87ceeb;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#87ceeb</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Ejemplo de Código 1fr:</strong></p>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 60px;
-  gap: 20px;
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">60px</span>;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">20px</span>;
 }
-.grid-item {
-  background: lightgray;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background</span>: lightgray;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Ejemplo de Código con repeat:</strong></p>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">20px</span>;
 }
-.grid-item {
-  background: lightgray;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background</span>: lightgray;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 <p>  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExem1zNGpwMGJneXg0MjVueWtxMWJzeXNpOTE0bmlvM21xZjJ4bGV6bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9oIP19hZ9kzKJUmpdU/giphy.webp" alt="Display Grid"></p>
 <h5><strong>Ejemplo 1: Grid Básico con Filas y Columnas</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;grid-container&quot;&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;4&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>fr);
+  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
 }
 
-.grid-item {
-  background-color: #87ceeb;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#87ceeb</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>grid-template-columns: repeat(2, 1fr)</code>: crea una cuadrícula de dos columnas, donde cada columna tiene un tamaño flexible (<code>1fr</code> significa una fracción del espacio disponible).</li>
 <li><code>grid-gap</code>: define el espacio entre las columnas y filas.</li>
 </ul>
 <h5><strong>Ejemplo 2: Distribución de Elementos en Filas y Columnas Personalizadas</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;grid-container&quot;&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 4&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: 100px 200px 1fr;
-  grid-template-rows: 50px auto;
-  grid-gap: 10px;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">200px</span> <span class="hljs-number">1</span>fr;
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">50px</span> auto;
+  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
 }
 
-.grid-item {
-  background-color: #ffa07a;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffa07a</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>grid-template-columns: 100px 200px 1fr</code>: define tres columnas, la primera con 100px de ancho, la segunda con 200px y la tercera ocupando el espacio restante.</li>
 <li><code>grid-template-rows: 50px auto</code>: define dos filas, la primera de 50px y la segunda con tamaño automático.</li>
 </ul>
 <h5><strong>Ejemplo 3: Grid con Elementos que Ocuparán Varias Filas o Columnas</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;grid-container&quot;&gt;
-  &lt;div class=&quot;grid-item&quot; style=&quot;grid-column: span 2;&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 4&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;grid-column: span 2;&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);
+  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
 }
 
-.grid-item {
-  background-color: #32cd32;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#32cd32</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>grid-column: span 2</code>: el primer elemento ocupará dos columnas dentro de la cuadrícula.</li>
 </ul>
 <h5><strong>Ejemplo 4: Control de Posición Específica en Grid</strong></h5>
-<pre><code class="language-html">&lt;div class=&quot;grid-container&quot;&gt;
-  &lt;div class=&quot;grid-item&quot; style=&quot;grid-column: 2 / 4; grid-row: 1 / 2;&quot;&gt;Elemento 1&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 2&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 3&lt;/div&gt;
-  &lt;div class=&quot;grid-item&quot;&gt;Elemento 4&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<pre><code class="language-css">.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 100px);
-  grid-gap: 10px;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;grid-column: 2 / 4; grid-row: 1 / 2;&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid-item&quot;</span>&gt;</span>Elemento 4<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-class">.grid-container</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>fr);
+  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span>);
+  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
 }
 
-.grid-item {
-  background-color: #ff69b4;
-  padding: 20px;
+<span class="hljs-selector-class">.grid-item</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff69b4</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
 }
-</code></pre>
-<p><strong>Descripción:</strong></p>
+</code></pre><p><strong>Descripción:</strong></p>
 <ul>
 <li><code>grid-column: 2 / 4</code>: el primer elemento ocupará las columnas 2 y 3.</li>
 <li><code>grid-row: 1 / 2</code>: el primer elemento ocupará solo la primera fila.</li>
 </ul>
 <h4><strong>CSS Grid: Template Areas</strong></h4>
 <p>En este ejemplo, se define una cuadrícula con tres áreas: una barra superior, una sección de anuncios y un pie de página. Cada área está etiquetada para abarcar diferentes columnas y filas, brindándote un control preciso sobre la estructura del diseño.</p>
-<pre><code class="language-css">main {
-  display: grid;
-  grid-template-areas:
-    &quot;topbar topbar topbar&quot;
-    &quot;ads content sidebar&quot;
-    &quot;footer footer footer&quot;;
+<pre><code class="hljs language-css"><span class="hljs-selector-tag">main</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-areas</span>:
+    <span class="hljs-string">&quot;topbar topbar topbar&quot;</span>
+    <span class="hljs-string">&quot;ads content sidebar&quot;</span>
+    <span class="hljs-string">&quot;footer footer footer&quot;</span>;
 }
 
-header { grid-area: topbar; }
-aside { grid-area: ads; }
-article { grid-area: content; }
-nav { grid-area: sidebar; }
-footer { grid-area: footer; }
-</code></pre>
-<h4>Key Concepts:</h4>
+<span class="hljs-selector-tag">header</span> { <span class="hljs-attribute">grid-area</span>: topbar; }
+<span class="hljs-selector-tag">aside</span> { <span class="hljs-attribute">grid-area</span>: ads; }
+<span class="hljs-selector-tag">article</span> { <span class="hljs-attribute">grid-area</span>: content; }
+<span class="hljs-selector-tag">nav</span> { <span class="hljs-attribute">grid-area</span>: sidebar; }
+<span class="hljs-selector-tag">footer</span> { <span class="hljs-attribute">grid-area</span>: footer; }
+</code></pre><h4>Key Concepts:</h4>
 <h4>Conceptos Clave:</h4>
 <ol>
 <li><strong>Áreas de la Cuadrícula</strong>: Las regiones con nombres (<code>topbar</code>, <code>ads</code>, <code>content</code>, <code>sidebar</code> y <code>footer</code>) te permiten asignar fácilmente secciones específicas a partes de la cuadrícula.</li>
@@ -1477,36 +1472,35 @@ footer { grid-area: footer; }
 <p>Puedes usar <code>grid-template-areas</code> junto con técnicas responsivas como <code>minmax()</code>, <code>auto-fill</code> y <code>auto-fit</code> para crear diseños dinámicos que se ajusten según el tamaño de la pantalla.</p>
 <h4>Ejemplo:</h4>
 <p>Agreguemos esta lógica a un diseño de cuadrícula responsivo usando <code>minmax()</code> y <code>auto-fit</code> para columnas adaptables:</p>
-<pre><code class="language-css">main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-template-areas:
-    &quot;topbar topbar topbar&quot;
-    &quot;ads content sidebar&quot;
-    &quot;footer footer footer&quot;;
+<pre><code class="hljs language-css"><span class="hljs-selector-tag">main</span> {
+  <span class="hljs-attribute">display</span>: grid;
+  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(auto-fit, <span class="hljs-built_in">minmax</span>(<span class="hljs-number">200px</span>, <span class="hljs-number">1</span>fr));
+  <span class="hljs-attribute">grid-template-areas</span>:
+    <span class="hljs-string">&quot;topbar topbar topbar&quot;</span>
+    <span class="hljs-string">&quot;ads content sidebar&quot;</span>
+    <span class="hljs-string">&quot;footer footer footer&quot;</span>;
 }
 
-header {
-  grid-area: topbar;
+<span class="hljs-selector-tag">header</span> {
+  <span class="hljs-attribute">grid-area</span>: topbar;
 }
 
-aside {
-  grid-area: ads;
+<span class="hljs-selector-tag">aside</span> {
+  <span class="hljs-attribute">grid-area</span>: ads;
 }
 
-article {
-  grid-area: content;
+<span class="hljs-selector-tag">article</span> {
+  <span class="hljs-attribute">grid-area</span>: content;
 }
 
-nav {
-  grid-area: sidebar;
+<span class="hljs-selector-tag">nav</span> {
+  <span class="hljs-attribute">grid-area</span>: sidebar;
 }
 
-footer {
-  grid-area: footer;
+<span class="hljs-selector-tag">footer</span> {
+  <span class="hljs-attribute">grid-area</span>: footer;
 }
-</code></pre>
-<p>En este ejemplo, el diseño ajusta automáticamente el número de columnas en función del tamaño de la pantalla, usando <code>auto-fit</code> para llenar el espacio disponible, y <code>minmax(200px, 1fr)</code> asegura que cada columna tenga al menos 200px de ancho, pero puede expandirse si hay más espacio disponible.</p>
+</code></pre><p>En este ejemplo, el diseño ajusta automáticamente el número de columnas en función del tamaño de la pantalla, usando <code>auto-fit</code> para llenar el espacio disponible, y <code>minmax(200px, 1fr)</code> asegura que cada columna tenga al menos 200px de ancho, pero puede expandirse si hay más espacio disponible.</p>
 <ul>
 <li><strong>minmax(200px, 1fr)</strong>: Esta función establece un ancho mínimo de columna de 200px y permite que la columna crezca tanto como sea necesario.</li>
 <li><strong>auto-fit</strong>: Ajusta automáticamente tantas columnas como permita el contenedor, reduciendo o expandiendo según el espacio disponible.</li>
@@ -1554,5 +1548,6 @@ Debes crear una galería de imágenes con cuatro imágenes que se adapten a dife
 </ul>
 <p><img src="../assets/grid-1.avif" alt="Grid example"></p>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

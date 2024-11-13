@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2. Manipulación del DOM y Eventos</h1>
@@ -1117,45 +1135,39 @@
 <li><code>document.querySelector(selector)</code>: Selecciona el primer elemento que coincida con un selector CSS.</li>
 <li><code>document.querySelectorAll(selector)</code>: Selecciona todos los elementos que coincidan con un selector CSS.</li>
 </ul>
-<pre><code class="language-js">// Ejemplo: seleccionar un elemento por su ID
-let titulo = document.getElementById(&#39;titulo&#39;);
-</code></pre>
-<h4>1.2 Modificación de elementos</h4>
+<pre><code class="hljs language-js"><span class="hljs-comment">// Ejemplo: seleccionar un elemento por su ID</span>
+<span class="hljs-keyword">let</span> titulo = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;titulo&#x27;</span>);
+</code></pre><h4>1.2 Modificación de elementos</h4>
 <p>Una vez seleccionado un elemento, podemos modificar su contenido, estilo o atributos:</p>
 <ul>
 <li><strong>Modificar el contenido interno (<code>innerHTML</code>, <code>textContent</code>)</strong>:</li>
 </ul>
-<pre><code class="language-js">// Cambiar el contenido del título
-titulo.textContent = &#39;Nuevo Título&#39;;
-</code></pre>
-<ul>
+<pre><code class="hljs language-js"><span class="hljs-comment">// Cambiar el contenido del título</span>
+titulo.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Nuevo Título&#x27;</span>;
+</code></pre><ul>
 <li><strong>Modificar estilos</strong>:</li>
 </ul>
-<pre><code class="language-js">// Cambiar el color del texto
-titulo.style.color = &#39;blue&#39;;
-</code></pre>
-<ul>
+<pre><code class="hljs language-js"><span class="hljs-comment">// Cambiar el color del texto</span>
+titulo.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;blue&#x27;</span>;
+</code></pre><ul>
 <li><strong>Modificar atributos</strong>:</li>
 </ul>
-<pre><code class="language-js">// Cambiar el valor de un atributo
-titulo.setAttribute(&#39;class&#39;, &#39;nuevo-estilo&#39;);
-</code></pre>
-<h4>1.3 Creación y eliminación de elementos</h4>
+<pre><code class="hljs language-js"><span class="hljs-comment">// Cambiar el valor de un atributo</span>
+titulo.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;class&#x27;</span>, <span class="hljs-string">&#x27;nuevo-estilo&#x27;</span>);
+</code></pre><h4>1.3 Creación y eliminación de elementos</h4>
 <p>JavaScript permite agregar nuevos elementos al DOM o eliminar los existentes:</p>
 <ul>
 <li><strong>Crear un nuevo elemento</strong>:</li>
 </ul>
-<pre><code class="language-js">let nuevoParrafo = document.createElement(&#39;p&#39;);
-nuevoParrafo.textContent = &#39;Este es un nuevo párrafo&#39;;
-document.body.appendChild(nuevoParrafo);
-</code></pre>
-<ul>
+<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> nuevoParrafo = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;p&#x27;</span>);
+nuevoParrafo.<span class="hljs-property">textContent</span> = <span class="hljs-string">&#x27;Este es un nuevo párrafo&#x27;</span>;
+<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(nuevoParrafo);
+</code></pre><ul>
 <li><strong>Eliminar un elemento</strong>:</li>
 </ul>
-<pre><code class="language-js">let parrafo = document.querySelector(&#39;p&#39;);
-parrafo.remove();
-</code></pre>
-<hr>
+<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> parrafo = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;p&#x27;</span>);
+parrafo.<span class="hljs-title function_">remove</span>();
+</code></pre><hr>
 <h3>2. Eventos</h3>
 <p>Los <strong>eventos</strong> en JavaScript permiten a las aplicaciones web responder a interacciones del usuario. Un evento puede ser cualquier cosa, desde un clic, hasta el movimiento del ratón, la escritura en un campo de texto o la carga de la página.</p>
 <h4>2.1 Tipos de eventos comunes</h4>
@@ -1167,84 +1179,80 @@ parrafo.remove();
 </ul>
 <h4>2.2 Escuchar eventos</h4>
 <p>Para ejecutar código cuando ocurre un evento, se deben <strong>asignar &quot;listeners&quot; (escuchadores de eventos)</strong> a los elementos. La forma más común es usar <code>addEventListener()</code>.</p>
-<pre><code class="language-js">// Escuchar el evento &#39;click&#39; en un botón
-let boton = document.getElementById(&#39;miBoton&#39;);
-boton.addEventListener(&#39;click&#39;, function() {
-  alert(&#39;Botón clickeado!&#39;);
+<pre><code class="hljs language-js"><span class="hljs-comment">// Escuchar el evento &#x27;click&#x27; en un botón</span>
+<span class="hljs-keyword">let</span> boton = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;miBoton&#x27;</span>);
+boton.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;Botón clickeado!&#x27;</span>);
 });
-</code></pre>
-<h4>2.3 Prevención del comportamiento por defecto</h4>
+</code></pre><h4>2.3 Prevención del comportamiento por defecto</h4>
 <p>Algunos eventos tienen comportamientos predeterminados que no siempre son deseados, como la recarga de la página al enviar un formulario. Con <code>event.preventDefault()</code>, es posible evitarlo:</p>
-<pre><code class="language-js">let formulario = document.querySelector(&#39;form&#39;);
-formulario.addEventListener(&#39;submit&#39;, function(event) {
-  event.preventDefault(); // Evita que la página se recargue
-  console.log(&#39;Formulario enviado&#39;);
+<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> formulario = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;form&#x27;</span>);
+formulario.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+  event.<span class="hljs-title function_">preventDefault</span>(); <span class="hljs-comment">// Evita que la página se recargue</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Formulario enviado&#x27;</span>);
 });
-</code></pre>
-<h4>2.4 Propagación de eventos</h4>
+</code></pre><h4>2.4 Propagación de eventos</h4>
 <p>Los eventos pueden propagarse en el DOM a través de dos fases: la fase de captura y la fase de burbuja. Esto significa que un evento, como un clic, puede propagarse desde el elemento más específico (el que recibe el clic) hasta el más general (por ejemplo, <code>document</code>).</p>
 <ul>
 <li><strong>Captura</strong>: El evento se propaga desde el nodo más exterior hacia el nodo que desencadena el evento.</li>
 <li><strong>Burbuja</strong>: El evento se propaga desde el nodo que desencadena el evento hacia el nodo más exterior.</li>
 </ul>
 <p>Se puede detener la propagación del evento utilizando <code>event.stopPropagation()</code>.</p>
-<pre><code class="language-js">let innerDiv = document.getElementById(&#39;inner&#39;);
-let outerDiv = document.getElementById(&#39;outer&#39;);
+<pre><code class="hljs language-js"><span class="hljs-keyword">let</span> innerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;inner&#x27;</span>);
+<span class="hljs-keyword">let</span> outerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;outer&#x27;</span>);
 
-innerDiv.addEventListener(&#39;click&#39;, function(event) {
-  console.log(&#39;Clic en inner div&#39;);
-  event.stopPropagation(); // Detiene la propagación
+innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div&#x27;</span>);
+  event.<span class="hljs-title function_">stopPropagation</span>(); <span class="hljs-comment">// Detiene la propagación</span>
 });
 
-outerDiv.addEventListener(&#39;click&#39;, function() {
-  console.log(&#39;Clic en outer div&#39;);
+outerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en outer div&#x27;</span>);
 });
-</code></pre>
-<p>En este ejemplo, solo se registrará el clic en el <code>innerDiv</code>, y no en el <code>outerDiv</code>, gracias a <code>stopPropagation()</code>.</p>
+</code></pre><p>En este ejemplo, solo se registrará el clic en el <code>innerDiv</code>, y no en el <code>outerDiv</code>, gracias a <code>stopPropagation()</code>.</p>
 <h4>2.4.1. Ejemplo básico de burbuja y captura</h4>
-<pre><code class="language-html">&lt;div id=&quot;outer&quot; style=&quot;padding: 50px; background-color: lightblue;&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;outer&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightblue;&quot;</span>&gt;</span>
   Outer Div
-  &lt;div id=&quot;middle&quot; style=&quot;padding: 50px; background-color: lightgreen;&quot;&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;middle&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightgreen;&quot;</span>&gt;</span>
     Middle Div
-    &lt;div id=&quot;inner&quot; style=&quot;padding: 50px; background-color: lightcoral;&quot;&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;inner&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightcoral;&quot;</span>&gt;</span>
       Inner Div
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script&gt;
-  let innerDiv = document.getElementById(&#39;inner&#39;);
-  let middleDiv = document.getElementById(&#39;middle&#39;);
-  let outerDiv = document.getElementById(&#39;outer&#39;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> innerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;inner&#x27;</span>);
+  <span class="hljs-keyword">let</span> middleDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;middle&#x27;</span>);
+  <span class="hljs-keyword">let</span> outerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;outer&#x27;</span>);
 
-  // Fase de burbuja (por defecto)
-  innerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en inner div (burbuja)&#39;);
+  <span class="hljs-comment">// Fase de burbuja (por defecto)</span>
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div (burbuja)&#x27;</span>);
   });
 
-  middleDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en middle div (burbuja)&#39;);
+  middleDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en middle div (burbuja)&#x27;</span>);
   });
 
-  outerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en outer div (burbuja)&#39;);
+  outerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en outer div (burbuja)&#x27;</span>);
   });
 
-  // Fase de captura
-  innerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en inner div (captura)&#39;);
-  }, true);
+  <span class="hljs-comment">// Fase de captura</span>
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div (captura)&#x27;</span>);
+  }, <span class="hljs-literal">true</span>);
 
-  middleDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en middle div (captura)&#39;);
-  }, true);
+  middleDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en middle div (captura)&#x27;</span>);
+  }, <span class="hljs-literal">true</span>);
 
-  outerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en outer div (captura)&#39;);
-  }, true);
-&lt;/script&gt;
-</code></pre>
-<p><strong>Explicación:</strong></p>
+  outerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en outer div (captura)&#x27;</span>);
+  }, <span class="hljs-literal">true</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><p><strong>Explicación:</strong></p>
 <ol>
 <li><strong>Fase de captura</strong>: Los eventos se propagan desde el nodo más exterior hacia el nodo más interior. Esto se logra activando el tercer parámetro del <code>addEventListener</code> a <code>true</code>.</li>
 <li><strong>Fase de burbuja</strong>: Después de que el evento se captura y llega al nodo objetivo, el evento burbujea de nuevo hacia los nodos exteriores. Por defecto, <code>addEventListener</code> usa la fase de burbuja.</li>
@@ -1252,70 +1260,68 @@ outerDiv.addEventListener(&#39;click&#39;, function() {
 <p>Al hacer clic en el <code>innerDiv</code>, verás primero los mensajes de la fase de captura (desde el nodo más exterior hasta el más interior), y luego los de la fase de burbuja (del nodo más interior al exterior).</p>
 <h4>2.4.2. Ejemplo con <code>stopPropagation</code></h4>
 <p>En este ejemplo, utilizaremos <code>event.stopPropagation()</code> para detener la propagación del evento en ambas fases.</p>
-<pre><code class="language-html">&lt;div id=&quot;outer&quot; style=&quot;padding: 50px; background-color: lightblue;&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;outer&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightblue;&quot;</span>&gt;</span>
   Outer Div
-  &lt;div id=&quot;middle&quot; style=&quot;padding: 50px; background-color: lightgreen;&quot;&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;middle&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightgreen;&quot;</span>&gt;</span>
     Middle Div
-    &lt;div id=&quot;inner&quot; style=&quot;padding: 50px; background-color: lightcoral;&quot;&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;inner&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightcoral;&quot;</span>&gt;</span>
       Inner Div
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script&gt;
-  let innerDiv = document.getElementById(&#39;inner&#39;);
-  let middleDiv = document.getElementById(&#39;middle&#39;);
-  let outerDiv = document.getElementById(&#39;outer&#39;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> innerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;inner&#x27;</span>);
+  <span class="hljs-keyword">let</span> middleDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;middle&#x27;</span>);
+  <span class="hljs-keyword">let</span> outerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;outer&#x27;</span>);
 
-  innerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en inner div&#39;);
-    event.stopPropagation(); // Detiene la propagación
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div&#x27;</span>);
+    event.<span class="hljs-title function_">stopPropagation</span>(); <span class="hljs-comment">// Detiene la propagación</span>
   });
 
-  middleDiv.addEventListener(&#39;click&#39;, function() {
-    console.log(&#39;Clic en middle div&#39;);
+  middleDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en middle div&#x27;</span>);
   });
 
-  outerDiv.addEventListener(&#39;click&#39;, function() {
-    console.log(&#39;Clic en outer div&#39;);
+  outerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en outer div&#x27;</span>);
   });
-&lt;/script&gt;
-</code></pre>
-<p><strong>Explicación:</strong></p>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><p><strong>Explicación:</strong></p>
 <ol>
 <li>Al hacer clic en el <code>innerDiv</code>, solo se registrará el evento en el <code>innerDiv</code>, ya que <code>event.stopPropagation()</code> detiene la propagación hacia los nodos <code>middleDiv</code> y <code>outerDiv</code>.</li>
 <li>Si se hiciera clic en <code>middleDiv</code>, el evento se propagaría hasta <code>outerDiv</code> porque no se ha detenido la propagación.</li>
 </ol>
 <h4>2.4.3. Ejemplo avanzado: <code>event.stopImmediatePropagation()</code></h4>
 <p><code>event.stopImmediatePropagation()</code> detiene la propagación del evento y también evita que otros event listeners en el mismo nodo se ejecuten.</p>
-<pre><code class="language-html">&lt;div id=&quot;outer&quot; style=&quot;padding: 50px; background-color: lightblue;&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;outer&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightblue;&quot;</span>&gt;</span>
   Outer Div
-  &lt;div id=&quot;middle&quot; style=&quot;padding: 50px; background-color: lightgreen;&quot;&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;middle&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightgreen;&quot;</span>&gt;</span>
     Middle Div
-    &lt;div id=&quot;inner&quot; style=&quot;padding: 50px; background-color: lightcoral;&quot;&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;inner&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;padding: 50px; background-color: lightcoral;&quot;</span>&gt;</span>
       Inner Div
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-&lt;script&gt;
-  let innerDiv = document.getElementById(&#39;inner&#39;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> innerDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;inner&#x27;</span>);
 
-  innerDiv.addEventListener(&#39;click&#39;, function() {
-    console.log(&#39;Clic en inner div - primer listener&#39;);
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div - primer listener&#x27;</span>);
   });
 
-  innerDiv.addEventListener(&#39;click&#39;, function(event) {
-    console.log(&#39;Clic en inner div - segundo listener&#39;);
-    event.stopImmediatePropagation(); // Detiene otros listeners en el mismo nodo
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div - segundo listener&#x27;</span>);
+    event.<span class="hljs-title function_">stopImmediatePropagation</span>(); <span class="hljs-comment">// Detiene otros listeners en el mismo nodo</span>
   });
 
-  innerDiv.addEventListener(&#39;click&#39;, function() {
-    console.log(&#39;Clic en inner div - tercer listener&#39;);
+  innerDiv.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Clic en inner div - tercer listener&#x27;</span>);
   });
-&lt;/script&gt;
-</code></pre>
-<p><strong>Explicación:</strong></p>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><p><strong>Explicación:</strong></p>
 <ol>
 <li>Al hacer clic en el <code>innerDiv</code>, solo se ejecutarán el primer y segundo listener. El tercer listener no se ejecutará debido a <code>stopImmediatePropagation()</code>.</li>
 </ol>
@@ -1323,81 +1329,78 @@ outerDiv.addEventListener(&#39;click&#39;, function() {
 <h3>3. Casos de Uso</h3>
 <h4>3.1 Modificación de contenido en respuesta a eventos</h4>
 <p>Uno de los casos más comunes es modificar el contenido de la página en respuesta a las interacciones del usuario. Por ejemplo, un menú que se despliega al hacer clic en un botón.</p>
-<pre><code class="language-html">&lt;button id=&quot;toggleMenu&quot;&gt;Abrir Menú&lt;/button&gt;
-&lt;ul id=&quot;menu&quot; style=&quot;display: none;&quot;&gt;
-  &lt;li&gt;Inicio&lt;/li&gt;
-  &lt;li&gt;Sobre Nosotros&lt;/li&gt;
-  &lt;li&gt;Contacto&lt;/li&gt;
-&lt;/ul&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;toggleMenu&quot;</span>&gt;</span>Abrir Menú<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;menu&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;display: none;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Sobre Nosotros<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 
-&lt;script&gt;
-  let menu = document.getElementById(&#39;menu&#39;);
-  let toggleButton = document.getElementById(&#39;toggleMenu&#39;);
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> menu = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;menu&#x27;</span>);
+  <span class="hljs-keyword">let</span> toggleButton = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;toggleMenu&#x27;</span>);
 
-  toggleButton.addEventListener(&#39;click&#39;, function() {
-    if (menu.style.display === &#39;none&#39;) {
-      menu.style.display = &#39;block&#39;;
-    } else {
-      menu.style.display = &#39;none&#39;;
+  toggleButton.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (menu.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> === <span class="hljs-string">&#x27;none&#x27;</span>) {
+      menu.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">&#x27;block&#x27;</span>;
+    } <span class="hljs-keyword">else</span> {
+      menu.<span class="hljs-property">style</span>.<span class="hljs-property">display</span> = <span class="hljs-string">&#x27;none&#x27;</span>;
     }
   });
-&lt;/script&gt;
-</code></pre>
-<h4>3.2 Formularios dinámicos</h4>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h4>3.2 Formularios dinámicos</h4>
 <p>JavaScript permite validar formularios o añadir campos de forma dinámica según las acciones del usuario, lo que mejora la experiencia del usuario y reduce errores.</p>
 <h4>Ejemplo: Añadir y eliminar campos de formulario dinámicamente</h4>
 <p>Imagina un formulario en el que los usuarios pueden agregar varios correos electrónicos (o cualquier otro dato) de manera dinámica. En este caso, cada vez que el usuario hace clic en un botón &quot;Agregar Email&quot;, se genera un nuevo campo de entrada de texto. También hay un botón para eliminar campos agregados si el usuario así lo desea.</p>
-<pre><code class="language-html">&lt;form id=&quot;emailForm&quot;&gt;
-  &lt;div id=&quot;emailFields&quot;&gt;
-    &lt;div class=&quot;emailField&quot;&gt;
-      &lt;label for=&quot;email1&quot;&gt;Email 1:&lt;/label&gt;
-      &lt;input type=&quot;email&quot; name=&quot;email[]&quot; id=&quot;email1&quot;&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;button type=&quot;button&quot; id=&quot;addEmail&quot;&gt;Agregar Email&lt;/button&gt;
-  &lt;button type=&quot;submit&quot;&gt;Enviar&lt;/button&gt;
-&lt;/form&gt;
-</code></pre>
-<pre><code class="language-js">let emailCounter = 1; // Para contar cuántos campos de email hay
-let emailForm = document.getElementById(&#39;emailForm&#39;);
-let addEmailButton = document.getElementById(&#39;addEmail&#39;);
-let emailFields = document.getElementById(&#39;emailFields&#39;);
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;emailForm&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;emailFields&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;emailField&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;email1&quot;</span>&gt;</span>Email 1:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email[]&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;email1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;addEmail&quot;</span>&gt;</span>Agregar Email<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Enviar<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</code></pre><pre><code class="hljs language-js"><span class="hljs-keyword">let</span> emailCounter = <span class="hljs-number">1</span>; <span class="hljs-comment">// Para contar cuántos campos de email hay</span>
+<span class="hljs-keyword">let</span> emailForm = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;emailForm&#x27;</span>);
+<span class="hljs-keyword">let</span> addEmailButton = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;addEmail&#x27;</span>);
+<span class="hljs-keyword">let</span> emailFields = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;emailFields&#x27;</span>);
 
-// Función para agregar un nuevo campo de email
-addEmailButton.addEventListener(&#39;click&#39;, function() {
-  emailCounter++; // Aumenta el contador de emails
+<span class="hljs-comment">// Función para agregar un nuevo campo de email</span>
+addEmailButton.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  emailCounter++; <span class="hljs-comment">// Aumenta el contador de emails</span>
 
-  // Crear un nuevo div contenedor para el email
-  let newEmailDiv = document.createElement(&#39;div&#39;);
-  newEmailDiv.classList.add(&#39;emailField&#39;);
+  <span class="hljs-comment">// Crear un nuevo div contenedor para el email</span>
+  <span class="hljs-keyword">let</span> newEmailDiv = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>);
+  newEmailDiv.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;emailField&#x27;</span>);
   
-  // Agregar un campo de entrada para el nuevo email
-  newEmailDiv.innerHTML = `
-    &lt;label for=&quot;email${emailCounter}&quot;&gt;Email ${emailCounter}:&lt;/label&gt;
-    &lt;input type=&quot;email&quot; name=&quot;email[]&quot; id=&quot;email${emailCounter}&quot;&gt;
+  <span class="hljs-comment">// Agregar un campo de entrada para el nuevo email</span>
+  newEmailDiv.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">`
+    &lt;label for=&quot;email<span class="hljs-subst">${emailCounter}</span>&quot;&gt;Email <span class="hljs-subst">${emailCounter}</span>:&lt;/label&gt;
+    &lt;input type=&quot;email&quot; name=&quot;email[]&quot; id=&quot;email<span class="hljs-subst">${emailCounter}</span>&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;removeEmail&quot;&gt;Eliminar&lt;/button&gt;
-  `;
+  `</span>;
 
-  // Agregar el nuevo campo al contenedor de emails
-  emailFields.appendChild(newEmailDiv);
+  <span class="hljs-comment">// Agregar el nuevo campo al contenedor de emails</span>
+  emailFields.<span class="hljs-title function_">appendChild</span>(newEmailDiv);
 
-  // Añadir funcionalidad para eliminar este campo de email
-  newEmailDiv.querySelector(&#39;.removeEmail&#39;).addEventListener(&#39;click&#39;, function() {
-    newEmailDiv.remove(); // Elimina el campo de email del formulario
+  <span class="hljs-comment">// Añadir funcionalidad para eliminar este campo de email</span>
+  newEmailDiv.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.removeEmail&#x27;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    newEmailDiv.<span class="hljs-title function_">remove</span>(); <span class="hljs-comment">// Elimina el campo de email del formulario</span>
   });
 });
 
-// Funcionalidad para enviar el formulario
-emailForm.addEventListener(&#39;submit&#39;, function(event) {
-  event.preventDefault(); // Evita el envío real del formulario
+<span class="hljs-comment">// Funcionalidad para enviar el formulario</span>
+emailForm.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+  event.<span class="hljs-title function_">preventDefault</span>(); <span class="hljs-comment">// Evita el envío real del formulario</span>
   
-  let formData = new FormData(emailForm); // Recolecta todos los datos del formulario
-  console.log(&#39;Emails ingresados:&#39;, formData.getAll(&#39;email[]&#39;)); // Muestra todos los emails en la consola
+  <span class="hljs-keyword">let</span> formData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FormData</span>(emailForm); <span class="hljs-comment">// Recolecta todos los datos del formulario</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Emails ingresados:&#x27;</span>, formData.<span class="hljs-title function_">getAll</span>(<span class="hljs-string">&#x27;email[]&#x27;</span>)); <span class="hljs-comment">// Muestra todos los emails en la consola</span>
 
-  // Aquí podrías procesar los datos o hacer un envío real usando fetch()
+  <span class="hljs-comment">// Aquí podrías procesar los datos o hacer un envío real usando fetch()</span>
 });
-</code></pre>
-<p><strong>Explicación:</strong></p>
+</code></pre><p><strong>Explicación:</strong></p>
 <ul>
 <li>Cada vez que se hace clic en el botón &quot;Agregar Email&quot;, se crea un nuevo campo de entrada junto con un botón &quot;Eliminar&quot; que permite remover dicho campo.</li>
 <li>Los campos generados son dinámicos, por lo que los usuarios pueden agregar o eliminar tantos correos electrónicos como deseen.</li>
@@ -1439,5 +1442,6 @@ emailForm.addEventListener(&#39;submit&#39;, function(event) {
 <li>[plus] Crear selectores para los botones.</li>
 </ul>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

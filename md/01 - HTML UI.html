@@ -1104,20 +1104,37 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>HTML Elements</h1>
 <h2>1.1 &lt;dialog&gt;</h2>
 <p>El elemento <code>&lt;dialog&gt;</code> representa una ventana de diálogo o cuadro de diálogo. Es un contenedor que se puede mostrar u ocultar mediante JavaScript.</p>
-<pre><code class="language-html">&lt;dialog&gt;
-  &lt;button autofocus onclick=&quot;this.parentNode.close()&quot;&gt;Close&lt;/button&gt;
-  &lt;p&gt;This modal dialog has a groovy backdrop!&lt;/p&gt;
-&lt;/dialog&gt;
-&lt;button onclick=&quot;this.querySelector(&#39;dialog&#39;).showModal()&quot;&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">autofocus</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;this.parentNode.close()&quot;</span>&gt;</span>Close<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This modal dialog has a groovy backdrop!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;this.querySelector(&#x27;dialog&#x27;).showModal()&quot;</span>&gt;</span>
   Show the dialog
-&lt;/button&gt;
-</code></pre>
-<ul>
+<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Example:</strong></li>
 </ul>
 <dialog>
@@ -1130,34 +1147,33 @@
 
 <h2>1.2 &lt;details&gt;</h2>
 <p>El elemento <code>&lt;details&gt;</code> representa un widget de control de divulgación desde el que el usuario puede obtener información adicional o controles interactivos.</p>
-<pre><code class="language-html">&lt;style&gt;
-  details {
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    padding: 0.5em 0.5em 0;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-tag">details</span> {
+    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#aaa</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.5em</span> <span class="hljs-number">0.5em</span> <span class="hljs-number">0</span>;
   }
 
-  summary {
-    font-weight: bold;
-    margin: -0.5em -0.5em 0;
-    padding: 0.5em;
+  <span class="hljs-selector-tag">summary</span> {
+    <span class="hljs-attribute">font-weight</span>: bold;
+    <span class="hljs-attribute">margin</span>: -<span class="hljs-number">0.5em</span> -<span class="hljs-number">0.5em</span> <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.5em</span>;
   }
 
-  details[open] {
-    padding: 0.5em;
+  <span class="hljs-selector-tag">details</span><span class="hljs-selector-attr">[open]</span> {
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.5em</span>;
   }
 
-  details[open] summary {
-    border-bottom: 1px solid #aaa;
-    margin-bottom: 0.5em;
+  <span class="hljs-selector-tag">details</span><span class="hljs-selector-attr">[open]</span> <span class="hljs-selector-tag">summary</span> {
+    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#aaa</span>;
+    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0.5em</span>;
   }
-&lt;/style&gt;
-&lt;details&gt;
-  &lt;summary&gt;Details&lt;/summary&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">details</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">summary</span>&gt;</span>Details<span class="hljs-tag">&lt;/<span class="hljs-name">summary</span>&gt;</span>
   Something small enough to escape casual notice.
-&lt;/details&gt;
-</code></pre>
-<ul>
+<span class="hljs-tag">&lt;/<span class="hljs-name">details</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Example:</strong></li>
 </ul>
 <style>
@@ -1189,22 +1205,21 @@
 
 <h2>1.3 &lt;menu&gt;</h2>
 <p>El elemento <code>&lt;menu&gt;</code> representa un grupo de comandos que un usuario puede invocar o activar. Este elemento se puede usar para crear menús contextuales y menús de herramientas.</p>
-<pre><code class="language-html">&lt;style&gt;
-  menu {
-    list-style-type: none;
-    display: flex;
-    padding: 0;
-    margin-bottom: 0;
-    gap: 1em;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-tag">menu</span> {
+    <span class="hljs-attribute">list-style-type</span>: none;
+    <span class="hljs-attribute">display</span>: flex;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">gap</span>: <span class="hljs-number">1em</span>;
   }
-&lt;/style&gt;
-&lt;menu type=&quot;toolbar&quot;&gt;
-  &lt;button&gt;Save&lt;/button&gt;
-  &lt;button&gt;Open&lt;/button&gt;
-  &lt;button&gt;Close&lt;/button&gt;
-&lt;/menu&gt;
-</code></pre>
-<ul>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">menu</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;toolbar&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Save<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Open<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Close<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">menu</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Example:</strong></li>
 </ul>
 <style>
@@ -1224,10 +1239,9 @@
 
 <h2>1.4 Popover</h2>
 <p>El elemento <code>&lt;popover&gt;</code> representa un cuadro de diálogo emergente que se muestra al hacer clic en un elemento.</p>
-<pre><code class="language-html">&lt;button popovertarget=&quot;my-popover&quot;&gt;Open Popover&lt;/button&gt;
-&lt;div popover id=&quot;my-popover&quot;&gt;Greetings, one and all!&lt;/div&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;my-popover&quot;</span>&gt;</span>Open Popover<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">popover</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;my-popover&quot;</span>&gt;</span>Greetings, one and all!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Example:</strong></li>
 </ul>
 <p><button popovertarget="my-popover">Open Popover</button></p>
@@ -1235,36 +1249,34 @@
 
 <h3>Popover anchor</h3>
 <p>El atributo <code>popovertarget</code> se puede usar para especificar un selector de destino para el popover.</p>
-<pre><code class="language-html">&lt;button id=&quot;anchor_1&quot; popovertarget=&quot;popover_1&quot;&gt;Open popover&lt;/button&gt;
-&lt;ul id=&quot;popover_1&quot; popover&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 0&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Item 3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<pre><code class="language-css">[popover] {
-  margin: 0;
-  padding: 0;
-  border: 0;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;anchor_1&quot;</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;popover_1&quot;</span>&gt;</span>Open popover<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;popover_1&quot;</span> <span class="hljs-attr">popover</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Item 0<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Item 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Item 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Item 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre><pre><code class="hljs language-css"><span class="hljs-selector-attr">[popover]</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
 }
-#anchor_1 {
+<span class="hljs-selector-id">#anchor_1</span> {
   anchor-name: --anchor_1;
 }
-[popover] {
-  border: 1px solid;
-  padding: 1rem;
-  position: absolute;
-  width: 10rem;
-  position-anchor: --anchor_1;
-  top: anchor(--anchor_1 bottom); 
-  left: anchor(--anchor_1 right); 
+<span class="hljs-selector-attr">[popover]</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">10rem</span>;
+  <span class="hljs-attribute">position</span>-anchor: --anchor_1;
+  <span class="hljs-attribute">top</span>: <span class="hljs-built_in">anchor</span>(--anchor_1 bottom); 
+  <span class="hljs-attribute">left</span>: <span class="hljs-built_in">anchor</span>(--anchor_1 right); 
   
-/*  inset-block-start: anchor(--anchor_1 bottom);*/
-/*  inset-inline-start: anchor(--anchor_1 right);*/
+<span class="hljs-comment">/*  inset-block-start: anchor(--anchor_1 bottom);*/</span>
+<span class="hljs-comment">/*  inset-inline-start: anchor(--anchor_1 right);*/</span>
 }
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Example:</strong></li>
 </ul>
 <style>
@@ -1298,5 +1310,6 @@
 
 <hr>
 <div style="height:30vh"></div>
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

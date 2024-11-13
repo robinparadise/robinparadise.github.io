@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>01.6 Más recursos</h1>
@@ -1140,13 +1158,11 @@
 <li><p><strong>Inserta</strong> el SVG en tu proyecto:</p>
 <ul>
 <li><p><strong>Directamente en HTML</strong>:</p>
-<pre><code class="language-html">&lt;svg&gt;&lt;!-- Contenido del SVG aquí --&gt;&lt;/svg&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span><span class="hljs-comment">&lt;!-- Contenido del SVG aquí --&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>Como imagen</strong>:</p>
-<pre><code class="language-html">&lt;img src=&quot;ruta/al/icono.svg&quot; alt=&quot;Descripción del ícono&quot;&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;ruta/al/icono.svg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Descripción del ícono&quot;</span>&gt;</span>
+</code></pre></li>
 </ul>
 </li>
 <li><p><strong>Personaliza</strong> colores y tamaños modificando los atributos <code>fill</code>, <code>stroke</code>, <code>width</code> y <code>height</code> en el código SVG o mediante CSS.</p>
@@ -1155,5 +1171,6 @@
 </li>
 </ol>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>1.4 Creación de Menús y Submenús</h1>
@@ -1167,14 +1185,13 @@
 
 <h3>1. Menú Básico con Popover</h3>
 <p>El siguiente ejemplo muestra cómo crear un menú básico usando el atributo <code>popovertarget</code> para abrir un popover al hacer clic en un botón:</p>
-<pre><code class="language-html">&lt;button id=&quot;anchor_1&quot; popovertarget=&quot;popover_1&quot;&gt;Abrir menú&lt;/button&gt;
-&lt;ul id=&quot;popover_1&quot; popover&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Elemento 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Elemento 2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Elemento 3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;anchor_1&quot;</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;popover_1&quot;</span>&gt;</span>Abrir menú<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;popover_1&quot;</span> <span class="hljs-attr">popover</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Explicación</strong>:<ul>
 <li>El botón tiene un atributo <code>popovertarget</code> que apunta al popover (<code>&lt;ul&gt;</code> con <code>id=&quot;popover_1&quot;</code>). Al hacer clic en el botón, se abre el popover.</li>
 </ul>
@@ -1182,21 +1199,20 @@
 </ul>
 <h3>2. Submenús Anidados</h3>
 <p>Podemos crear menús anidados (submenús) agregando más elementos de tipo popover a cada uno de los ítems del menú principal:</p>
-<pre><code class="language-html">&lt;button id=&quot;anchor_2&quot; popovertarget=&quot;popover_2&quot;&gt;Abrir menú principal&lt;/button&gt;
-&lt;ul id=&quot;popover_2&quot; popover&gt;
-  &lt;li&gt;
-    &lt;a href=&quot;#&quot;&gt;Elemento A&lt;/a&gt;
-    &lt;button popovertarget=&quot;sub_popover_1&quot;&gt;Abrir submenú&lt;/button&gt;
-    &lt;ul id=&quot;sub_popover_1&quot; popover&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub-elemento A1&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Sub-elemento A2&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Elemento B&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Elemento C&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;anchor_2&quot;</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;popover_2&quot;</span>&gt;</span>Abrir menú principal<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;popover_2&quot;</span> <span class="hljs-attr">popover</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento A<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;sub_popover_1&quot;</span>&gt;</span>Abrir submenú<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sub_popover_1&quot;</span> <span class="hljs-attr">popover</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Sub-elemento A1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Sub-elemento A2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento B<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Elemento C<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Explicación</strong>:<ul>
 <li>El submenú (<code>&lt;ul id=&quot;sub_popover_1&quot; popover&gt;</code>) se muestra al hacer clic en el botón asociado (<code>popovertarget=&quot;sub_popover_1&quot;</code>).</li>
 </ul>
@@ -1204,22 +1220,21 @@
 </ul>
 <h3>3. Estilos CSS para Menús Popover</h3>
 <p>Podemos agregar algunos estilos para mejorar la apariencia del menú y los submenús:</p>
-<pre><code class="language-css">[popover] {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
+<pre><code class="hljs language-css"><span class="hljs-selector-attr">[popover]</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">list-style</span>: none;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">background-color</span>: white;
+  <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">8px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
 }
-button[popovertarget] {
-  cursor: pointer;
+<span class="hljs-selector-tag">button</span><span class="hljs-selector-attr">[popovertarget]</span> {
+  <span class="hljs-attribute">cursor</span>: pointer;
 }
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Explicación</strong>:<ul>
 <li>Los menús popover (<code>[popover]</code>) tienen un fondo blanco y una sombra para dar la apariencia de una ventana flotante.</li>
 <li>Los botones que abren los popovers (<code>button[popovertarget]</code>) tienen un cursor de puntero para indicar que son interactivos.</li>
@@ -1229,26 +1244,25 @@ button[popovertarget] {
 <h3>4. Anchors para Popovers</h3>
 <p>Los <code>anchors</code> se utilizan para posicionar de forma precisa el popover en relación con el elemento desencadenante (ancla). Esto es particularmente útil cuando deseas especificar de qué lado del botón debe aparecer el menú o submenú.</p>
 <h4>Ejemplo de Uso de Anchor</h4>
-<pre><code class="language-html">&lt;button id=&quot;anchor_3&quot; popovertarget=&quot;popover_3&quot; anchor-name=&quot;--anchor_3&quot;&gt;Abrir popover con anchor&lt;/button&gt;
-&lt;ul id=&quot;popover_3&quot; popover&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Opción 1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Opción 2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Opción 3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;anchor_3&quot;</span> <span class="hljs-attr">popovertarget</span>=<span class="hljs-string">&quot;popover_3&quot;</span> <span class="hljs-attr">anchor-name</span>=<span class="hljs-string">&quot;--anchor_3&quot;</span>&gt;</span>Abrir popover con anchor<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;popover_3&quot;</span> <span class="hljs-attr">popover</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Opción 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Opción 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Opción 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 
-&lt;style&gt;
-  #anchor_3 {
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-id">#anchor_3</span> {
     anchor-name: --anchor_3;
   }
-  [popover] {
-    position: absolute;
-    position-anchor: --anchor_3;
-    top: anchor(--anchor_3 bottom);
-    left: anchor(--anchor_3 right);
+  <span class="hljs-selector-attr">[popover]</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">position</span>-anchor: --anchor_3;
+    <span class="hljs-attribute">top</span>: <span class="hljs-built_in">anchor</span>(--anchor_3 bottom);
+    <span class="hljs-attribute">left</span>: <span class="hljs-built_in">anchor</span>(--anchor_3 right);
   }
-&lt;/style&gt;
-</code></pre>
-<ul>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre><ul>
 <li><strong>Explicación</strong>:<ul>
 <li>El atributo <code>anchor-name</code> define un nombre de ancla para el botón (<code>--anchor_3</code>), que luego se utiliza para posicionar el popover (<code>&lt;ul id=&quot;popover_3&quot; popover&gt;</code>).</li>
 <li>La propiedad CSS <code>position-anchor</code> permite que el popover se posicione respecto al elemento ancla (<code>--anchor_3</code>), y las propiedades <code>top</code> y <code>left</code> indican la posición específica relativa al ancla (en este caso, abajo y a la derecha del botón).</li>
@@ -1264,5 +1278,6 @@ button[popovertarget] {
 <li><strong>Flexibilidad</strong>: Se pueden personalizar con CSS para adaptarse al diseño de la página.</li>
 </ul>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2. JavaScript</h1>
@@ -1122,11 +1140,10 @@
 <li><strong><code>const</code></strong>: Declara variables de solo lectura que no pueden ser reasignadas.</li>
 </ul>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">let nombre = &quot;Juan&quot;;
-const edad = 25;
-var ciudad = &quot;Madrid&quot;;
-</code></pre>
-<p><strong>Tipos de datos en JavaScript</strong>:</p>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> nombre = <span class="hljs-string">&quot;Juan&quot;</span>;
+<span class="hljs-keyword">const</span> edad = <span class="hljs-number">25</span>;
+<span class="hljs-keyword">var</span> ciudad = <span class="hljs-string">&quot;Madrid&quot;</span>;
+</code></pre><p><strong>Tipos de datos en JavaScript</strong>:</p>
 <ul>
 <li><strong>Primitivos</strong>: <code>number</code>, <code>string</code>, <code>boolean</code>, <code>undefined</code>, <code>null</code>, <code>symbol</code>, <code>bigint</code>.</li>
 <li><strong>Objetos</strong>: Arrays, funciones, objetos regulares, entre otros.</li>
@@ -1140,45 +1157,41 @@ var ciudad = &quot;Madrid&quot;;
 <li><strong>Lógicos</strong>: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code></li>
 </ul>
 <p><strong>Ejemplo de operador aritmético y de comparación:</strong></p>
-<pre><code class="language-javascript">let a = 5;
-let b = 10;
-let suma = a + b; // 15
-console.log(a &lt; b); // true
-</code></pre>
-<h4>2.3. <strong>Estructuras de Control</strong></h4>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> a = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> b = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">let</span> suma = a + b; <span class="hljs-comment">// 15</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a &lt; b); <span class="hljs-comment">// true</span>
+</code></pre><h4>2.3. <strong>Estructuras de Control</strong></h4>
 <p>Las estructuras de control permiten modificar el flujo de ejecución de un programa en función de ciertas condiciones.</p>
 <ul>
 <li><p><strong>Condicionales (<code>if</code>, <code>else</code>, <code>else if</code>)</strong>: Evalúan una condición y ejecutan un bloque de código si la condición es verdadera.</p>
 <ul>
-<li>Ejemplo:<pre><code class="language-javascript">let hora = 10;
-if (hora &lt; 12) {
-  console.log(&quot;Buenos días&quot;);
-} else {
-  console.log(&quot;Buenas tardes&quot;);
+<li>Ejemplo:<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> hora = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">if</span> (hora &lt; <span class="hljs-number">12</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Buenos días&quot;</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Buenas tardes&quot;</span>);
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 </li>
 <li><p><strong>Bucles (<code>for</code>, <code>while</code>)</strong>: Recorren colecciones de datos o repiten una operación hasta que una condición sea falsa.</p>
 <ul>
-<li>Ejemplo:<pre><code class="language-javascript">for (let i = 0; i &lt; 5; i++) {
-  console.log(&quot;Número: &quot; + i);
+<li>Ejemplo:<pre><code class="hljs language-javascript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Número: &quot;</span> + i);
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 </li>
 <li><p><strong>Switch</strong>: Alternativa para comparar una expresión contra múltiples valores.</p>
 <ul>
-<li>Ejemplo:<pre><code class="language-javascript">let dia = 3;
-switch (dia) {
-  case 1: console.log(&quot;Lunes&quot;); break;
-  case 2: console.log(&quot;Martes&quot;); break;
-  default: console.log(&quot;Día desconocido&quot;);
+<li>Ejemplo:<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> dia = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">switch</span> (dia) {
+  <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Lunes&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Martes&quot;</span>); <span class="hljs-keyword">break</span>;
+  <span class="hljs-attr">default</span>: <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Día desconocido&quot;</span>);
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 </li>
 </ul>
@@ -1186,50 +1199,44 @@ switch (dia) {
 <p>Las <strong>funciones</strong> son bloques reutilizables de código que ejecutan una tarea específica. Pueden recibir parámetros y devolver un valor. Existen diversas formas de declarar funciones en JavaScript:</p>
 <ul>
 <li><p><strong>Declaración de función:</strong></p>
-<pre><code class="language-javascript">function saludar(nombre) {
-  return &quot;Hola, &quot; + nombre;
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">saludar</span>(<span class="hljs-params">nombre</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hola, &quot;</span> + nombre;
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Funciones anónimas y funciones flecha (introducidas en ES6):</strong></p>
-<pre><code class="language-javascript">const saludar = (nombre) =&gt; &quot;Hola, &quot; + nombre;
-</code></pre>
-</li>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">saludar</span> = (<span class="hljs-params">nombre</span>) =&gt; <span class="hljs-string">&quot;Hola, &quot;</span> + nombre;
+</code></pre></li>
 </ul>
 <p>Las funciones son fundamentales porque permiten la <strong>modularidad</strong> y <strong>reutilización</strong> del código.</p>
 <h4>2.5. <strong>Objetos y Arrays</strong></h4>
 <p>JavaScript es un lenguaje orientado a objetos, y los objetos son fundamentales para organizar datos complejos.</p>
 <ul>
 <li><p><strong>Objetos</strong>: Son colecciones de pares clave-valor.</p>
-<pre><code class="language-javascript">let persona = {
-  nombre: &quot;Ana&quot;,
-  edad: 30,
-  saludar: function() {
-    return &quot;Hola, soy &quot; + this.nombre;
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> persona = {
+  <span class="hljs-attr">nombre</span>: <span class="hljs-string">&quot;Ana&quot;</span>,
+  <span class="hljs-attr">edad</span>: <span class="hljs-number">30</span>,
+  <span class="hljs-attr">saludar</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hola, soy &quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">nombre</span>;
   }
 };
-console.log(persona.saludar()); // &quot;Hola, soy Ana&quot;
-</code></pre>
-</li>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(persona.<span class="hljs-title function_">saludar</span>()); <span class="hljs-comment">// &quot;Hola, soy Ana&quot;</span>
+</code></pre></li>
 <li><p><strong>Arrays</strong>: Son listas ordenadas de elementos, que pueden ser manipuladas con métodos como <code>.push()</code>, <code>.pop()</code>, <code>.map()</code>, entre otros.</p>
-<pre><code class="language-javascript">let frutas = [&quot;manzana&quot;, &quot;banana&quot;, &quot;naranja&quot;];
-console.log(frutas[0]); // &quot;manzana&quot;
-</code></pre>
-</li>
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> frutas = [<span class="hljs-string">&quot;manzana&quot;</span>, <span class="hljs-string">&quot;banana&quot;</span>, <span class="hljs-string">&quot;naranja&quot;</span>];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(frutas[<span class="hljs-number">0</span>]); <span class="hljs-comment">// &quot;manzana&quot;</span>
+</code></pre></li>
 </ul>
 <h4>2.6. <strong>Eventos</strong></h4>
 <p>JavaScript permite que las páginas web respondan a <strong>eventos</strong> como clics, teclas presionadas, o el desplazamiento del mouse. Esto se hace posible con el uso de <strong>listeners de eventos</strong>, lo cual proporciona interactividad a las páginas web.</p>
 <p><strong>Ejemplo de un listener de eventos:</strong></p>
-<pre><code class="language-javascript">document.getElementById(&quot;miBoton&quot;).addEventListener(&quot;click&quot;, function() {
-  alert(&quot;Has hecho clic en el botón&quot;);
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;miBoton&quot;</span>).<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;Has hecho clic en el botón&quot;</span>);
 });
-</code></pre>
-<h4>2.7. <strong>Manipulación del DOM</strong></h4>
+</code></pre><h4>2.7. <strong>Manipulación del DOM</strong></h4>
 <p>El <strong>DOM (Document Object Model)</strong> es una representación de la estructura HTML de una página. JavaScript puede interactuar con el DOM para cambiar el contenido, estilos y estructura de una página web de forma dinámica.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">document.getElementById(&quot;titulo&quot;).textContent = &quot;Nuevo Título&quot;;
-</code></pre>
-<p>Con este código, podemos cambiar el texto de un elemento con el <code>id=&quot;titulo&quot;</code>.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;titulo&quot;</span>).<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;Nuevo Título&quot;</span>;
+</code></pre><p>Con este código, podemos cambiar el texto de un elemento con el <code>id=&quot;titulo&quot;</code>.</p>
 <h4>2.8. <strong>Asincronía y Promesas</strong></h4>
 <p>JavaScript es un lenguaje <strong>asincrónico</strong>, lo que significa que puede realizar operaciones sin bloquear el flujo del programa. Esto es especialmente útil al interactuar con APIs o al realizar operaciones como la carga de datos desde un servidor.</p>
 <ul>
@@ -1237,35 +1244,34 @@ console.log(frutas[0]); // &quot;manzana&quot;
 </li>
 <li><p><strong>Promesas</strong>: Introducidas en ES6, las promesas son un mecanismo para manejar asincronía de manera más estructurada.</p>
 <p> <strong>Ejemplo de una promesa:</strong></p>
-<pre><code class="language-javascript">let promesa = new Promise(function(resolve, reject) {
-  let exito = true;
-  if (exito) {
-    resolve(&quot;Operación exitosa&quot;);
-  } else {
-    reject(&quot;Ocurrió un error&quot;);
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">let</span> promesa = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) {
+  <span class="hljs-keyword">let</span> exito = <span class="hljs-literal">true</span>;
+  <span class="hljs-keyword">if</span> (exito) {
+    <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;Operación exitosa&quot;</span>);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-title function_">reject</span>(<span class="hljs-string">&quot;Ocurrió un error&quot;</span>);
   }
 });
 
-promesa.then(function(mensaje) {
-  console.log(mensaje);
-}).catch(function(error) {
-  console.log(error);
+promesa.<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">mensaje</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(mensaje);
+}).<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">error</span>) {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error);
 });
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 <h4>2.9. <strong>Async/Await</strong></h4>
 <p>Para hacer el manejo de asincronía más intuitivo, ES8 introdujo las palabras clave <strong>async</strong> y <strong>await</strong>, que permiten escribir código asincrónico de manera más clara y secuencial.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">async function obtenerDatos() {
-  let respuesta = await fetch(&#39;https://fakestoreapi.com/products&#39;);
-  let datos = await respuesta.json();
-  console.log(datos);
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">obtenerDatos</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> respuesta = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://fakestoreapi.com/products&#x27;</span>);
+  <span class="hljs-keyword">let</span> datos = <span class="hljs-keyword">await</span> respuesta.<span class="hljs-title function_">json</span>();
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(datos);
 }
-</code></pre>
-<hr>
+</code></pre><hr>
 <h3>Conclusión</h3>
 <p>JavaScript es un lenguaje versátil y esencial para el desarrollo web moderno. Desde la manipulación del DOM hasta el manejo de eventos y asincronía, JavaScript permite a los desarrolladores crear experiencias web interactivas y dinámicas. Entender sus partes esenciales te permitirá construir aplicaciones web más eficientes y enriquecedoras.</p>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

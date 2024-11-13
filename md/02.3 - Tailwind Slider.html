@@ -1104,93 +1104,154 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h2><strong>Slider con Tailwind simple</strong></h2>
 <p>En este tutorial, aprenderás a crear un slider (carrusel) de imágenes con Tailwind CSS. Utilizaremos las utilidades de Tailwind CSS para crear un slider interactivo y responsivo con transiciones.</p>
-<pre><code class="language-html">&lt;!-- Sección de Hero con Slider sin JavaScript --&gt;
-&lt;section class=&quot;relative overflow-hidden&quot;&gt;
-  &lt;!-- Contenedor de las Diapositivas --&gt;
-  &lt;div class=&quot;relative w-full h-screen&quot;&gt;
-    &lt;!-- Diapositiva 1 --&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;slider&quot; id=&quot;slide-1&quot; class=&quot;hidden peer/slide-1&quot; checked&gt;
-    &lt;div class=&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-1:opacity-100&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-center h-full bg-cover bg-center&quot; style=&quot;background-image: url(&#39;https://picsum.photos/id/1018/1920/1080&#39;);&quot;&gt;
-        &lt;div class=&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;&gt;
-          &lt;h1 class=&quot;text-5xl font-bold mb-4&quot;&gt;Explora el Mundo&lt;/h1&gt;
-          &lt;p class=&quot;text-xl mb-8&quot;&gt;Descubre lugares increíbles con nosotros.&lt;/p&gt;
-          &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Comienza tu Viaje&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
+<h3>Ejemplo:</h3>
+<section class="relative overflow-hidden">
+  <div class="relative w-full h-screen">
+    <input type="radio" name="slider" id="slide-1" class="hidden peer/slide-1" checked>
+    <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-1:opacity-100">
+      <div class="flex items-center justify-center h-full bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1018/1920/1080');">
+        <div class="text-center text-white px-6 bg-black bg-opacity-50 py-8">
+          <h1 class="text-5xl font-bold mb-4">Explora el Mundo</h1>
+          <p class="text-xl mb-8">Descubre lugares increíbles con nosotros.</p>
+          <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Comienza tu Viaje</a>
+        </div>
+      </div>
+    </div>
+    <input type="radio" name="slider" id="slide-2" class="hidden peer/slide-2">
+    <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-2:opacity-100">
+      <div class="flex items-center justify-center h-full bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1015/1920/1080');">
+        <div class="text-center text-white px-6 bg-black bg-opacity-50 py-8">
+          <h1 class="text-5xl font-bold mb-4">Conecta con la Naturaleza</h1>
+          <p class="text-xl mb-8">Experiencias únicas al aire libre.</p>
+          <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Reserva Ahora</a>
+        </div>
+      </div>
+    </div>
+    <input type="radio" name="slider" id="slide-3" class="hidden peer/slide-3">
+    <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-3:opacity-100">
+      <div class="flex items-center justify-center h-full bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1016/1920/1080');">
+        <div class="text-center text-white px-6 bg-black bg-opacity-50 py-8">
+          <h1 class="text-5xl font-bold mb-4">Aventuras Inolvidables</h1>
+          <p class="text-xl mb-8">Crea recuerdos que durarán toda la vida.</p>
+          <a href="#" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800">Únete a Nosotros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-5 left-0 right-0 flex justify-center space-x-4">
+    <label for="slide-1" class="cursor-pointer">
+      <span class="w-4 h-4 block bg-white rounded-full border-2 border-white"></span>
+    </label>
+    <label for="slide-2" class="cursor-pointer">
+      <span class="w-4 h-4 block bg-white rounded-full border-2 border-white"></span>
+    </label>
+    <label for="slide-3" class="cursor-pointer">
+      <span class="w-4 h-4 block bg-white rounded-full border-2 border-white"></span>
+    </label>
+  </div>
+</section>
 
-    &lt;!-- Diapositiva 2 --&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;slider&quot; id=&quot;slide-2&quot; class=&quot;hidden peer/slide-2&quot;&gt;
-    &lt;div class=&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-2:opacity-100&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-center h-full bg-cover bg-center&quot; style=&quot;background-image: url(&#39;https://picsum.photos/id/1015/1920/1080&#39;);&quot;&gt;
-        &lt;div class=&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;&gt;
-          &lt;h1 class=&quot;text-5xl font-bold mb-4&quot;&gt;Conecta con la Naturaleza&lt;/h1&gt;
-          &lt;p class=&quot;text-xl mb-8&quot;&gt;Experiencias únicas al aire libre.&lt;/p&gt;
-          &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Reserva Ahora&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
 
-    &lt;!-- Diapositiva 3 --&gt;
-    &lt;input type=&quot;radio&quot; name=&quot;slider&quot; id=&quot;slide-3&quot; class=&quot;hidden peer/slide-3&quot;&gt;
-    &lt;div class=&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-3:opacity-100&quot;&gt;
-      &lt;div class=&quot;flex items-center justify-center h-full bg-cover bg-center&quot; style=&quot;background-image: url(&#39;https://picsum.photos/id/1016/1920/1080&#39;);&quot;&gt;
-        &lt;div class=&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;&gt;
-          &lt;h1 class=&quot;text-5xl font-bold mb-4&quot;&gt;Aventuras Inolvidables&lt;/h1&gt;
-          &lt;p class=&quot;text-xl mb-8&quot;&gt;Crea recuerdos que durarán toda la vida.&lt;/p&gt;
-          &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Únete a Nosotros&lt;/a&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+<pre><code class="hljs language-html"><span class="hljs-comment">&lt;!-- Sección de Hero con Slider sin JavaScript --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative overflow-hidden&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Contenedor de las Diapositivas --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative w-full h-screen&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Diapositiva 1 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;slider&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slide-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden peer/slide-1&quot;</span> <span class="hljs-attr">checked</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-1:opacity-100&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-cover bg-center&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;https://picsum.photos/id/1018/1920/1080&#x27;);&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-5xl font-bold mb-4&quot;</span>&gt;</span>Explora el Mundo<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl mb-8&quot;</span>&gt;</span>Descubre lugares increíbles con nosotros.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Comienza tu Viaje<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-  &lt;!-- Controles de Navegación --&gt;
-  &lt;div class=&quot;absolute bottom-5 left-0 right-0 flex justify-center space-x-4&quot;&gt;
-    &lt;label for=&quot;slide-1&quot; class=&quot;cursor-pointer&quot;&gt;
-      &lt;span class=&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;&gt;&lt;/span&gt;
-    &lt;/label&gt;
-    &lt;label for=&quot;slide-2&quot; class=&quot;cursor-pointer&quot;&gt;
-      &lt;span class=&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;&gt;&lt;/span&gt;
-    &lt;/label&gt;
-    &lt;label for=&quot;slide-3&quot; class=&quot;cursor-pointer&quot;&gt;
-      &lt;span class=&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;&gt;&lt;/span&gt;
-    &lt;/label&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<hr>
+    <span class="hljs-comment">&lt;!-- Diapositiva 2 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;slider&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slide-2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden peer/slide-2&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-2:opacity-100&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-cover bg-center&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;https://picsum.photos/id/1015/1920/1080&#x27;);&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-5xl font-bold mb-4&quot;</span>&gt;</span>Conecta con la Naturaleza<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl mb-8&quot;</span>&gt;</span>Experiencias únicas al aire libre.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Reserva Ahora<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Diapositiva 3 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;slider&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slide-3&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden peer/slide-3&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-3:opacity-100&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-cover bg-center&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;https://picsum.photos/id/1016/1920/1080&#x27;);&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-5xl font-bold mb-4&quot;</span>&gt;</span>Aventuras Inolvidables<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl mb-8&quot;</span>&gt;</span>Crea recuerdos que durarán toda la vida.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Únete a Nosotros<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-comment">&lt;!-- Controles de Navegación --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute bottom-5 left-0 right-0 flex justify-center space-x-4&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;slide-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cursor-pointer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;slide-2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cursor-pointer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;slide-3&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cursor-pointer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><hr>
 <h3><strong>1. Contenedor Principal del Slider</strong></h3>
-<pre><code class="language-html">&lt;section class=&quot;relative overflow-hidden&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative overflow-hidden&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>relative</code></strong>: Establece la posición del elemento como relativa, lo que permite posicionar elementos hijos absolutamente dentro de este contenedor.</li>
 <li><strong><code>overflow-hidden</code></strong>: Oculta cualquier contenido que exceda los límites del contenedor, útil para asegurar que las diapositivas no sobresalgan.</li>
 </ul>
 <h3><strong>2. Contenedor de las Diapositivas</strong></h3>
-<pre><code class="language-html">&lt;div class=&quot;relative w-full h-screen&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative w-full h-screen&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>relative</code></strong>: Necesario para que los elementos hijos posicionados absolutamente se posicionen en relación a este contenedor.</li>
 <li><strong><code>w-full</code></strong>: Establece el ancho al 100% del contenedor padre.</li>
 <li><strong><code>h-screen</code></strong>: Establece la altura igual a la altura de la ventana del navegador (viewport height).</li>
 </ul>
 <h3><strong>3. Input de Diapositiva (Slide 1)</strong></h3>
-<pre><code class="language-html">&lt;input type=&quot;radio&quot; name=&quot;slider&quot; id=&quot;slide-1&quot; class=&quot;hidden peer/slide-1&quot; checked&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;slider&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;slide-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden peer/slide-1&quot;</span> <span class="hljs-attr">checked</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>hidden</code></strong>: Oculta el elemento del input en la página.</li>
 <li><strong><code>peer/slide-1</code></strong>: Crea una referencia de &quot;peer&quot; con el nombre <code>slide-1</code> para usar en las variantes de estado de Tailwind CSS.</li>
 <li><strong><code>checked</code></strong>: Establece este input como seleccionado por defecto.</li>
 </ul>
 <h3><strong>4. Diapositiva (Slide 1)</strong></h3>
-<pre><code class="language-html">&lt;div class=&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-1:opacity-100&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute inset-0 transition-opacity duration-1000 opacity-0 peer-checked/slide-1:opacity-100&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>absolute</code></strong>: Posiciona el elemento absolutamente dentro de su contenedor posicionado (el contenedor de las diapositivas).</li>
 <li><strong><code>inset-0</code></strong>: Establece <code>top: 0; right: 0; bottom: 0; left: 0;</code> haciendo que el elemento ocupe todo el espacio del contenedor padre.</li>
 <li><strong><code>transition-opacity</code></strong>: Aplica una transición suave cuando cambia la opacidad.</li>
@@ -1199,9 +1260,8 @@
 <li><strong><code>peer-checked/slide-1:opacity-100</code></strong>: Cuando el input con <code>peer/slide-1</code> está seleccionado (<code>:checked</code>), este elemento cambia su opacidad a 100% (completamente visible).</li>
 </ul>
 <h3><strong>5. Contenido de la Diapositiva</strong></h3>
-<pre><code class="language-html">&lt;div class=&quot;flex items-center justify-center h-full bg-cover bg-center&quot; style=&quot;background-image: url(&#39;...&#39;);&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-cover bg-center&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;...&#x27;);&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>flex</code></strong>: Establece <code>display: flex;</code> para el contenedor, permitiendo la alineación flexible de los elementos hijos.</li>
 <li><strong><code>items-center</code></strong>: Alinea los elementos hijos verticalmente al centro (<code>align-items: center;</code>).</li>
 <li><strong><code>justify-center</code></strong>: Alinea los elementos hijos horizontalmente al centro (<code>justify-content: center;</code>).</li>
@@ -1211,9 +1271,8 @@
 <li><strong><code>style=&quot;background-image: url(&#39;...&#39;);&quot;</code></strong>: Aplica la imagen de fondo correspondiente.</li>
 </ul>
 <h3><strong>6. Superposición y Contenido Textual</strong></h3>
-<pre><code class="language-html">&lt;div class=&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white px-6 bg-black bg-opacity-50 py-8&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>text-center</code></strong>: Centra el texto horizontalmente.</li>
 <li><strong><code>text-white</code></strong>: Establece el color del texto en blanco.</li>
 <li><strong><code>px-6</code></strong>: Aplica un padding horizontal (izquierda y derecha) de 1.5rem.</li>
@@ -1222,24 +1281,21 @@
 <li><strong><code>py-8</code></strong>: Aplica un padding vertical (arriba y abajo) de 2rem.</li>
 </ul>
 <h3><strong>7. Título de la Diapositiva</strong></h3>
-<pre><code class="language-html">&lt;h1 class=&quot;text-5xl font-bold mb-4&quot;&gt;Explora el Mundo&lt;/h1&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-5xl font-bold mb-4&quot;</span>&gt;</span>Explora el Mundo<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>text-5xl</code></strong>: Establece el tamaño del texto en una escala de 5xl (aproximadamente 3rem).</li>
 <li><strong><code>font-bold</code></strong>: Establece el peso de la fuente en negrita.</li>
 <li><strong><code>mb-4</code></strong>: Aplica un margen inferior de 1rem.</li>
 </ul>
 <h3><strong>8. Descripción de la Diapositiva</strong></h3>
-<pre><code class="language-html">&lt;p class=&quot;text-xl mb-8&quot;&gt;Descubre lugares increíbles con nosotros.&lt;/p&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl mb-8&quot;</span>&gt;</span>Descubre lugares increíbles con nosotros.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>text-xl</code></strong>: Establece el tamaño del texto en extra grande (aproximadamente 1.25rem).</li>
 <li><strong><code>mb-8</code></strong>: Aplica un margen inferior de 2rem.</li>
 </ul>
 <h3><strong>9. Botón de Llamado a la Acción (CTA)</strong></h3>
-<pre><code class="language-html">&lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Comienza tu Viaje&lt;/a&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Comienza tu Viaje<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>bg-primary</code></strong>: Establece el color de fondo utilizando el color personalizado <code>primary</code> definido en la configuración de Tailwind CSS (<code>#0D3B66</code>).</li>
 <li><strong><code>text-white</code></strong>: Establece el color del texto en blanco.</li>
 <li><strong><code>px-6</code></strong>: Aplica un padding horizontal de 1.5rem.</li>
@@ -1248,9 +1304,8 @@
 <li><strong><code>hover:bg-blue-800</code></strong>: Al pasar el mouse sobre el botón, el color de fondo cambia a <code>#1E40AF</code> (azul oscuro).</li>
 </ul>
 <h3><strong>10. Controles de Navegación</strong></h3>
-<pre><code class="language-html">&lt;div class=&quot;absolute bottom-5 left-0 right-0 flex justify-center space-x-4&quot;&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute bottom-5 left-0 right-0 flex justify-center space-x-4&quot;</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>absolute</code></strong>: Posiciona el elemento absolutamente dentro de su contenedor posicionado.</li>
 <li><strong><code>bottom-5</code></strong>: Establece una separación de 1.25rem desde la parte inferior.</li>
 <li><strong><code>left-0</code></strong> y <strong><code>right-0</code></strong>: Extiende el elemento de lado a lado horizontalmente.</li>
@@ -1259,11 +1314,10 @@
 <li><strong><code>space-x-4</code></strong>: Aplica un espacio horizontal de 1rem entre los elementos hijos.</li>
 </ul>
 <h3><strong>11. Etiqueta del Control (para cada diapositiva)</strong></h3>
-<pre><code class="language-html">&lt;label for=&quot;slide-1&quot; class=&quot;cursor-pointer&quot;&gt;
-  &lt;span class=&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;&gt;&lt;/span&gt;
-&lt;/label&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;slide-1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;cursor-pointer&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-4 h-4 block bg-white rounded-full border-2 border-white&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+</code></pre><ul>
 <li><strong><code>cursor-pointer</code></strong>: Cambia el cursor a una mano al pasar sobre el elemento, indicando que es clicable.</li>
 <li><strong>Dentro del <code>&lt;span&gt;</code></strong>:<ul>
 <li><strong><code>w-4</code></strong>: Establece el ancho en 1rem.</li>
@@ -1293,5 +1347,6 @@
 <h2>Resultado final:</h2>
 <p><img src="../assets/tw/slider.avif" alt="Slider con Tailwind simple"></p>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

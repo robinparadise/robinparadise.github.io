@@ -1104,66 +1104,83 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>Menu tabs con Efecto</h1>
 <p>A continuación, se muestra un ejemplo de cómo crear un menú de pestañas con un efecto de transición utilizando solo CSS y el selector <code>:has()</code>.</p>
 <h2>HTML</h2>
-<pre><code class="language-html">&lt;style&gt;
-  .tabs {
-    position: relative;
-    display: flex;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-class">.tabs</span> {
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">display</span>: flex;
   }
 
-  .tabs label {
-    padding: 10px 20px;
-    cursor: pointer;
+  <span class="hljs-selector-class">.tabs</span> <span class="hljs-selector-tag">label</span> {
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">cursor</span>: pointer;
   }
 
-  .tabs input {
-    display: none;
+  <span class="hljs-selector-class">.tabs</span> <span class="hljs-selector-tag">input</span> {
+    <span class="hljs-attribute">display</span>: none;
   }
 
-  .track {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 100%;
-    background: #000;
-    clip-path: inset(0 var(--x2, 100%) 0 var(--x1, 0));
-    transition: --x1 0.2s, --x2 0.2s 0.1s;
+  <span class="hljs-selector-class">.track</span> {
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#000</span>;
+    <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-built_in">var</span>(--x2, <span class="hljs-number">100%</span>) <span class="hljs-number">0</span> <span class="hljs-built_in">var</span>(--x1, <span class="hljs-number">0</span>));
+    <span class="hljs-attribute">transition</span>: --x1 <span class="hljs-number">0.2s</span>, --x2 <span class="hljs-number">0.2s</span> <span class="hljs-number">0.1s</span>;
   }
 
-  .tabs:has(#tab1:checked) .track {
-    --x1: 0%;
-    --x2: 66.66%;
+  <span class="hljs-selector-class">.tabs</span><span class="hljs-selector-pseudo">:has</span>(<span class="hljs-selector-id">#tab1</span><span class="hljs-selector-pseudo">:checked</span>) <span class="hljs-selector-class">.track</span> {
+    <span class="hljs-attr">--x1</span>: <span class="hljs-number">0%</span>;
+    <span class="hljs-attr">--x2</span>: <span class="hljs-number">66.66%</span>;
   }
 
-  .tabs:has(#tab2:checked) .track {
-    --x1: 33.33%;
-    --x2: 33.33%;
+  <span class="hljs-selector-class">.tabs</span><span class="hljs-selector-pseudo">:has</span>(<span class="hljs-selector-id">#tab2</span><span class="hljs-selector-pseudo">:checked</span>) <span class="hljs-selector-class">.track</span> {
+    <span class="hljs-attr">--x1</span>: <span class="hljs-number">33.33%</span>;
+    <span class="hljs-attr">--x2</span>: <span class="hljs-number">33.33%</span>;
   }
 
-  .tabs:has(#tab3:checked) .track {
-    --x1: 66.66%;
-    --x2: 0%;
+  <span class="hljs-selector-class">.tabs</span><span class="hljs-selector-pseudo">:has</span>(<span class="hljs-selector-id">#tab3</span><span class="hljs-selector-pseudo">:checked</span>) <span class="hljs-selector-class">.track</span> {
+    <span class="hljs-attr">--x1</span>: <span class="hljs-number">66.66%</span>;
+    <span class="hljs-attr">--x2</span>: <span class="hljs-number">0%</span>;
   }
-&lt;/style&gt;
-&lt;div class=&quot;tabs&quot;&gt;
-  &lt;input type=&quot;radio&quot; name=&quot;tab&quot; id=&quot;tab1&quot; checked&gt;
-  &lt;label for=&quot;tab1&quot;&gt;Pestaña 1&lt;/label&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;tabs&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tab1&quot;</span> <span class="hljs-attr">checked</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;tab1&quot;</span>&gt;</span>Pestaña 1<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
 
-  &lt;input type=&quot;radio&quot; name=&quot;tab&quot; id=&quot;tab2&quot;&gt;
-  &lt;label for=&quot;tab2&quot;&gt;Pestaña 2&lt;/label&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tab2&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;tab2&quot;</span>&gt;</span>Pestaña 2<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
 
-  &lt;input type=&quot;radio&quot; name=&quot;tab&quot; id=&quot;tab3&quot;&gt;
-  &lt;label for=&quot;tab3&quot;&gt;Pestaña 3&lt;/label&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;tab&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;tab3&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;tab3&quot;</span>&gt;</span>Pestaña 3<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
 
-  &lt;div class=&quot;track&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h2>Explicación Breve</h2>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;track&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><h2>Explicación Breve</h2>
 <ul>
 <li><p><strong>HTML</strong>: Tenemos un contenedor <code>.tabs</code> que contiene los inputs de tipo radio y sus etiquetas correspondientes para simular las pestañas. La <code>div</code> con clase <code>.track</code> será la barra de seguimiento que se mueve debajo de las pestañas.</p>
 </li>
@@ -1176,5 +1193,6 @@
 </li>
 </ul>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

@@ -1104,61 +1104,76 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>01.5 Sección de Menú con Efecto CSS</h1>
 <p>En este tutorial, aprenderás a crear una sección de menú.</p>
 <h2>Paso 1: Estructura HTML Básica</h2>
 <p>Comienza creando la estructura básica del menú en tu archivo HTML:</p>
-<pre><code class="language-html">&lt;ul class=&quot;menu&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Inicio&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Servicios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Acerca de&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contacto&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
-<h2>Paso 2: Estilos CSS Básicos</h2>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;menu&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Servicios<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Acerca de<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre><h2>Paso 2: Estilos CSS Básicos</h2>
 <p>Añade estilos básicos para darle formato al menú:</p>
-<pre><code class="language-css">.menu {
-  list-style: none;
-  display: flex;
-  position: relative;
-  padding: 0;
-  margin: 0;
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.menu</span> {
+  <span class="hljs-attribute">list-style</span>: none;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">position</span>: relative;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
 }
 
-.menu li {
-  margin: 0 20px;
+<span class="hljs-selector-class">.menu</span> <span class="hljs-selector-tag">li</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">20px</span>;
 }
 
-.menu a {
-  text-decoration: none;
-  color: #000;
-  font-size: 18px;
-  position: relative;
+<span class="hljs-selector-class">.menu</span> <span class="hljs-selector-tag">a</span> {
+  <span class="hljs-attribute">text-decoration</span>: none;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+  <span class="hljs-attribute">position</span>: relative;
 }
-</code></pre>
-<h2>Paso 3: Aplicar el Efecto CSS Anchor Positioning</h2>
+</code></pre><h2>Paso 3: Aplicar el Efecto CSS Anchor Positioning</h2>
 <p>Utilizaremos <strong>CSS Anchor Positioning</strong> para crear un indicador que siga al elemento del menú cuando esté en estado <code>:hover</code> o <code>:focus-visible</code>.</p>
 <h3>Código CSS:</h3>
-<pre><code class="language-css">/* Declarar un ancla en el elemento &lt;li&gt; cuando su enlace &lt;a&gt; está en :hover o :focus-visible */
-li:has(a:is(:hover, :focus-visible)) {
+<pre><code class="hljs language-css"><span class="hljs-comment">/* Declarar un ancla en el elemento &lt;li&gt; cuando su enlace &lt;a&gt; está en :hover o :focus-visible */</span>
+<span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:has</span>(<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:is</span>(<span class="hljs-selector-pseudo">:hover</span>, <span class="hljs-selector-pseudo">:focus-visible</span>)) {
   anchor-name: --a;
 }
 
-/* Estilos para el indicador */
-.menu::before {
-  content: &#39;&#39;;
-  position: absolute;
-  left: anchor(--a left, 0%);
-  width: anchor-size(--a width, 0%);
-  height: 2px;
-  bottom: -5px;
-  background-color: #000;
-  transition: left 0.3s ease, width 0.3s ease;
+<span class="hljs-comment">/* Estilos para el indicador */</span>
+<span class="hljs-selector-class">.menu</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">left</span>: <span class="hljs-built_in">anchor</span>(--a left, <span class="hljs-number">0%</span>);
+  <span class="hljs-attribute">width</span>: <span class="hljs-built_in">anchor-size</span>(--a width, <span class="hljs-number">0%</span>);
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">2px</span>;
+  <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">5px</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000</span>;
+  <span class="hljs-attribute">transition</span>: left <span class="hljs-number">0.3s</span> ease, width <span class="hljs-number">0.3s</span> ease;
 }
-</code></pre>
-<h3>Explicación:</h3>
+</code></pre><h3>Explicación:</h3>
 <ul>
 <li><p><strong>li:has(a:is(:hover, :focus-visible)) { anchor-name: --a; }</strong></p>
 <p>Esta regla declara un ancla llamada <code>--a</code> en el elemento <code>&lt;li&gt;</code> cuyo <code>&lt;a&gt;</code> hijo está siendo apuntado (<code>:hover</code> o <code>:focus-visible</code>). Esto nos permite referenciar la posición y tamaño de este elemento en otros lugares del CSS.</p>
@@ -1179,48 +1194,48 @@ li:has(a:is(:hover, :focus-visible)) {
 <h2>Ejemplo Completo</h2>
 <p>Aquí está el código completo combinando HTML y CSS:</p>
 <h3>HTML</h3>
-<pre><code class="language-html">&lt;style&gt;
-  .menu {
-    list-style: none;
-    display: flex;
-    position: relative;
-    padding: 0;
-    margin: 0;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-class">.menu</span> {
+    <span class="hljs-attribute">list-style</span>: none;
+    <span class="hljs-attribute">display</span>: flex;
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
   }
 
-  .menu li {
-    margin: 0 20px;
+  <span class="hljs-selector-class">.menu</span> <span class="hljs-selector-tag">li</span> {
+    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> <span class="hljs-number">20px</span>;
   }
 
-  .menu a {
-    text-decoration: none;
-    color: #000;
-    font-size: 18px;
-    position: relative;
+  <span class="hljs-selector-class">.menu</span> <span class="hljs-selector-tag">a</span> {
+    <span class="hljs-attribute">text-decoration</span>: none;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>;
+    <span class="hljs-attribute">position</span>: relative;
   }
 
-  li:has(a:is(:hover, :focus-visible)) {
+  <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:has</span>(<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:is</span>(<span class="hljs-selector-pseudo">:hover</span>, <span class="hljs-selector-pseudo">:focus-visible</span>)) {
     anchor-name: --a;
   }
 
-  .menu::before {
-    content: &#39;&#39;;
-    position: absolute;
-    left: anchor(--a left, 0%);
-    width: anchor-size(--a width, 0%);
-    height: 2px;
-    bottom: -5px;
-    background-color: #000;
-    transition: left 0.3s ease, width 0.3s ease;
+  <span class="hljs-selector-class">.menu</span><span class="hljs-selector-pseudo">::before</span> {
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-built_in">anchor</span>(--a left, <span class="hljs-number">0%</span>);
+    <span class="hljs-attribute">width</span>: <span class="hljs-built_in">anchor-size</span>(--a width, <span class="hljs-number">0%</span>);
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">2px</span>;
+    <span class="hljs-attribute">bottom</span>: -<span class="hljs-number">5px</span>;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000</span>;
+    <span class="hljs-attribute">transition</span>: left <span class="hljs-number">0.3s</span> ease, width <span class="hljs-number">0.3s</span> ease;
   }
-&lt;/style&gt;
-&lt;ul class=&quot;menu&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Inicio&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Servicios&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Acerca de&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Contacto&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;menu&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Servicios<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Acerca de<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
-
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

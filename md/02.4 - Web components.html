@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2.4 Web components</h1>
@@ -1133,22 +1151,20 @@
 </ol>
 <h2>2.4.2 Setup:</h2>
 <p>To get started, let&#39;s create a basic HTML page:</p>
-<pre><code class="language-html">&lt;html&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello world!&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h2>2.4.3 Custom Elements</h2>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h2>2.4.3 Custom Elements</h2>
 <ul>
 <li><p><strong>Definición</strong>: Permiten crear etiquetas HTML personalizadas, como <code>&lt;cool-heading&gt;</code>, que el navegador no reconoce por defecto.</p>
 </li>
 <li><p><strong>Ejemplo</strong>:</p>
-<pre><code class="language-html">&lt;cool-heading&gt;
-  &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/cool-heading&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>Funcionalidad</strong>:</p>
 <ul>
 <li>El navegador renderiza etiquetas desconocidas como elementos en línea.</li>
@@ -1157,37 +1173,34 @@
 </li>
 <li><p><strong>Creación de un Custom Element</strong>:</p>
 <ol>
-<li><strong>Definir una clase</strong> que extienda <code>HTMLElement</code>:<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
-  connectedCallback() {
-    console.log(&#39;cool heading connected!&#39;);
+<li><strong>Definir una clase</strong> que extienda <code>HTMLElement</code>:<pre><code class="hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;cool heading connected!&#x27;</span>);
   }
 }
-</code></pre>
-</li>
-<li><strong>Registrar el elemento</strong>:<pre><code class="language-javascript">customElements.define(&#39;cool-heading&#39;, CoolHeading);
-</code></pre>
-</li>
+</code></pre></li>
+<li><strong>Registrar el elemento</strong>:<pre><code class="hljs language-javascript">customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+</code></pre></li>
 </ol>
 </li>
 <li><p><strong>Código Final</strong>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;cool-heading&gt;
-      &lt;h1&gt;Hello world!&lt;/h1&gt;
-    &lt;/cool-heading&gt;
-    &lt;script&gt;
-      class CoolHeading extends HTMLElement {
-        connectedCallback() {
-          console.log(&#39;cool heading connected!&#39;);
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+        <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;cool heading connected!&#x27;</span>);
         }
       }
-      customElements.define(&#39;cool-heading&#39;, CoolHeading);
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-</li>
+      customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></li>
 </ul>
 <h2>2.4.4 Customizing our element</h2>
 <ul>
@@ -1200,68 +1213,64 @@
 </ul>
 </li>
 <li><p><strong>Ejemplo de Clase</strong>:</p>
-<pre><code class="language-javascript">class MyElement extends HTMLElement {
-  constructor() {
-    super(); // Se llama al crear la instancia
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyElement</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">super</span>(); <span class="hljs-comment">// Se llama al crear la instancia</span>
   }
 
-  connectedCallback() {
-    // Código ejecutado al conectarse
+  <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// Código ejecutado al conectarse</span>
   }
 
-  disconnectedCallback() {
-    // Código ejecutado al desconectarse
+  <span class="hljs-title function_">disconnectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// Código ejecutado al desconectarse</span>
   }
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Agregar Estilos</strong>: Puedes añadir estilos directamente a tu elemento en <code>connectedCallback()</code>:</p>
-<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
-  connectedCallback() {
-    this.style.color = &#39;blue&#39;; // El texto se muestra en azul
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;blue&#x27;</span>; <span class="hljs-comment">// El texto se muestra en azul</span>
   }
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Manejo de Eventos</strong>:</p>
 <ul>
 <li>Agrega un listener para cambiar el color al hacer clic:</li>
 </ul>
-<pre><code class="language-javascript">class CoolHeading extends HTMLElement {
-  constructor() {
-    super();
-    this.addEventListener(&#39;click&#39;, () =&gt; {
-      this.style.color = &#39;red&#39;; // Cambia el color a rojo al hacer clic
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">super</span>();
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>; <span class="hljs-comment">// Cambia el color a rojo al hacer clic</span>
     });
   }
 
-  connectedCallback() {
-    this.style.color = &#39;blue&#39;; // Inicialmente azul
+  <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;blue&#x27;</span>; <span class="hljs-comment">// Inicialmente azul</span>
   }
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Código Completo</strong>:</p>
-<pre><code class="language-html">&lt;cool-heading&gt;
-  &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/cool-heading&gt;
-&lt;script&gt;
-  class CoolHeading extends HTMLElement {
-    constructor() {
-      super();
-      this.addEventListener(&#39;click&#39;, () =&gt; {
-        this.style.color = &#39;red&#39;;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">super</span>();
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>;
       });
     }
 
-    connectedCallback() {
-      this.style.color = &#39;blue&#39;;
+    <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;blue&#x27;</span>;
     }
   }
-  customElements.define(&#39;cool-heading&#39;, CoolHeading);
-&lt;/script&gt;
-</code></pre>
-</li>
+  customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>AttributesChangedCallback</strong>: Se llama cuando un atributo personalizado cambia.</p>
 <ul>
 <li><strong>observedAttributes</strong>: Lista de atributos a observar.</li>
@@ -1269,38 +1278,37 @@
 </ul>
 </li>
 </ul>
-<pre><code class="language-html">&lt;cool-heading color=&quot;red&quot;&gt;
-  &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/cool-heading&gt;
-&lt;script&gt;
-  class CoolHeading extends HTMLElement {
-    constructor() {
-      super();
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">super</span>();
     }
 
-    connectedCallback() {
-      this.style.color = this.getAttribute(&#39;color&#39;);
+    <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;color&#x27;</span>);
     }
 
-    static get observedAttributes() {
-      return [&#39;color&#39;];
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> <span class="hljs-title function_">observedAttributes</span>() {
+      <span class="hljs-keyword">return</span> [<span class="hljs-string">&#x27;color&#x27;</span>];
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
-      this.style.color = newValue;
+    <span class="hljs-title function_">attributeChangedCallback</span>(<span class="hljs-params">name, oldValue, newValue</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = newValue;
     }
   }
-  customElements.define(&#39;cool-heading&#39;, CoolHeading);
-  // &lt;cool-heading color=&quot;red&quot;&gt;Hello world!&lt;/cool-heading&gt;
-  // &lt;cool-heading color=&quot;blue&quot;&gt;Hello world!&lt;/cool-heading&gt;
-  // Usaremos el atributo color para cambiar el color del texto.
+  customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+  <span class="hljs-comment">// &lt;cool-heading color=&quot;red&quot;&gt;Hello world!&lt;/cool-heading&gt;</span>
+  <span class="hljs-comment">// &lt;cool-heading color=&quot;blue&quot;&gt;Hello world!&lt;/cool-heading&gt;</span>
+  <span class="hljs-comment">// Usaremos el atributo color para cambiar el color del texto.</span>
 
-  setTimeout(() =&gt; {
-    document.querySelector(&#39;cool-heading&#39;).setAttribute(&#39;color&#39;, &#39;blue&#39;);
-  }, 2000);
-&lt;/script&gt;
-</code></pre>
-<hr>
+  <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>).<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;color&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>);
+  }, <span class="hljs-number">2000</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><hr>
 <h2>2.5 Templating</h2>
 <ul>
 <li><p><strong>Propósito</strong>: Usar elementos de plantilla (<code>&lt;template&gt;</code>) para definir estructuras HTML dentro de los Web Components, permitiendo la clonación eficiente y la actualización del contenido.</p>
@@ -1315,52 +1323,49 @@
 <li><p><strong>Uso de <code>&lt;template&gt;</code></strong>:</p>
 <ol>
 <li><p><strong>Definir la plantilla</strong>:</p>
-<pre><code class="language-html">&lt;template&gt;
-  &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/template&gt;
-</code></pre>
-</li>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>Actualizar <code>connectedCallback()</code> para usar la plantilla</strong>:</p>
-<pre><code class="language-javascript">connectedCallback() {
-  const template = document.querySelector(&#39;template&#39;);
-  const clone = document.importNode(template.content, true); // Clona el contenido de la plantilla
-  this.appendChild(clone); // Agrega el contenido clonado al componente
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> template = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;template&#x27;</span>);
+  <span class="hljs-keyword">const</span> clone = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">importNode</span>(template.<span class="hljs-property">content</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// Clona el contenido de la plantilla</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">appendChild</span>(clone); <span class="hljs-comment">// Agrega el contenido clonado al componente</span>
 }
-</code></pre>
-</li>
+</code></pre></li>
 </ol>
 </li>
 <li><p><strong>Ejemplo Completo</strong>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;template&gt;
-      &lt;h1&gt;Hello world!&lt;/h1&gt;
-    &lt;/template&gt;
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-    &lt;cool-heading&gt;&lt;/cool-heading&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
 
-    &lt;script&gt;
-      class CoolHeading extends HTMLElement {
-        constructor() {
-          super();
-          this.addEventListener(&#39;click&#39;, () =&gt; {
-            this.style.color = &#39;red&#39;;
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+        <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-variable language_">super</span>();
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>;
           });
         }
 
-        connectedCallback() {
-          const template = document.querySelector(&#39;template&#39;);
-          const clone = document.importNode(template.content, true);
-          this.appendChild(clone);
+        <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-keyword">const</span> template = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;template&#x27;</span>);
+          <span class="hljs-keyword">const</span> clone = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">importNode</span>(template.<span class="hljs-property">content</span>, <span class="hljs-literal">true</span>);
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">appendChild</span>(clone);
         }
       }
-      customElements.define(&#39;cool-heading&#39;, CoolHeading);
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-</li>
+      customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>Recomendación</strong>: Para simplificar el uso de plantillas, considera usar bibliotecas como <strong>lit-html</strong> y <strong>lit-element</strong>, que facilitan el manejo de plantillas y ofrecen más funcionalidades.</p>
 </li>
 </ul>
@@ -1379,45 +1384,41 @@
 <li><p><strong>Uso de Shadow DOM</strong>:</p>
 <ol>
 <li><p><strong>Crear un Shadow Root</strong>:</p>
-<pre><code class="language-javascript">connectedCallback() {
-  const template = document.querySelector(&#39;template&#39;);
-  const clone = document.importNode(template.content, true);
-  this.attachShadow({ mode: &#39;open&#39; }); // Crea el shadow root
-  this.shadowRoot.appendChild(clone); // Agrega contenido al shadow root
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> template = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;template&#x27;</span>);
+  <span class="hljs-keyword">const</span> clone = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">importNode</span>(template.<span class="hljs-property">content</span>, <span class="hljs-literal">true</span>);
+  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">attachShadow</span>({ <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;open&#x27;</span> }); <span class="hljs-comment">// Crea el shadow root</span>
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">shadowRoot</span>.<span class="hljs-title function_">appendChild</span>(clone); <span class="hljs-comment">// Agrega contenido al shadow root</span>
 }
-</code></pre>
-</li>
+</code></pre></li>
 <li><p><strong>Ejemplo de Plantilla con Estilos</strong>:</p>
-<pre><code class="language-html">&lt;template&gt;
-  &lt;style&gt;
-    h1 {
-      color: red; // Estilo solo aplicable dentro del shadow DOM
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+    <span class="hljs-selector-tag">h1</span> {
+      <span class="hljs-attribute">color</span>: red; // Estilo solo aplicable dentro <span class="hljs-selector-tag">del</span> shadow DOM
     }
-  &lt;/style&gt;
-  &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;/template&gt;
-</code></pre>
-</li>
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre></li>
 </ol>
 </li>
 <li><p><strong>Encapsulación en Acción</strong>:</p>
 <ul>
 <li><p>Si agregas contenido fuera del componente:</p>
-<pre><code class="language-html">&lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;cool-heading&gt;&lt;/cool-heading&gt;
-</code></pre>
-<ul>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
+</code></pre><ul>
 <li>Los estilos de <code>&lt;cool-heading&gt;</code> no afectan al <code>&lt;h1&gt;</code> externo.</li>
 </ul>
 </li>
 <li><p>Agregar estilos globales no afecta al contenido dentro del shadow DOM:</p>
-<pre><code class="language-html">&lt;style&gt;
-  h1 {
-    color: pink; // Estilo global
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-tag">h1</span> {
+    <span class="hljs-attribute">color</span>: pink; // Estilo global
   }
-&lt;/style&gt;
-</code></pre>
-</li>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre></li>
 </ul>
 </li>
 <li><p><strong>Propiedades Heredadas</strong>:</p>
@@ -1426,53 +1427,52 @@
 </ul>
 </li>
 <li><p><strong>Ejemplo Completo</strong>:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;style&gt;
-      body {
-        font-family: monospace;
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+      <span class="hljs-selector-tag">body</span> {
+        <span class="hljs-attribute">font-family</span>: monospace;
       }
-      h1 {
-        color: pink;
+      <span class="hljs-selector-tag">h1</span> {
+        <span class="hljs-attribute">color</span>: pink;
       }
-    &lt;/style&gt;
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
-    &lt;template&gt;
-      &lt;style&gt;
-        h1 {
-          color: red; // Estilo interno
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+        <span class="hljs-selector-tag">h1</span> {
+          <span class="hljs-attribute">color</span>: red; // Estilo interno
         }
-      &lt;/style&gt;
-      &lt;h1&gt;Hello world!&lt;/h1&gt;
-    &lt;/template&gt;
+      </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-    &lt;h1&gt;Hello world&lt;/h1&gt;
-    &lt;cool-heading&gt;&lt;/cool-heading&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello world<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">cool-heading</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">cool-heading</span>&gt;</span>
 
-    &lt;script&gt;
-      class CoolHeading extends HTMLElement {
-        constructor() {
-          super();
-          this.addEventListener(&#39;click&#39;, () =&gt; {
-            this.style.color = &#39;red&#39;;
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">class</span> <span class="hljs-title class_">CoolHeading</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+        <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-variable language_">super</span>();
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>;
           });
         }
 
-        connectedCallback() {
-          const template = document.querySelector(&#39;template&#39;);
-          const clone = document.importNode(template.content, true);
-          this.attachShadow({ mode: &#39;open&#39; });
-          this.shadowRoot.appendChild(clone);
+        <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-keyword">const</span> template = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;template&#x27;</span>);
+          <span class="hljs-keyword">const</span> clone = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">importNode</span>(template.<span class="hljs-property">content</span>, <span class="hljs-literal">true</span>);
+          <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">attachShadow</span>({ <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;open&#x27;</span> });
+          <span class="hljs-variable language_">this</span>.<span class="hljs-property">shadowRoot</span>.<span class="hljs-title function_">appendChild</span>(clone);
         }
       }
 
-      customElements.define(&#39;cool-heading&#39;, CoolHeading);
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-</li>
+      customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;cool-heading&#x27;</span>, <span class="hljs-title class_">CoolHeading</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></li>
 <li><p><strong>Ejemplo de Shadow DOM</strong>:</p>
 <p><img src="https://open-wc.org/codelabs/basics/assets/shadow-dom.png" alt="Shadow DOM example"></p>
 </li>
@@ -1509,178 +1509,173 @@
 </ul>
 <h3>5.1 Basic Dialog Custom Element</h3>
 <p>Para crear un diálogo básico, añade un botón de apertura y un botón de cierre al contenido del diálogo. Y luego añade lógica para abrir y cerrar el diálogo.</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;custom-dialog&gt;
-      &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
-      &lt;dialog open&gt;
-        &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
-        &lt;h1&gt;Dialog&lt;/h1&gt;
-        &lt;p&gt;This is a dialog.&lt;/p&gt;
-      &lt;/dialog&gt;
-    &lt;/custom-dialog&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h4>5.1.1 Custom Dialog Element</h4>
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">custom-dialog</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-btn&quot;</span>&gt;</span>Open<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">open</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close-btn&quot;</span>&gt;</span>🗙<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Dialog<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a dialog.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">custom-dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h4>5.1.1 Custom Dialog Element</h4>
 <p>Para crear un elemento personalizado, extiende <code>HTMLElement</code> y añade un <code>connectedCallback()</code> para manejar la lógica de apertura y cierre del diálogo.</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;body&gt;
-    &lt;custom-dialog&gt;
-      &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
-      &lt;dialog open&gt;
-        &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
-        &lt;h1&gt;Dialog&lt;/h1&gt;
-        &lt;p&gt;This is a dialog.&lt;/p&gt;
-      &lt;/dialog&gt;
-    &lt;/custom-dialog&gt;
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">custom-dialog</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-btn&quot;</span>&gt;</span>Open<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">dialog</span> <span class="hljs-attr">open</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close-btn&quot;</span>&gt;</span>🗙<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Dialog<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a dialog.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">custom-dialog</span>&gt;</span>
 
-    &lt;style&gt;
-      .close-btn {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        cursor: pointer;
-        padding: 10px 20px;
-        position: absolute;
-        right: 0;
-        top: 0;
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+      <span class="hljs-selector-class">.close-btn</span> {
+        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f44336</span>;
+        <span class="hljs-attribute">color</span>: white;
+        <span class="hljs-attribute">border</span>: none;
+        <span class="hljs-attribute">cursor</span>: pointer;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+        <span class="hljs-attribute">position</span>: absolute;
+        <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
       }
       dialog {
-        background-color: #ffffff;
-        border-radius: 4px;
-        box-shadow: 0 0 10px #00000061;
-        width: 400px;
-        padding: 20px;
-        position: relative;
-        text-align: center;
+        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffffff</span>;
+        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+        <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">#00000061</span>;
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+        <span class="hljs-attribute">position</span>: relative;
+        <span class="hljs-attribute">text-align</span>: center;
       }
-      dialog::backdrop {
-        background-color: #00000061;
+      dialog<span class="hljs-selector-pseudo">::backdrop</span> {
+        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#00000061</span>;
 
       }
-    &lt;/style&gt;
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
-    &lt;script&gt;
-      class CustomDialog extends HTMLElement {
-        constructor() {
-          super();
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomDialog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+        <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-variable language_">super</span>();
         }
-        connectedCallback() {
-          // TODO: Add dialog open/close logic
-          this.
+        <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+          <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Add dialog open/close logic</span>
+          <span class="hljs-variable language_">this</span>.
         }
       }
-      customElements.define(&#39;custom-dialog&#39;, CustomDialog);
-    &lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h4>5.1.2 Styling the Dialog</h4>
+      customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;custom-dialog&#x27;</span>, <span class="hljs-title class_">CustomDialog</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h4>5.1.2 Styling the Dialog</h4>
 <p>Para añadir estilos al diálogo, utiliza CSS en línea o en un bloque <code>&lt;style&gt;</code> en la página.</p>
 <h3>6. &lt;Dialog&gt; + &lt;Form&gt; -&gt; (dispatchEvent)</h3>
 <p>Para crear un diálogo con un formulario, añade un formulario al contenido del diálogo. Luego, añade lógica para enviar los datos del formulario al componente principal.</p>
 <h4>dispatchEvent:</h4>
 <ul>
 <li><strong>Propósito</strong>: Permite enviar datos desde un componente personalizado a un componente padre.</li>
-<li><strong>Ejemplo</strong>:<pre><code class="language-javascript">this.dispatchEvent(new CustomEvent(&#39;submit&#39;, { detail: { input: &#39;value&#39; } }));
-</code></pre>
-</li>
+<li><strong>Ejemplo</strong>:<pre><code class="hljs language-javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-title function_">dispatchEvent</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEvent</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, { <span class="hljs-attr">detail</span>: { <span class="hljs-attr">input</span>: <span class="hljs-string">&#x27;value&#x27;</span> } }));
+</code></pre></li>
 <li><strong>Uso</strong>:</li>
-<li>Escucha el evento en el componente padre:<pre><code class="language-javascript">dialog.addEventListener(&#39;submit&#39;, (event) =&gt; {
-  console.log(event.detail.input); // &#39;value&#39;
+<li>Escucha el evento en el componente padre:<pre><code class="hljs language-javascript">dialog.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event.<span class="hljs-property">detail</span>.<span class="hljs-property">input</span>); <span class="hljs-comment">// &#x27;value&#x27;</span>
 });
-</code></pre>
-</li>
+</code></pre></li>
 <li><strong>Código Completo</strong>:</li>
 </ul>
-<pre><code class="language-html">&lt;custom-dialog&gt;
-  &lt;button class=&quot;dialog-btn&quot;&gt;Open&lt;/button&gt;
-  &lt;dialog&gt;
-    &lt;button class=&quot;close-btn&quot;&gt;🗙&lt;/button&gt;
-    &lt;h1&gt;Dialog&lt;/h1&gt;
-    &lt;form&gt;
-      &lt;label for=&quot;input&quot;&gt;Input&lt;/label&gt;
-      &lt;input id=&quot;input&quot; type=&quot;text&quot; /&gt;
-      &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-    &lt;/form&gt;
-  &lt;/dialog&gt;
-&lt;/custom-dialog&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">custom-dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog-btn&quot;</span>&gt;</span>Open<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">dialog</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;close-btn&quot;</span>&gt;</span>🗙<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Dialog<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;input&quot;</span>&gt;</span>Input<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;input&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">dialog</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">custom-dialog</span>&gt;</span>
 
-&lt;style&gt;
-  .close-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    position: absolute;
-    right: 0;
-    top: 0;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+  <span class="hljs-selector-class">.close-btn</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f44336</span>;
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">border</span>: none;
+    <span class="hljs-attribute">cursor</span>: pointer;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
   }
   dialog {
-    background-color: #ffffff;
-    border-radius: 4px;
-    box-shadow: 0 0 10px #00000061;
-    width: 400px;
-    padding: 20px;
-    position: relative;
-    text-align: center;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ffffff</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">#00000061</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">400px</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">text-align</span>: center;
   }
-&lt;/style&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 
-&lt;script&gt;
-  class CustomDialog extends HTMLElement {
-    constructor() {
-      super();
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">CustomDialog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">super</span>();
     }
 
-    submit(event) {
-      event.preventDefault();
-      const input = this.querySelector(&#39;input&#39;);
-      // Send data outside
-      this.dispatchEvent(new CustomEvent(&#39;custom-submit&#39;, {
-        detail: { input: input.value }
+    <span class="hljs-title function_">submit</span>(<span class="hljs-params">event</span>) {
+      event.<span class="hljs-title function_">preventDefault</span>();
+      <span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>);
+      <span class="hljs-comment">// Send data outside</span>
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">dispatchEvent</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomEvent</span>(<span class="hljs-string">&#x27;custom-submit&#x27;</span>, {
+        <span class="hljs-attr">detail</span>: { <span class="hljs-attr">input</span>: input.<span class="hljs-property">value</span> }
       }));
-      this.close();
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">close</span>();
     }
 
-    close() {
-      const dialog = this.querySelector(&#39;dialog&#39;);
-      dialog.close();
+    <span class="hljs-title function_">close</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">const</span> dialog = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;dialog&#x27;</span>);
+      dialog.<span class="hljs-title function_">close</span>();
     }
 
-    connectedCallback() {
-      const dialogBtn = this.querySelector(&#39;.dialog-btn&#39;);
-      const dialog = this.querySelector(&#39;dialog&#39;);
-      const closeBtn = this.querySelector(&#39;.close-btn&#39;);
-      const form = this.querySelector(&#39;form&#39;);
-      const input = this.querySelector(&#39;input&#39;);
+    <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">const</span> dialogBtn = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.dialog-btn&#x27;</span>);
+      <span class="hljs-keyword">const</span> dialog = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;dialog&#x27;</span>);
+      <span class="hljs-keyword">const</span> closeBtn = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.close-btn&#x27;</span>);
+      <span class="hljs-keyword">const</span> form = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;form&#x27;</span>);
+      <span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>);
 
-      // TODO listeners
-      dialogBtn.addEventListener(&#39;click&#39;, () =&gt; {
-        dialog.showModal();
+      <span class="hljs-comment">// TODO listeners</span>
+      dialogBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        dialog.<span class="hljs-title function_">showModal</span>();
       });
-      closeBtn.addEventListener(&#39;click&#39;, () =&gt; this.close());
+      closeBtn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">close</span>());
 
-      // TODO dispatchEvent
-      form.addEventListener(&#39;submit&#39;, event =&gt; this.submit(event))
+      <span class="hljs-comment">// TODO dispatchEvent</span>
+      form.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">submit</span>(event))
     }
   }
 
-  customElements.define(&#39;custom-dialog&#39;, CustomDialog);
+  customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;custom-dialog&#x27;</span>, <span class="hljs-title class_">CustomDialog</span>);
 
-  // TODO usage dispatchEvent and addEventListener
-  const customDialog = document.querySelector(&#39;custom-dialog&#39;);
-  // Listen data from dialog
-  customDialog.addEventListener(&#39;custom-submit&#39;, (event) =&gt; {
-    console.log({detail: event.detail}); // &#39;value&#39;
+  <span class="hljs-comment">// TODO usage dispatchEvent and addEventListener</span>
+  <span class="hljs-keyword">const</span> customDialog = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;custom-dialog&#x27;</span>);
+  <span class="hljs-comment">// Listen data from dialog</span>
+  customDialog.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;custom-submit&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>({<span class="hljs-attr">detail</span>: event.<span class="hljs-property">detail</span>}); <span class="hljs-comment">// &#x27;value&#x27;</span>
   });
-&lt;/script&gt;
-</code></pre>
-<h3>7. Relative Time Web Component</h3>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h3>7. Relative Time Web Component</h3>
 <p>Para crear un componente de tiempo relativo, añade un elemento de tiempo con un atributo <code>datetime</code> al contenido del componente. Luego, añade lógica para mostrar el tiempo relativo en lugar de la fecha y hora absolutas.</p>
 <ul>
 <li><strong>output:</strong><ul>
@@ -1694,63 +1689,62 @@
 </ul>
 </li>
 </ul>
-<pre><code class="language-html">&lt;relative-time time=&quot;Wed Oct 16 2023 09:17:41 GMT+0200&quot;/&gt;
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">relative-time</span> <span class="hljs-attr">time</span>=<span class="hljs-string">&quot;Wed Oct 16 2023 09:17:41 GMT+0200&quot;</span>/&gt;</span>
 
-&lt;script&gt;
-  class RelativeTime extends HTMLElement {
-    constructor() {
-      super();
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">class</span> <span class="hljs-title class_">RelativeTime</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">super</span>();
     }
-    /*
+    <span class="hljs-comment">/*
     connectedCallback() {
       this.render();
       setInterval(() =&gt; {
         this.render();
       }, 1000)
     }
-    */
-    connectedCallback() {
-      const time = new Date(this.getAttribute(&#39;time&#39;)).getTime();
-      const now = Date.now();
+    */</span>
+    <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-keyword">const</span> time = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&#x27;time&#x27;</span>)).<span class="hljs-title function_">getTime</span>();
+      <span class="hljs-keyword">const</span> now = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();
 
-      console.log({
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>({
         time,
         now,
-        seconds: (now - time) / 1000,
-        minutes: (now - time) / (1000 * 60),
-        hours: Math.floor((now - time) / (1000 * 60 * 60))
+        <span class="hljs-attr">seconds</span>: (now - time) / <span class="hljs-number">1000</span>,
+        <span class="hljs-attr">minutes</span>: (now - time) / (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span>),
+        <span class="hljs-attr">hours</span>: <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>((now - time) / (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>))
       })
 
-      const diff = now - time;
-      const seconds = Math.floor(diff / 1000);
-      const minutes = Math.floor(diff / (1000 * 60));
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const days = Math.floor(hours / 24);
-      const months = Math.floor(days / 30);
-      const years = Math.floor(months / 12);
+      <span class="hljs-keyword">const</span> diff = now - time;
+      <span class="hljs-keyword">const</span> seconds = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(diff / <span class="hljs-number">1000</span>);
+      <span class="hljs-keyword">const</span> minutes = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(diff / (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span>));
+      <span class="hljs-keyword">const</span> hours = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(diff / (<span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span>));
+      <span class="hljs-keyword">const</span> days = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(hours / <span class="hljs-number">24</span>);
+      <span class="hljs-keyword">const</span> months = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(days / <span class="hljs-number">30</span>);
+      <span class="hljs-keyword">const</span> years = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(months / <span class="hljs-number">12</span>);
 
-      let aux = &#39;...&#39;;
-      if (months &gt;= 12) {
-        aux = `Hace ${years} año${years &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
-      } else if (days &gt; 30 &amp;&amp; months &gt;= 1) {
-        aux = `Hace ${months} mes${months &gt; 1 ? &#39;es&#39; : &#39;&#39;}`
-      } else if (days &gt;= 1) {
-        aux = `Hace ${days} día${days &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
-      } else if (hours &gt;= 1) {
-        aux = `Hace ${hours} hora${hours &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
-      } else if (minutes &gt;= 1) {
-        aux = `Hace ${minutes} minuto${minutes &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
-      } else if (seconds &gt;= 1) {
-        aux = `Hace ${seconds} segundo${seconds &gt; 1 ? &#39;s&#39; : &#39;&#39;}`
+      <span class="hljs-keyword">let</span> aux = <span class="hljs-string">&#x27;...&#x27;</span>;
+      <span class="hljs-keyword">if</span> (months &gt;= <span class="hljs-number">12</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${years}</span> año<span class="hljs-subst">${years &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;s&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (days &gt; <span class="hljs-number">30</span> &amp;&amp; months &gt;= <span class="hljs-number">1</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${months}</span> mes<span class="hljs-subst">${months &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;es&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (days &gt;= <span class="hljs-number">1</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${days}</span> día<span class="hljs-subst">${days &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;s&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hours &gt;= <span class="hljs-number">1</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${hours}</span> hora<span class="hljs-subst">${hours &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;s&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (minutes &gt;= <span class="hljs-number">1</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${minutes}</span> minuto<span class="hljs-subst">${minutes &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;s&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (seconds &gt;= <span class="hljs-number">1</span>) {
+        aux = <span class="hljs-string">`Hace <span class="hljs-subst">${seconds}</span> segundo<span class="hljs-subst">${seconds &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">&#x27;s&#x27;</span> : <span class="hljs-string">&#x27;&#x27;</span>}</span>`</span>
       }
 
-      this.textContent = aux;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">textContent</span> = aux;
     } 
   }
-  customElements.define(&#39;relative-time&#39;, RelativeTime);
-&lt;/script&gt;
-</code></pre>
-<h3>Práctica 3: Crear una página de noticias</h3>
+  customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;relative-time&#x27;</span>, <span class="hljs-title class_">RelativeTime</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h3>Práctica 3: Crear una página de noticias</h3>
 <ul>
 <li><p><strong>Propósito</strong>: Crear una página de noticias utilizando Web Components, Custom Elements y Templates.</p>
 </li>
@@ -1771,5 +1765,6 @@
 </li>
 </ul>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

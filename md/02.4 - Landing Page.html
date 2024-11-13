@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>Crear una página con Tailwind CSS</h1>
@@ -1131,48 +1149,45 @@
 <p>Usaremos Tailwind CSS desde un <strong>CDN</strong> para simplificar la configuración.</p>
 <h3>Incluir Tailwind CSS desde un CDN</h3>
 <p>Agrega el siguiente script en la sección <code>&lt;head&gt;</code> de tu documento HTML:</p>
-<pre><code class="language-html">&lt;head&gt;
-  &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-</code></pre>
-<h3>Configuración Personalizada (Opcional)</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.tailwindcss.com&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</code></pre><h3>Configuración Personalizada (Opcional)</h3>
 <p>Si deseas personalizar colores, fuentes u otras propiedades, puedes agregar una configuración inline:</p>
-<pre><code class="language-html">&lt;head&gt;
-  &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
-  &lt;script&gt;
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: &#39;#0D3B66&#39;,
-            secondary: &#39;#FAF0CA&#39;,
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.tailwindcss.com&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    tailwind.<span class="hljs-property">config</span> = {
+      <span class="hljs-attr">theme</span>: {
+        <span class="hljs-attr">extend</span>: {
+          <span class="hljs-attr">colors</span>: {
+            <span class="hljs-attr">primary</span>: <span class="hljs-string">&#x27;#0D3B66&#x27;</span>,
+            <span class="hljs-attr">secondary</span>: <span class="hljs-string">&#x27;#FAF0CA&#x27;</span>,
           },
-          fontFamily: {
-            sans: [&#39;Roboto&#39;, &#39;sans-serif&#39;],
+          <span class="hljs-attr">fontFamily</span>: {
+            <span class="hljs-attr">sans</span>: [<span class="hljs-string">&#x27;Roboto&#x27;</span>, <span class="hljs-string">&#x27;sans-serif&#x27;</span>],
           },
         },
       },
     }
-  &lt;/script&gt;
-&lt;/head&gt;
-</code></pre>
-<hr>
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</code></pre><hr>
 <p><a name="encabezado"></a></p>
 <h2>3. Creando el Encabezado (Header)</h2>
 <p>El encabezado suele incluir el logotipo y la navegación principal.</p>
 <h3>Código HTML</h3>
-<pre><code class="language-html">&lt;header class=&quot;bg-white shadow&quot;&gt;
-  &lt;div class=&quot;container mx-auto px-6 py-4 flex items-center justify-between&quot;&gt;
-    &lt;div class=&quot;text-2xl font-bold text-gray-800&quot;&gt;MiLogo&lt;/div&gt;
-    &lt;nav class=&quot;space-x-4&quot;&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-gray-800 hover:text-primary&quot;&gt;Inicio&lt;/a&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-gray-800 hover:text-primary&quot;&gt;Características&lt;/a&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-gray-800 hover:text-primary&quot;&gt;Contacto&lt;/a&gt;
-    &lt;/nav&gt;
-  &lt;/div&gt;
-&lt;/header&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white shadow&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-4 flex items-center justify-between&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-2xl font-bold text-gray-800&quot;</span>&gt;</span>MiLogo<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;space-x-4&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-800 hover:text-primary&quot;</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-800 hover:text-primary&quot;</span>&gt;</span>Características<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-800 hover:text-primary&quot;</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>bg-white</code></strong>: <code>background-color: #ffffff;</code></li>
 <li><strong><code>shadow</code></strong>: Aplica una sombra suave al elemento.</li>
@@ -1195,15 +1210,14 @@
 <p>La sección de héroe es la primera sección destacada que presenta el propósito del sitio.</p>
 <h3><strong>Hero Centrado</strong></h3>
 <p>Este diseño se centra en el texto y el botón, manteniendo el contenido alineado en el centro.</p>
-<pre><code class="language-html">&lt;section class=&quot;bg-secondary&quot;&gt;
-  &lt;div class=&quot;container mx-auto px-6 py-16 text-center&quot;&gt;
-    &lt;h1 class=&quot;text-4xl font-bold text-gray-800 mb-4&quot;&gt;Bienvenido a Nuestra Landing Page&lt;/h1&gt;
-    &lt;p class=&quot;text-gray-700 mb-8&quot;&gt;Ofrecemos las mejores soluciones para tu negocio.&lt;/p&gt;
-    &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Comenzar&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-secondary&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-16 text-center&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-4xl font-bold text-gray-800 mb-4&quot;</span>&gt;</span>Bienvenido a Nuestra Landing Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-700 mb-8&quot;</span>&gt;</span>Ofrecemos las mejores soluciones para tu negocio.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Comenzar<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>bg-secondary</code></strong>: <code>background-color: #FAF0CA;</code> (color personalizado)</li>
 <li><strong><code>py-16</code></strong>: <code>padding-top: 4rem; padding-bottom: 4rem;</code></li>
@@ -1220,49 +1234,47 @@
 <hr>
 <h3><strong>Hero con Contenidos a la Derecha e Izquierda</strong></h3>
 <p>Esta variante divide la sección en dos columnas, colocando texto en una columna y una imagen o ilustración en la otra.</p>
-<pre><code class="language-html">&lt;section class=&quot;bg-gray-100 py-16&quot;&gt;
-  &lt;div class=&quot;container mx-auto flex flex-col md:flex-row items-center px-6&quot;&gt;
-    &lt;!-- Columna de Texto --&gt;
-    &lt;div class=&quot;md:w-1/2 text-center md:text-left mb-8 md:mb-0&quot;&gt;
-      &lt;h1 class=&quot;text-4xl font-bold text-gray-800 mb-4&quot;&gt;Desarrolla tu Potencial&lt;/h1&gt;
-      &lt;p class=&quot;text-gray-700 mb-8&quot;&gt;Unimos tecnología y creatividad para impulsar tu éxito.&lt;/p&gt;
-      &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Empezar Ahora&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;!-- Columna de Imagen --&gt;
-    &lt;div class=&quot;md:w-1/2 flex justify-center&quot;&gt;
-      &lt;img src=&quot;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot; alt=&quot;Ilustración de tecnología&quot; class=&quot;w-full max-w-md rounded-lg shadow-lg&quot;&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<p><img src="../assets/tw/hero-sided.avif" alt="Hero con Contenidos a la Derecha e Izquierda"></p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-gray-100 py-16&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto flex flex-col md:flex-row items-center px-6&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Columna de Texto --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;md:w-1/2 text-center md:text-left mb-8 md:mb-0&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-4xl font-bold text-gray-800 mb-4&quot;</span>&gt;</span>Desarrolla tu Potencial<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-700 mb-8&quot;</span>&gt;</span>Unimos tecnología y creatividad para impulsar tu éxito.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Empezar Ahora<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Columna de Imagen --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;md:w-1/2 flex justify-center&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Ilustración de tecnología&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full max-w-md rounded-lg shadow-lg&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><p><img src="../assets/tw/hero-sided.avif" alt="Hero con Contenidos a la Derecha e Izquierda"></p>
 <hr>
 <h3><strong>Hero con Barra de Herramientas Transparente</strong></h3>
 <p>En esta variante, se incluye una barra de herramientas (barra de navegación) que es transparente y se superpone ligeramente sobre la imagen de fondo de la sección de héroe. </p>
-<pre><code class="language-html">&lt;!-- Barra de Herramientas Transparente --&gt;
-&lt;header class=&quot;absolute top-0 left-0 w-full bg-transparent py-4 z-10&quot;&gt;
-  &lt;div class=&quot;container mx-auto flex justify-between items-center px-6&quot;&gt;
-    &lt;div class=&quot;text-2xl font-bold text-white&quot;&gt;MiLogo&lt;/div&gt;
-    &lt;nav class=&quot;space-x-4&quot;&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-white hover:text-gray-200&quot;&gt;Inicio&lt;/a&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-white hover:text-gray-200&quot;&gt;Características&lt;/a&gt;
-      &lt;a href=&quot;#&quot; class=&quot;text-white hover:text-gray-200&quot;&gt;Contacto&lt;/a&gt;
-    &lt;/nav&gt;
-  &lt;/div&gt;
-&lt;/header&gt;
+<pre><code class="hljs language-html"><span class="hljs-comment">&lt;!-- Barra de Herramientas Transparente --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;absolute top-0 left-0 w-full bg-transparent py-4 z-10&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto flex justify-between items-center px-6&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-2xl font-bold text-white&quot;</span>&gt;</span>MiLogo<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;space-x-4&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-white hover:text-gray-200&quot;</span>&gt;</span>Inicio<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-white hover:text-gray-200&quot;</span>&gt;</span>Características<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-white hover:text-gray-200&quot;</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
 
-&lt;!-- Hero con Imagen de Fondo --&gt;
-&lt;section class=&quot;relative bg-cover bg-center bg-no-repeat h-screen&quot; style=&quot;background-image: url(&#39;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&#39;);&quot;&gt;
-  &lt;div class=&quot;flex items-center justify-center h-full bg-black bg-opacity-50&quot;&gt;
-    &lt;div class=&quot;text-center text-white&quot;&gt;
-      &lt;h1 class=&quot;text-4xl font-bold mb-4&quot;&gt;Bienvenido a Nuestra Plataforma&lt;/h1&gt;
-      &lt;p class=&quot;mb-8&quot;&gt;Transformando ideas en soluciones innovadoras.&lt;/p&gt;
-      &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Explorar&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<h3>Explicación de las Clases Utilizadas</h3>
+<span class="hljs-comment">&lt;!-- Hero con Imagen de Fondo --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative bg-cover bg-center bg-no-repeat h-screen&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&#x27;);&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-black bg-opacity-50&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-4xl font-bold mb-4&quot;</span>&gt;</span>Bienvenido a Nuestra Plataforma<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mb-8&quot;</span>&gt;</span>Transformando ideas en soluciones innovadoras.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Explorar<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><h3>Explicación de las Clases Utilizadas</h3>
 <ul>
 <li><strong><code>absolute top-0 left-0 w-full bg-transparent py-4 z-10</code></strong> en el <code>&lt;header&gt;</code>: Hace que la barra de herramientas esté en la parte superior y ocupe el ancho completo de la pantalla con un fondo transparente.</li>
 <li><strong><code>bg-black bg-opacity-50</code></strong> en el <code>&lt;div&gt;</code> de superposición: Crea una capa semitransparente sobre la imagen para mejorar la legibilidad del texto.</li>
@@ -1271,35 +1283,33 @@
 <hr>
 <h3><strong>Hero con Imagen de Fondo Centrada</strong></h3>
 <p>Otra opción es tener una imagen de fondo fija en la sección de héroe, con contenido en el centro.</p>
-<pre><code class="language-html">&lt;section class=&quot;relative bg-cover bg-fixed h-screen&quot; style=&quot;background-image: url(&#39;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&#39;);&quot;&gt;
-  &lt;div class=&quot;flex items-center justify-center h-full bg-black bg-opacity-50&quot;&gt;
-    &lt;div class=&quot;text-center text-white max-w-lg&quot;&gt;
-      &lt;h1 class=&quot;text-5xl font-bold mb-4&quot;&gt;Inspiración y Creatividad&lt;/h1&gt;
-      &lt;p class=&quot;text-lg mb-8&quot;&gt;Nos dedicamos a hacer crecer tus ideas en el mundo digital.&lt;/p&gt;
-      &lt;a href=&quot;#&quot; class=&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;&gt;Descubre Más&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<p><img src="../assets/tw/hero-img-centered.avif" alt="Hero con Imagen de Fondo Centrada"></p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;relative bg-cover bg-fixed h-screen&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-image: url(&#x27;https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&#x27;);&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex items-center justify-center h-full bg-black bg-opacity-50&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center text-white max-w-lg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-5xl font-bold mb-4&quot;</span>&gt;</span>Inspiración y Creatividad<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-lg mb-8&quot;</span>&gt;</span>Nos dedicamos a hacer crecer tus ideas en el mundo digital.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-800&quot;</span>&gt;</span>Descubre Más<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><p><img src="../assets/tw/hero-img-centered.avif" alt="Hero con Imagen de Fondo Centrada"></p>
 <hr>
 <p><a name="grid-y-flexbox"></a></p>
 <h2>5. Utilizando Grid y Flexbox</h2>
 <p><strong>Grid</strong> y <strong>Flexbox</strong> son fundamentales para crear layouts responsivos y estructurados.</p>
 <h3>Ejemplo con Grid</h3>
-<pre><code class="language-html">&lt;section class=&quot;grid grid-cols-1 md:grid-cols-3 gap-6&quot;&gt;
-  &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-    &lt;!-- Contenido del primer elemento --&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-    &lt;!-- Contenido del segundo elemento --&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-    &lt;!-- Contenido del tercer elemento --&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid grid-cols-1 md:grid-cols-3 gap-6&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Contenido del primer elemento --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Contenido del segundo elemento --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Contenido del tercer elemento --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>grid</code></strong>: <code>display: grid;</code></li>
 <li><strong><code>grid-cols-1</code></strong>: En pantallas pequeñas, una columna.</li>
@@ -1308,16 +1318,15 @@
 <li><strong><code>bg-white</code></strong>, <strong><code>p-6</code></strong>, <strong><code>rounded-lg</code></strong>, <strong><code>shadow</code></strong>: Estilos para los elementos del grid.</li>
 </ul>
 <h3>Ejemplo con Flexbox</h3>
-<pre><code class="language-html">&lt;div class=&quot;flex flex-col md:flex-row items-center&quot;&gt;
-  &lt;div class=&quot;flex-1&quot;&gt;
-    &lt;!-- Contenido izquierdo --&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;flex-1&quot;&gt;
-    &lt;!-- Contenido derecho --&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex flex-col md:flex-row items-center&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-1&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Contenido izquierdo --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-1&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Contenido derecho --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>flex</code></strong>: <code>display: flex;</code></li>
 <li><strong><code>flex-col</code></strong>: <code>flex-direction: column;</code> en pantallas pequeñas.</li>
@@ -1327,88 +1336,86 @@
 </ul>
 <hr>
 <h2>5.1. Grid: Galería de Imágenes</h2>
-<pre><code class="language-html">&lt;!-- Sección de Grid de Imágenes --&gt;
-&lt;section class=&quot;container mx-auto px-6 py-16&quot;&gt;
-  &lt;div class=&quot;text-center mb-12&quot;&gt;
-    &lt;h2 class=&quot;text-3xl font-bold text-gray-800&quot;&gt;Galería de Imágenes&lt;/h2&gt;
-    &lt;p class=&quot;text-gray-600 mt-4&quot;&gt;Una muestra de nuestro trabajo.&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6&quot;&gt;
-    &lt;!-- Imagen 1 --&gt;
-    &lt;div class=&quot;overflow-hidden rounded-lg&quot;&gt;
-      &lt;img src=&quot;https://placehold.co/600x400/EEE/31343C&quot; alt=&quot;Descripción de la imagen 1&quot; class=&quot;w-full h-full object-cover&quot;&gt;
-    &lt;/div&gt;
-    &lt;!-- Imagen 2 --&gt;
-    &lt;div class=&quot;overflow-hidden rounded-lg&quot;&gt;
-      &lt;img src=&quot;https://placehold.co/600x400/EEE/31343C&quot; alt=&quot;Descripción de la imagen 2&quot; class=&quot;w-full h-full object-cover&quot;&gt;
-    &lt;/div&gt;
-    &lt;!-- Imagen 3 --&gt;
-    &lt;div class=&quot;overflow-hidden rounded-lg&quot;&gt;
-      &lt;img src=&quot;https://placehold.co/600x400/EEE/31343C&quot; alt=&quot;Descripción de la imagen 3&quot; class=&quot;w-full h-full object-cover&quot;&gt;
-    &lt;/div&gt;
-    &lt;!-- Imagen 4 --&gt;
-    &lt;div class=&quot;overflow-hidden rounded-lg&quot;&gt;
-      &lt;img src=&quot;https://placehold.co/600x400/EEE/31343C&quot; alt=&quot;Descripción de la imagen 4&quot; class=&quot;w-full h-full object-cover&quot;&gt;
-    &lt;/div&gt;
-    &lt;!-- Puedes añadir más imágenes según sea necesario --&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<p><img src="../assets/tw/tw-grid-imgs.avif" alt="Grid imágenes"></p>
+<pre><code class="hljs language-html"><span class="hljs-comment">&lt;!-- Sección de Grid de Imágenes --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-16&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center mb-12&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-3xl font-bold text-gray-800&quot;</span>&gt;</span>Galería de Imágenes<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-600 mt-4&quot;</span>&gt;</span>Una muestra de nuestro trabajo.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Imagen 1 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;overflow-hidden rounded-lg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://placehold.co/600x400/EEE/31343C&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Descripción de la imagen 1&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full h-full object-cover&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Imagen 2 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;overflow-hidden rounded-lg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://placehold.co/600x400/EEE/31343C&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Descripción de la imagen 2&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full h-full object-cover&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Imagen 3 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;overflow-hidden rounded-lg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://placehold.co/600x400/EEE/31343C&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Descripción de la imagen 3&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full h-full object-cover&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Imagen 4 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;overflow-hidden rounded-lg&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://placehold.co/600x400/EEE/31343C&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Descripción de la imagen 4&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full h-full object-cover&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Puedes añadir más imágenes según sea necesario --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><p><img src="../assets/tw/tw-grid-imgs.avif" alt="Grid imágenes"></p>
 <hr>
 <p><a name="secciones-contenido"></a></p>
 <h2>6. Creando Secciones de Contenido</h2>
 <p>Las secciones de contenido permiten presentar información detallada sobre productos o servicios.</p>
 <h3>Código HTML</h3>
-<pre><code class="language-html">&lt;section class=&quot;container mx-auto px-6 py-16&quot;&gt;
-  &lt;div class=&quot;text-center mb-12&quot;&gt;
-    &lt;h2 class=&quot;text-3xl font-bold text-gray-800&quot;&gt;Nuestras Características&lt;/h2&gt;
-    &lt;p class=&quot;text-gray-600 mt-4&quot;&gt;Lo que nos hace diferentes.&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;flex flex-wrap -mx-6&quot;&gt;
-    &lt;!-- Característica 1 --&gt;
-    &lt;div class=&quot;w-full md:w-1/3 px-6 mb-12&quot;&gt;
-      &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-        &lt;div class=&quot;mb-4&quot;&gt;
-          &lt;!-- Icono --&gt;
-          &lt;svg class=&quot;w-12 h-12 text-primary mx-auto&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-            &lt;path d=&quot;M12 4v16m8-8H4&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;
-          &lt;/svg&gt;
-        &lt;/div&gt;
-        &lt;h3 class=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Característica Uno&lt;/h3&gt;
-        &lt;p class=&quot;text-gray-600&quot;&gt;Descripción breve de la característica uno.&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- Característica 2 --&gt;
-    &lt;div class=&quot;w-full md:w-1/3 px-6 mb-12&quot;&gt;
-      &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-        &lt;div class=&quot;mb-4&quot;&gt;
-          &lt;!-- Icono --&gt;
-          &lt;svg class=&quot;w-12 h-12 text-primary mx-auto&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-            &lt;path d=&quot;M5 12h14M12 5l7 7-7 7&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;
-          &lt;/svg&gt;
-        &lt;/div&gt;
-        &lt;h3 class=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Característica Dos&lt;/h3&gt;
-        &lt;p class=&quot;text-gray-600&quot;&gt;Descripción breve de la característica dos.&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;!-- Característica 3 --&gt;
-    &lt;div class=&quot;w-full md:w-1/3 px-6 mb-12&quot;&gt;
-      &lt;div class=&quot;bg-white p-6 rounded-lg shadow&quot;&gt;
-        &lt;div class=&quot;mb-4&quot;&gt;
-          &lt;!-- Icono --&gt;
-          &lt;svg class=&quot;w-12 h-12 text-primary mx-auto&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
-            &lt;path d=&quot;M9 5l7 7-7 7&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;
-          &lt;/svg&gt;
-        &lt;/div&gt;
-        &lt;h3 class=&quot;text-xl font-bold text-gray-800 mb-2&quot;&gt;Característica Tres&lt;/h3&gt;
-        &lt;p class=&quot;text-gray-600&quot;&gt;Descripción breve de la característica tres.&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/section&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-16&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-center mb-12&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-3xl font-bold text-gray-800&quot;</span>&gt;</span>Nuestras Características<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-600 mt-4&quot;</span>&gt;</span>Lo que nos hace diferentes.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex flex-wrap -mx-6&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Característica 1 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full md:w-1/3 px-6 mb-12&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mb-4&quot;</span>&gt;</span>
+          <span class="hljs-comment">&lt;!-- Icono --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-12 h-12 text-primary mx-auto&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;currentColor&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M12 4v16m8-8H4&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">&quot;round&quot;</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">&quot;round&quot;</span>/&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl font-bold text-gray-800 mb-2&quot;</span>&gt;</span>Característica Uno<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-600&quot;</span>&gt;</span>Descripción breve de la característica uno.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Característica 2 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full md:w-1/3 px-6 mb-12&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mb-4&quot;</span>&gt;</span>
+          <span class="hljs-comment">&lt;!-- Icono --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-12 h-12 text-primary mx-auto&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;currentColor&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M5 12h14M12 5l7 7-7 7&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">&quot;round&quot;</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">&quot;round&quot;</span>/&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl font-bold text-gray-800 mb-2&quot;</span>&gt;</span>Característica Dos<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-600&quot;</span>&gt;</span>Descripción breve de la característica dos.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Característica 3 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-full md:w-1/3 px-6 mb-12&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white p-6 rounded-lg shadow&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mb-4&quot;</span>&gt;</span>
+          <span class="hljs-comment">&lt;!-- Icono --&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;w-12 h-12 text-primary mx-auto&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;currentColor&quot;</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;0 0 24 24&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M9 5l7 7-7 7&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;2&quot;</span> <span class="hljs-attr">stroke-linecap</span>=<span class="hljs-string">&quot;round&quot;</span> <span class="hljs-attr">stroke-linejoin</span>=<span class="hljs-string">&quot;round&quot;</span>/&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-xl font-bold text-gray-800 mb-2&quot;</span>&gt;</span>Característica Tres<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-gray-600&quot;</span>&gt;</span>Descripción breve de la característica tres.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>w-full</code></strong>: <code>width: 100%;</code></li>
 <li><strong><code>md:w-1/3</code></strong>: En pantallas medianas o superiores, ancho del 33.333%.</li>
@@ -1422,20 +1429,19 @@
 <h2>7. Creando el Pie de Página (Footer)</h2>
 <p>El pie de página contiene información adicional y enlaces.</p>
 <h3>Código HTML</h3>
-<pre><code class="language-html">&lt;footer class=&quot;bg-gray-800&quot;&gt;
-  &lt;div class=&quot;container mx-auto px-6 py-8 text-gray-400&quot;&gt;
-    &lt;div class=&quot;flex flex-col md:flex-row justify-between&quot;&gt;
-      &lt;p&gt;&amp;copy; 2024 MiEmpresa. Todos los derechos reservados.&lt;/p&gt;
-      &lt;div class=&quot;space-x-4&quot;&gt;
-        &lt;a href=&quot;#&quot; class=&quot;hover:text-white&quot;&gt;Privacidad&lt;/a&gt;
-        &lt;a href=&quot;#&quot; class=&quot;hover:text-white&quot;&gt;Términos&lt;/a&gt;
-        &lt;a href=&quot;#&quot; class=&quot;hover:text-white&quot;&gt;Contacto&lt;/a&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/footer&gt;
-</code></pre>
-<h3>Explicación de Clases</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-gray-800&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-8 text-gray-400&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex flex-col md:flex-row justify-between&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-symbol">&amp;copy;</span> 2024 MiEmpresa. Todos los derechos reservados.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;space-x-4&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hover:text-white&quot;</span>&gt;</span>Privacidad<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hover:text-white&quot;</span>&gt;</span>Términos<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hover:text-white&quot;</span>&gt;</span>Contacto<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+</code></pre><h3>Explicación de Clases</h3>
 <ul>
 <li><strong><code>bg-gray-800</code></strong>: <code>background-color: #1F2937;</code></li>
 <li><strong><code>text-gray-400</code></strong>: <code>color: #9CA3AF;</code></li>
@@ -1447,62 +1453,61 @@
 <p><a name="codigo-completo"></a></p>
 <h2>8. Código Completo</h2>
 <p>Aquí está el código HTML completo de la landing page:</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;es&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;title&gt;Mi Landing Page con Tailwind CSS&lt;/title&gt;
-  &lt;!-- Tailwind CSS CDN --&gt;
-  &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
-  &lt;!-- Configuración de Tailwind CSS --&gt;
-  &lt;script&gt;
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: &#39;#0D3B66&#39;,
-            secondary: &#39;#FAF0CA&#39;,
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;es&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Mi Landing Page con Tailwind CSS<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Tailwind CSS CDN --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.tailwindcss.com&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Configuración de Tailwind CSS --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+    tailwind.<span class="hljs-property">config</span> = {
+      <span class="hljs-attr">theme</span>: {
+        <span class="hljs-attr">extend</span>: {
+          <span class="hljs-attr">colors</span>: {
+            <span class="hljs-attr">primary</span>: <span class="hljs-string">&#x27;#0D3B66&#x27;</span>,
+            <span class="hljs-attr">secondary</span>: <span class="hljs-string">&#x27;#FAF0CA&#x27;</span>,
           },
-          fontFamily: {
-            sans: [&#39;Roboto&#39;, &#39;sans-serif&#39;],
+          <span class="hljs-attr">fontFamily</span>: {
+            <span class="hljs-attr">sans</span>: [<span class="hljs-string">&#x27;Roboto&#x27;</span>, <span class="hljs-string">&#x27;sans-serif&#x27;</span>],
           },
         },
       },
     }
-  &lt;/script&gt;
-  &lt;!-- Google Fonts --&gt;
-  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;/head&gt;
-&lt;body class=&quot;font-sans&quot;&gt;
-  &lt;!-- Encabezado --&gt;
-  &lt;header class=&quot;bg-white shadow&quot;&gt;
-    &lt;!-- ...código del header... --&gt;
-  &lt;/header&gt;
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Google Fonts --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preconnect&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fonts.googleapis.com&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;font-sans&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Encabezado --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-white shadow&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- ...código del header... --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
 
-  &lt;!-- Sección de Héroe --&gt;
-  &lt;section class=&quot;bg-secondary&quot;&gt;
-    &lt;!-- ...código de la sección de héroe... --&gt;
-  &lt;/section&gt;
+  <span class="hljs-comment">&lt;!-- Sección de Héroe --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-secondary&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- ...código de la sección de héroe... --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 
-  &lt;!-- Sección de Características --&gt;
-  &lt;section class=&quot;container mx-auto px-6 py-16&quot;&gt;
-    &lt;!-- ...código de las características... --&gt;
-  &lt;/section&gt;
+  <span class="hljs-comment">&lt;!-- Sección de Características --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container mx-auto px-6 py-16&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- ...código de las características... --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 
-  &lt;!-- Llamado a la Acción --&gt;
-  &lt;section class=&quot;bg-primary&quot;&gt;
-    &lt;!-- ...código del CTA... --&gt;
-  &lt;/section&gt;
+  <span class="hljs-comment">&lt;!-- Llamado a la Acción --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-primary&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- ...código del CTA... --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 
-  &lt;!-- Pie de Página --&gt;
-  &lt;footer class=&quot;bg-gray-800&quot;&gt;
-    &lt;!-- ...código del footer... --&gt;
-  &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<hr>
+  <span class="hljs-comment">&lt;!-- Pie de Página --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bg-gray-800&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- ...código del footer... --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><hr>
 <p><a name="conclusion"></a></p>
 <h2>9. Conclusión</h2>
 <p>Crear una landing page con Tailwind CSS es eficiente gracias a sus clases de utilidad que simplifican el proceso de diseño. Al entender cómo funcionan estas clases y sus equivalentes en CSS, puedes personalizar y ajustar tu página según tus necesidades.</p>
@@ -1514,5 +1519,6 @@
 </ul>
 <hr>
 
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

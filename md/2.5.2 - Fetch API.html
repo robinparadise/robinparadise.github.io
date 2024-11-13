@@ -1104,37 +1104,53 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2.5.2 Fetch API</h1>
 <p>La <strong>Fetch API</strong> permite realizar solicitudes de red (HTTP) para obtener, enviar, actualizar o eliminar datos de un servidor de manera asíncrona, usando <code>fetch()</code>. Su sintaxis básica es sencilla y se basa en el uso de <strong>promesas</strong>, lo que facilita el manejo de respuestas y errores.</p>
 <h4><strong>Sintaxis Básica</strong></h4>
-<pre><code class="language-javascript">fetch(url, options)
-    .then(response =&gt; response.json())
-    .then(data =&gt; console.log(data))
-    .catch(error =&gt; console.error(&#39;Error:&#39;, error));
-</code></pre>
-<ul>
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(url, options)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data))
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error));
+</code></pre><ul>
 <li><strong>url</strong>: La URL a la que queremos hacer la solicitud.</li>
 <li><strong>options</strong> (opcional): Un objeto que define opciones adicionales como el método de la solicitud (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>), encabezados, cuerpo de la solicitud, etc.</li>
 </ul>
 <h3><strong>Ejemplo con Fake Store API: Obtener productos</strong></h3>
 <p>Vamos a hacer una solicitud para obtener la lista de productos de Fake Store API y mostrar los datos en la consola.</p>
-<pre><code class="language-javascript">fetch(&#39;https://fakestoreapi.com/products&#39;)
-    .then(response =&gt; {
-        if (!response.ok) {
-            throw new Error(&#39;Error en la solicitud&#39;);
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://fakestoreapi.com/products&#x27;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Error en la solicitud&#x27;</span>);
         }
-        return response.json(); // Convertir la respuesta en JSON
+        <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>(); <span class="hljs-comment">// Convertir la respuesta en JSON</span>
     })
-    .then(data =&gt; {
-        console.log(&#39;Lista de productos:&#39;, data); // Procesar los datos
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Lista de productos:&#x27;</span>, data); <span class="hljs-comment">// Procesar los datos</span>
     })
-    .catch(error =&gt; {
-        console.error(&#39;Error:&#39;, error); // Manejo de errores
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error); <span class="hljs-comment">// Manejo de errores</span>
     });
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Explicación del código</strong>:<ul>
 <li><code>fetch(&#39;https://fakestoreapi.com/products&#39;)</code>: Realiza una solicitud HTTP <code>GET</code> a la API de Fake Store para obtener los productos.</li>
 <li><code>.then(response =&gt; response.json())</code>: Verifica que la solicitud haya sido exitosa (código de estado 200) y luego convierte la respuesta en formato JSON.</li>
@@ -1148,33 +1164,32 @@
 <p>Además de <code>GET</code>, la Fetch API permite otros métodos de solicitud para crear, actualizar y eliminar datos.</p>
 <h4><strong>1. POST - Crear un nuevo producto</strong></h4>
 <p>Con <code>POST</code>, podemos enviar datos al servidor. Vamos a simular la creación de un producto en la API.</p>
-<pre><code class="language-javascript">fetch(&#39;https://fakestoreapi.com/products&#39;, {
-    method: &#39;POST&#39;, // Definimos el método POST
-    headers: {
-        &#39;Content-Type&#39;: &#39;application/json&#39; // Indicamos el tipo de contenido
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://fakestoreapi.com/products&#x27;</span>, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>, <span class="hljs-comment">// Definimos el método POST</span>
+    <span class="hljs-attr">headers</span>: {
+        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span> <span class="hljs-comment">// Indicamos el tipo de contenido</span>
     },
-    body: JSON.stringify({
-        title: &#39;Nuevo Producto&#39;,
-        price: 19.99,
-        description: &#39;Descripción del producto&#39;,
-        image: &#39;https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg&#39;,
-        category: &#39;electrónica&#39;
+    <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+        <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Nuevo Producto&#x27;</span>,
+        <span class="hljs-attr">price</span>: <span class="hljs-number">19.99</span>,
+        <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Descripción del producto&#x27;</span>,
+        <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg&#x27;</span>,
+        <span class="hljs-attr">category</span>: <span class="hljs-string">&#x27;electrónica&#x27;</span>
     })
 })
-.then(response =&gt; {
-    if (!response.ok) {
-        throw new Error(&#39;Error al crear el producto&#39;);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Error al crear el producto&#x27;</span>);
     }
-    return response.json();
+    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>();
 })
-.then(data =&gt; {
-    console.log(&#39;Producto creado:&#39;, data);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Producto creado:&#x27;</span>, data);
 })
-.catch(error =&gt; {
-    console.error(&#39;Error:&#39;, error);
+.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error);
 });
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Explicación del código</strong>:<ul>
 <li><code>method: &#39;POST&#39;</code>: Indicamos que queremos hacer una solicitud <code>POST</code> para enviar datos al servidor.</li>
 <li><code>headers</code>: Definimos el tipo de contenido (<code>Content-Type</code>) como <code>application/json</code> para enviar JSON.</li>
@@ -1184,33 +1199,32 @@
 </ul>
 <h4><strong>2. PUT - Actualizar un producto existente</strong></h4>
 <p>El método <code>PUT</code> se usa para actualizar datos en el servidor. Supongamos que queremos actualizar el producto con <code>id = 1</code>.</p>
-<pre><code class="language-javascript">fetch(&#39;https://fakestoreapi.com/products/1&#39;, {
-    method: &#39;PUT&#39;, // Método PUT para actualizar
-    headers: {
-        &#39;Content-Type&#39;: &#39;application/json&#39;
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://fakestoreapi.com/products/1&#x27;</span>, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;PUT&#x27;</span>, <span class="hljs-comment">// Método PUT para actualizar</span>
+    <span class="hljs-attr">headers</span>: {
+        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
     },
-    body: JSON.stringify({
-        title: &#39;Producto Actualizado&#39;,
-        price: 29.99,
-        description: &#39;Descripción actualizada&#39;,
-        image: &#39;https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg&#39;,
-        category: &#39;electrónica&#39;
+    <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+        <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Producto Actualizado&#x27;</span>,
+        <span class="hljs-attr">price</span>: <span class="hljs-number">29.99</span>,
+        <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;Descripción actualizada&#x27;</span>,
+        <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg&#x27;</span>,
+        <span class="hljs-attr">category</span>: <span class="hljs-string">&#x27;electrónica&#x27;</span>
     })
 })
-.then(response =&gt; {
-    if (!response.ok) {
-        throw new Error(&#39;Error al actualizar el producto&#39;);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Error al actualizar el producto&#x27;</span>);
     }
-    return response.json();
+    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>();
 })
-.then(data =&gt; {
-    console.log(&#39;Producto actualizado:&#39;, data);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Producto actualizado:&#x27;</span>, data);
 })
-.catch(error =&gt; {
-    console.error(&#39;Error:&#39;, error);
+.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error);
 });
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Explicación del código</strong>:<ul>
 <li><code>method: &#39;PUT&#39;</code>: Se usa <code>PUT</code> para actualizar un recurso.</li>
 <li><code>body</code>: Contiene los datos actualizados del producto en formato JSON.</li>
@@ -1220,23 +1234,22 @@
 </ul>
 <h4><strong>3. DELETE - Eliminar un producto</strong></h4>
 <p>Con <code>DELETE</code>, podemos eliminar un recurso específico en el servidor. Supongamos que queremos eliminar el producto con <code>id = 1</code>.</p>
-<pre><code class="language-javascript">fetch(&#39;https://fakestoreapi.com/products/1&#39;, {
-    method: &#39;DELETE&#39; // Método DELETE para eliminar el recurso
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://fakestoreapi.com/products/1&#x27;</span>, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;DELETE&#x27;</span> <span class="hljs-comment">// Método DELETE para eliminar el recurso</span>
 })
-.then(response =&gt; {
-    if (!response.ok) {
-        throw new Error(&#39;Error al eliminar el producto&#39;);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+    <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Error al eliminar el producto&#x27;</span>);
     }
-    return response.json();
+    <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>();
 })
-.then(data =&gt; {
-    console.log(&#39;Producto eliminado:&#39;, data);
+.<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Producto eliminado:&#x27;</span>, data);
 })
-.catch(error =&gt; {
-    console.error(&#39;Error:&#39;, error);
+.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error);
 });
-</code></pre>
-<ul>
+</code></pre><ul>
 <li><strong>Explicación del código</strong>:<ul>
 <li><code>method: &#39;DELETE&#39;</code>: Define que queremos eliminar el recurso.</li>
 <li>La URL con <code>/1</code> especifica el producto con <code>id = 1</code> que queremos eliminar.</li>
@@ -1282,84 +1295,83 @@
 <li>Usar el endpoint: <a href="https://fakenews.squirro.com">https://fakenews.squirro.com</a></li>
 </ol>
 <h3><strong>Estructura del HTML</strong></h3>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;es&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;UTF-8&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-  &lt;title&gt;Visor de Noticias Falsas&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;es&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Visor de Noticias Falsas<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
 
-  &lt;h1&gt;Artículos de Noticias Falsas&lt;/h1&gt;
-  &lt;!-- Componente personalizado --&gt;
-  &lt;news-viewer&gt;&lt;/news-viewer&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Artículos de Noticias Falsas<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- Componente personalizado --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">news-viewer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">news-viewer</span>&gt;</span>
 
-  &lt;!-- Plantilla para un artículo --&gt;
-  &lt;template id=&quot;article-template&quot;&gt;
-    &lt;div class=&quot;article&quot;&gt;
-      &lt;h3 class=&quot;title&quot;&gt;&lt;/h3&gt;
-      &lt;p&gt;&lt;strong&gt;Autor:&lt;/strong&gt; &lt;span class=&quot;author&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-      &lt;p class=&quot;description&quot;&gt;&lt;/p&gt;
-      &lt;hr&gt;
-    &lt;/div&gt;
-  &lt;/template&gt;
+  <span class="hljs-comment">&lt;!-- Plantilla para un artículo --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;article-template&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;article&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Autor:<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;author&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-  &lt;script src=&quot;news-viewer.js&quot;&gt;&lt;/script&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;news-viewer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h3><strong>JavaScript: <code>news-viewer.js</code></strong></h3>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h3><strong>JavaScript: <code>news-viewer.js</code></strong></h3>
 <p>Este archivo JavaScript define el componente <code>NewsViewer</code>, que obtiene los artículos y los renderiza usando la plantilla HTML.</p>
-<pre><code class="language-javascript">
-class NewsViewer extends HTMLElement {
-  constructor() {
-    super();
+<pre><code class="hljs language-javascript">
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NewsViewer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">super</span>();
   }
 
-  connectedCallback() {
-    this.loadArticles();
+  <span class="hljs-title function_">connectedCallback</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">loadArticles</span>();
   }
 
-  async loadArticles() {
-    try {
-      const response = await fetch(&#39;https://news-foniuhqsba-uc.a.run.app&#39;);
-      if (!response.ok) {
-        throw new Error(&#39;Error al obtener los artículos&#39;);
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">loadArticles</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://news-foniuhqsba-uc.a.run.app&#x27;</span>);
+      <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Error al obtener los artículos&#x27;</span>);
       }
-      const articles = await response.json();
-      this.renderArticles(articles);
-    } catch (error) {
-      console.error(&#39;Error:&#39;, error);
-      this.innerHTML = `&lt;p&gt;Error al cargar los artículos. Inténtelo nuevamente más tarde.&lt;/p&gt;`;
+      <span class="hljs-keyword">const</span> articles = <span class="hljs-keyword">await</span> response.<span class="hljs-title function_">json</span>();
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">renderArticles</span>(articles);
+    } <span class="hljs-keyword">catch</span> (error) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error);
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">`&lt;p&gt;Error al cargar los artículos. Inténtelo nuevamente más tarde.&lt;/p&gt;`</span>;
     }
   }
 
-  renderArticles(articles) {
-    const template = document.getElementById(&#39;article-template&#39;);
+  <span class="hljs-title function_">renderArticles</span>(<span class="hljs-params">articles</span>) {
+    <span class="hljs-keyword">const</span> template = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;article-template&#x27;</span>);
     
-    // Limpiar contenido existente
-    this.innerHTML = &#39;&#39;;
+    <span class="hljs-comment">// Limpiar contenido existente</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&#x27;</span>;
 
-    articles.forEach(article =&gt; {
-      // Clonar el contenido de la plantilla
-      const articleContent = document.importNode(template.content, true);
+    articles.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">article</span> =&gt;</span> {
+      <span class="hljs-comment">// Clonar el contenido de la plantilla</span>
+      <span class="hljs-keyword">const</span> articleContent = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">importNode</span>(template.<span class="hljs-property">content</span>, <span class="hljs-literal">true</span>);
       
-      // Rellenar la plantilla con los datos del artículo
-      articleContent.querySelector(&#39;.title&#39;).textContent = article.headline;
-      articleContent.querySelector(&#39;.author&#39;).textContent = article.author;
-      articleContent.querySelector(&#39;.description&#39;).innerHTML = article.body;
+      <span class="hljs-comment">// Rellenar la plantilla con los datos del artículo</span>
+      articleContent.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.title&#x27;</span>).<span class="hljs-property">textContent</span> = article.<span class="hljs-property">headline</span>;
+      articleContent.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.author&#x27;</span>).<span class="hljs-property">textContent</span> = article.<span class="hljs-property">author</span>;
+      articleContent.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.description&#x27;</span>).<span class="hljs-property">innerHTML</span> = article.<span class="hljs-property">body</span>;
       
-      // Añadir el artículo al componente
-      this.appendChild(articleContent);
+      <span class="hljs-comment">// Añadir el artículo al componente</span>
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">appendChild</span>(articleContent);
     });
   }
 }
 
-// Definir el elemento personalizado
-customElements.define(&#39;news-viewer&#39;, NewsViewer);
+<span class="hljs-comment">// Definir el elemento personalizado</span>
+customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">&#x27;news-viewer&#x27;</span>, <span class="hljs-title class_">NewsViewer</span>);
 </code></pre>
-
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>

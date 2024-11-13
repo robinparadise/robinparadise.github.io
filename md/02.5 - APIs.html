@@ -1104,6 +1104,24 @@
   margin-top: 0 !important;
 }
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#0D3B66',
+              secondary: '#FAF0CA',
+            },
+            fontFamily: {
+              sans: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
   </head>
   <body class="markdown-body">
     <h1>2.5 APIs (navigator)</h1>
@@ -1126,125 +1144,111 @@
 <h3>1. <strong>DOM (Document Object Model)</strong></h3>
 <p>Permite manipular la estructura HTML de una página.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">document.getElementById(&quot;miElemento&quot;).innerText = &quot;Hola, Mundo!&quot;;
-</code></pre>
-<h3>2. <strong>Fetch API</strong></h3>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;miElemento&quot;</span>).<span class="hljs-property">innerText</span> = <span class="hljs-string">&quot;Hola, Mundo!&quot;</span>;
+</code></pre><h3>2. <strong>Fetch API</strong></h3>
 <p>Proporciona una forma sencilla de realizar solicitudes HTTP.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">fetch(&#39;https://api.example.com/data&#39;)
-    .then(response =&gt; response.json())
-    .then(data =&gt; console.log(data))
-    .catch(error =&gt; console.error(&#39;Error:&#39;, error));
-</code></pre>
-<h3>3. <strong>Local Storage</strong></h3>
+<pre><code class="hljs language-javascript"><span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;https://api.example.com/data&#x27;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">json</span>())
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(data))
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error:&#x27;</span>, error));
+</code></pre><h3>3. <strong>Local Storage</strong></h3>
 <p>Permite almacenar datos en el navegador de manera persistente.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">localStorage.setItem(&#39;nombre&#39;, &#39;Juan&#39;);
-console.log(localStorage.getItem(&#39;nombre&#39;)); // Juan
-</code></pre>
-<h3>4. <strong>Session Storage</strong></h3>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;nombre&#x27;</span>, <span class="hljs-string">&#x27;Juan&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;nombre&#x27;</span>)); <span class="hljs-comment">// Juan</span>
+</code></pre><h3>4. <strong>Session Storage</strong></h3>
 <p>Similar a Local Storage, pero los datos se eliminan cuando se cierra la pestaña.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">sessionStorage.setItem(&#39;sesion&#39;, &#39;activa&#39;);
-console.log(sessionStorage.getItem(&#39;sesion&#39;)); // activa
-</code></pre>
-<h3>5. <strong>Cookies</strong></h3>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;sesion&#x27;</span>, <span class="hljs-string">&#x27;activa&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">sessionStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;sesion&#x27;</span>)); <span class="hljs-comment">// activa</span>
+</code></pre><h3>5. <strong>Cookies</strong></h3>
 <p>Permite almacenar datos en el navegador en forma de cookies.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">document.cookie = &quot;usuario=Juan; expires=Fri, 31 Dec 2024 23:59:59 GMT&quot;;
-</code></pre>
-<h3>6. <strong>Geolocation API</strong></h3>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span> = <span class="hljs-string">&quot;usuario=Juan; expires=Fri, 31 Dec 2024 23:59:59 GMT&quot;</span>;
+</code></pre><h3>6. <strong>Geolocation API</strong></h3>
 <p>Permite acceder a la ubicación geográfica del usuario.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">navigator.geolocation.getCurrentPosition(position =&gt; {
-    console.log(`Latitud: ${position.coords.latitude}, Longitud: ${position.coords.longitude}`);
+<pre><code class="hljs language-javascript">navigator.<span class="hljs-property">geolocation</span>.<span class="hljs-title function_">getCurrentPosition</span>(<span class="hljs-function"><span class="hljs-params">position</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Latitud: <span class="hljs-subst">${position.coords.latitude}</span>, Longitud: <span class="hljs-subst">${position.coords.longitude}</span>`</span>);
 });
-</code></pre>
-<h3>7. <strong>Web Storage API</strong></h3>
+</code></pre><h3>7. <strong>Web Storage API</strong></h3>
 <p>Incluye Local Storage y Session Storage para almacenar datos.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">// Almacenar un objeto
-const user = { name: &#39;Juan&#39;, age: 30 };
-localStorage.setItem(&#39;user&#39;, JSON.stringify(user));
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Almacenar un objeto</span>
+<span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Juan&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">30</span> };
+<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;user&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(user));
 
-// Recuperar el objeto
-const retrievedUser = JSON.parse(localStorage.getItem(&#39;user&#39;));
-console.log(retrievedUser.name); // Juan
-</code></pre>
-<h3>8. <strong>Canvas API</strong></h3>
+<span class="hljs-comment">// Recuperar el objeto</span>
+<span class="hljs-keyword">const</span> retrievedUser = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;user&#x27;</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(retrievedUser.<span class="hljs-property">name</span>); <span class="hljs-comment">// Juan</span>
+</code></pre><h3>8. <strong>Canvas API</strong></h3>
 <p>Permite dibujar gráficos en un área definida.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-html">&lt;canvas id=&quot;miCanvas&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
-&lt;script&gt;
-const canvas = document.getElementById(&#39;miCanvas&#39;);
-const ctx = canvas.getContext(&#39;2d&#39;);
-ctx.fillStyle = &#39;blue&#39;;
-ctx.fillRect(50, 50, 100, 100);
-&lt;/script&gt;
-</code></pre>
-<h3>9. <strong>WebSockets</strong></h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;miCanvas&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;200&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> canvas = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;miCanvas&#x27;</span>);
+<span class="hljs-keyword">const</span> ctx = canvas.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&#x27;2d&#x27;</span>);
+ctx.<span class="hljs-property">fillStyle</span> = <span class="hljs-string">&#x27;blue&#x27;</span>;
+ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h3>9. <strong>WebSockets</strong></h3>
 <p>Permite la comunicación bidireccional en tiempo real entre el cliente y el servidor.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">const socket = new WebSocket(&#39;wss://example.com/socket&#39;);
-socket.onmessage = event =&gt; {
-    console.log(&#39;Mensaje del servidor:&#39;, event.data);
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> socket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>(<span class="hljs-string">&#x27;wss://example.com/socket&#x27;</span>);
+socket.<span class="hljs-property">onmessage</span> = <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Mensaje del servidor:&#x27;</span>, event.<span class="hljs-property">data</span>);
 };
-</code></pre>
-<h3>10. <strong>Web Workers</strong></h3>
+</code></pre><h3>10. <strong>Web Workers</strong></h3>
 <p>Permite ejecutar scripts en segundo plano sin bloquear el hilo principal.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">const worker = new Worker(&#39;worker.js&#39;); // archivo worker.js
-worker.postMessage(&#39;Hola, worker!&#39;);
-worker.onmessage = function(e) {
-    console.log(&#39;Mensaje del worker:&#39;, e.data);
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Worker</span>(<span class="hljs-string">&#x27;worker.js&#x27;</span>); <span class="hljs-comment">// archivo worker.js</span>
+worker.<span class="hljs-title function_">postMessage</span>(<span class="hljs-string">&#x27;Hola, worker!&#x27;</span>);
+worker.<span class="hljs-property">onmessage</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Mensaje del worker:&#x27;</span>, e.<span class="hljs-property">data</span>);
 };
-</code></pre>
-<h3>11. <strong>Media Devices API</strong></h3>
+</code></pre><h3>11. <strong>Media Devices API</strong></h3>
 <p>Permite acceder a dispositivos multimedia como cámaras y micrófonos.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream =&gt; {
-        const video = document.querySelector(&#39;video&#39;);
-        video.srcObject = stream;
+<pre><code class="hljs language-javascript">navigator.<span class="hljs-property">mediaDevices</span>.<span class="hljs-title function_">getUserMedia</span>({ <span class="hljs-attr">video</span>: <span class="hljs-literal">true</span> })
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">stream</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> video = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;video&#x27;</span>);
+        video.<span class="hljs-property">srcObject</span> = stream;
     })
-    .catch(error =&gt; console.error(&#39;Error al acceder a la cámara:&#39;, error));
-</code></pre>
-<h3>12. <strong>Notification API</strong></h3>
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error al acceder a la cámara:&#x27;</span>, error));
+</code></pre><h3>12. <strong>Notification API</strong></h3>
 <p>Permite mostrar notificaciones en el escritorio.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">if (Notification.permission === &#39;granted&#39;) {
-    new Notification(&#39;Hola&#39;, { body: &#39;Este es un mensaje de notificación.&#39; });
-} else if (Notification.permission !== &#39;denied&#39;) {
-    Notification.requestPermission().then(permission =&gt; {
-        if (permission === &#39;granted&#39;) {
-            new Notification(&#39;Hola&#39;, { body: &#39;Este es un mensaje de notificación.&#39; });
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-title class_">Notification</span>.<span class="hljs-property">permission</span> === <span class="hljs-string">&#x27;granted&#x27;</span>) {
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Notification</span>(<span class="hljs-string">&#x27;Hola&#x27;</span>, { <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;Este es un mensaje de notificación.&#x27;</span> });
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Notification</span>.<span class="hljs-property">permission</span> !== <span class="hljs-string">&#x27;denied&#x27;</span>) {
+    <span class="hljs-title class_">Notification</span>.<span class="hljs-title function_">requestPermission</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">permission</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (permission === <span class="hljs-string">&#x27;granted&#x27;</span>) {
+            <span class="hljs-keyword">new</span> <span class="hljs-title class_">Notification</span>(<span class="hljs-string">&#x27;Hola&#x27;</span>, { <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;Este es un mensaje de notificación.&#x27;</span> });
         }
     });
 }
-</code></pre>
-<h3>13. <strong>Service Workers</strong></h3>
+</code></pre><h3>13. <strong>Service Workers</strong></h3>
 <p>Permite la creación de aplicaciones web offline y mejorar la experiencia del usuario.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">if (&#39;serviceWorker&#39; in navigator) {
-    window.addEventListener(&#39;load&#39;, () =&gt; {
-        navigator.serviceWorker.register(&#39;/service-worker.js&#39;)
-            .then(registration =&gt; console.log(&#39;Service Worker registrado con éxito:&#39;, registration))
-            .catch(error =&gt; console.log(&#39;Error al registrar el Service Worker:&#39;, error));
+<pre><code class="hljs language-javascript"><span class="hljs-keyword">if</span> (<span class="hljs-string">&#x27;serviceWorker&#x27;</span> <span class="hljs-keyword">in</span> navigator) {
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;load&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+        navigator.<span class="hljs-property">serviceWorker</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;/service-worker.js&#x27;</span>)
+            .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">registration</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Service Worker registrado con éxito:&#x27;</span>, registration))
+            .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Error al registrar el Service Worker:&#x27;</span>, error));
     });
 }
-</code></pre>
-<h3>14. <strong>History API</strong></h3>
+</code></pre><h3>14. <strong>History API</strong></h3>
 <p>Permite manipular el historial del navegador.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">history.pushState({ page: 1 }, &#39;Título de la página&#39;, &#39;pagina1.html&#39;);
-</code></pre>
-<h3>15. <strong>Clipboard API</strong></h3>
+<pre><code class="hljs language-javascript">history.<span class="hljs-title function_">pushState</span>({ <span class="hljs-attr">page</span>: <span class="hljs-number">1</span> }, <span class="hljs-string">&#x27;Título de la página&#x27;</span>, <span class="hljs-string">&#x27;pagina1.html&#x27;</span>);
+</code></pre><h3>15. <strong>Clipboard API</strong></h3>
 <p>Permite interactuar con el portapapeles del usuario.</p>
 <p><strong>Ejemplo:</strong></p>
-<pre><code class="language-javascript">navigator.clipboard.writeText(&#39;Texto copiado!&#39;)
-    .then(() =&gt; console.log(&#39;Texto copiado al portapapeles&#39;))
-    .catch(err =&gt; console.error(&#39;Error al copiar al portapapeles:&#39;, err));
+<pre><code class="hljs language-javascript">navigator.<span class="hljs-property">clipboard</span>.<span class="hljs-title function_">writeText</span>(<span class="hljs-string">&#x27;Texto copiado!&#x27;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Texto copiado al portapapeles&#x27;</span>))
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;Error al copiar al portapapeles:&#x27;</span>, err));
 </code></pre>
-
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.7.0/languages/css.min.js"></script>
   </body>
   </html>
