@@ -26,15 +26,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Install Ruby and Jekyll
+      - name: Install Ruby and Jekyll in User Directory
         run: |
           sudo apt-get update
           sudo apt-get install -y ruby-full build-essential zlib1g-dev
-          echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
-          echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
-          echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
+          # Configure RubyGems to use the user directory
+          mkdir -p ~/.gem
+          echo 'export GEM_HOME=$HOME/.gem' >> ~/.bashrc
+          echo 'export PATH=$HOME/.gem/bin:$PATH' >> ~/.bashrc
           source ~/.bashrc
-          gem install jekyll bundler
+          gem install bundler jekyll
       - name: Build Site with Jekyll
         run: |
           bundle init
@@ -44,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
