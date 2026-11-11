@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robin Lab — what I can build for you</title>
+<meta name="description" content="Websites, fullstack products, AI features and chatbots. Walk the corridor, pick a wall.">
+<meta name="theme-color" content="#fbf1df">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Robin Lab — what I can build for you">
+<meta property="og:description" content="Websites, fullstack products, AI features and chatbots. Walk the corridor, pick a wall.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body id="top">
+
+<canvas id="stage" aria-hidden="true"></canvas>
+
+<header class="hud hud--top">
+  <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true"></span>Robin&nbsp;Lab</a>
+  <nav class="links" aria-label="Elsewhere">
+    <a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github</a>
+    <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin</a>
+    <a href="mailto:robinchogiles@gmail.com">mail</a>
+  </nav>
+</header>
+
+<div class="hint" id="hint">
+  <span class="hint__box" aria-hidden="true"></span>
+  <span class="hint__text"><b>walk in</b> scroll to go down the corridor</span>
+</div>
+
+<button class="back" id="back" type="button" hidden>← back to the corridor</button>
+
+<div class="status" id="status" aria-live="polite">
+  <span id="status-no">01</span><span class="status__sep">/</span><span id="status-total">08</span>
+  <span class="status__name" id="status-name">about</span>
+</div>
+
+<nav class="rail" id="rail" aria-label="Jump to a wall"></nav>
+
+<!-- the walls. without js this is a plain readable list -->
+<main id="deck">
+
+  <article class="card card--paper card--about" data-side="left" data-name="about" data-accent="#c98aa4">
+    <img class="card__face" src="assets/avatar.svg" width="140" height="140" alt="Ink drawing of Robin">
+    <div class="card__stack">
+      <p class="card__kicker">01 — about</p>
+      <h2 class="card__title">Robin Giles</h2>
+      <p class="card__text">Web developer in Barcelona. I build small, fast, hand-made things: sites, products, AI features, chatbots.</p>
+      <p class="card__foot">taking new work</p>
+    </div>
+  </article>
+
+  <article class="card card--terra" data-side="right" data-name="websites" data-accent="#cf8a6a">
+    <p class="card__kicker">02 — web</p>
+    <h2 class="card__title">Websites</h2>
+    <p class="card__text">Landing pages, company sites, portfolios. Hand-built, fast, accessible — and yours to edit without calling me every week.</p>
+    <ul class="card__tags"><li>html</li><li>css</li><li>js</li></ul>
+    <p class="card__foot">design → deploy</p>
+  </article>
+
+  <article class="card card--cobalt" data-side="left" data-name="product" data-accent="#818ac6">
+    <p class="card__kicker">03 — fullstack</p>
+    <h2 class="card__title">Product</h2>
+    <p class="card__text">From database to interface: APIs, logins, payments, dashboards. I ship the whole thing — and I stay to fix it.</p>
+    <ul class="card__tags"><li>node</li><li>postgres</li><li>api</li></ul>
+    <p class="card__foot">front to back</p>
+  </article>
+
+  <article class="card card--lime" data-side="right" data-name="ai" data-accent="#93ac63">
+    <p class="card__kicker">04 — ai</p>
+    <h2 class="card__title">AI inside your product</h2>
+    <p class="card__text">Language models wired to your data and your flows: search, summaries, assistants, automations. Useful, not decorative.</p>
+    <ul class="card__tags"><li>llm</li><li>rag</li><li>agents</li></ul>
+    <p class="card__foot">your data, your rules</p>
+  </article>
+
+  <article class="card card--teal" data-side="left" data-name="chatbots" data-accent="#5f9c92">
+    <p class="card__kicker">05 — chatbots</p>
+    <h2 class="card__title">Chatbots</h2>
+    <p class="card__text">Assistants for web, WhatsApp or Telegram that know your business: your documents, your stock, your tone of voice.</p>
+    <ul class="card__tags"><li>whatsapp</li><li>telegram</li><li>web</li></ul>
+    <p class="card__foot">support · sales · booking</p>
+  </article>
+
+  <article class="card card--pink" data-side="right" data-name="motion" data-accent="#c98aa4">
+    <p class="card__kicker">06 — craft</p>
+    <h2 class="card__title">Interfaces &amp; motion</h2>
+    <p class="card__text">The part most people skip: typography, micro-interactions, little bits of 3D. Sites that feel like something instead of loading.</p>
+    <ul class="card__tags"><li>css</li><li>motion</li><li>3d</li></ul>
+    <p class="card__foot">this whole page is one canvas</p>
+  </article>
+
+  <article class="card card--amber" data-side="left" data-name="audit" data-accent="#c2a45e">
+    <p class="card__kicker">07 — audit</p>
+    <h2 class="card__title">Fix what is slow</h2>
+    <p class="card__text">Your site takes six seconds on a phone? I go through performance, accessibility and SEO, then hand you a list and a price.</p>
+    <ul class="card__tags"><li>performance</li><li>a11y</li><li>seo</li></ul>
+    <p class="card__foot">half a day, fixed price</p>
+  </article>
+
+  <article class="card card--paper card--say" data-side="right" data-center="1" data-name="hello" data-accent="#c2a45e">
+    <p class="card__kicker">08 — hello</p>
+    <h2 class="card__title">Tell me what you need to build</h2>
+    <p class="card__text">Web, fullstack, AI, chatbots. I answer every mail, and I say no when I am the wrong person for the job.</p>
+    <p class="card__links">
+      <a href="mailto:robinchogiles@gmail.com">mail ↗</a>
+      <a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github ↗</a>
+      <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin ↗</a>
+    </p>
+    <p class="card__foot">Barcelona · CET</p>
+  </article>
+
+</main>
+
+<div id="spacer" aria-hidden="true"></div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
