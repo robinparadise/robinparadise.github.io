@@ -34,10 +34,13 @@
   const CARD_W = 400;
   const CARD_H = 292;
 
-  const totalLen = cards.length * GAP + BEYOND;
-  const camEnd = (cards.length + 0.15) * GAP - 3.4;
+  const CARD_Z0 = 0.90;                       // first painting, in metres
+  const lastZ = (cards.length - 1 + CARD_Z0) * GAP;
+  const totalLen = lastZ + BEYOND + 2.6;
+  const camEnd = lastZ - 3.05;
   const STOP = 3.05;      // where a painting stops to show itself
-  const SPREAD = 1.75;    // how long it stays in front
+  const SPREAD = 1.55;    // how long it stays in front
+  const WALL_ANGLE = 62;  // how flat a painting sits against the wall
 
   const accents = cards.map((c) => c.dataset.accent || '#e4572e');
   const sides = cards.map((c) => (c.dataset.side === 'left' ? -1 : 1));
@@ -47,8 +50,9 @@
     ceil:   [0.15, 0.14, 0.20],
     wallHi: [0.29, 0.26, 0.28],
     wallLo: [0.21, 0.19, 0.20],
+    cove:   [0.24, 0.22, 0.24],
     rail:   [0.36, 0.27, 0.20],
-    base:   [0.14, 0.12, 0.10],
+    base:   [0.22, 0.18, 0.15],
     plankA: [0.34, 0.25, 0.19],
     plankB: [0.31, 0.23, 0.17],
     plankC: [0.29, 0.22, 0.16],
@@ -80,6 +84,7 @@
 
   /* ---- the scene ---- */
   const faces = [];        // { v:[[x,y,z]..], c:[r,g,b], lit:string, em:0..1, d:number }
+  const lights = [];       // { x,y,z,p } — every flame in the corridor
   const sprites = [];      // { x,y,z,r,c,a,sq,glyph }
   const dust = [];
 
@@ -96,14 +101,14 @@
 
     portrait = vh > vw * 1.15;
     W = portrait ? 1.38 : 1.78;
-    H = portrait ? 0.98 : 1.18;
+    H = portrait ? 0.80 : 1.18;
     CARD_X = portrait ? 0.64 : 1.10;
     CARD_M = portrait ? 2.0 : 1.80;
     RW = clamp(W * 0.40, 0.45, 0.78);
 
     f = portrait ? clamp(vw * 1.15, 260, 900) : clamp(Math.min(vh * 1.02, vw * 0.62), 250, 1000);
     cx = vw * 0.5;
-    cy = vh * (portrait ? 0.50 : 0.50);
+    cy = vh * (portrait ? 0.55 : 0.52);
 
     pxPerM = clamp(vh * 0.16, 95, 200);
     scrollRange = Math.max(1, camEnd * pxPerM);
@@ -129,16 +134,37 @@
     nx /= n; ny /= n; nz /= n;
     const d = Math.abs(nx * LIGHT[0] + ny * LIGHT[1] + nz * LIGHT[2]);
     const k = 0.74 + 0.32 * d;
-    return `rgb(${clamp(col[0] * k * 255, 0, 255) | 0},${clamp(col[1] * k * 255, 0, 255) | 0},${clamp(col[2] * k * 255, 0, 255) | 0})`;
+    return [col[0] * k * 255, col[1] * k * 255, col[2] * k * 255];
   }
 
   let PRIO = 0;
 
   function addPoly(v, col, em, alpha, prio) {
-    const lit = shade(col, v[0], v[1], v[2]);
-    let z = 0;
-    for (const p of v) z += p[2];
-    faces.push({ v, c: col, lit, em: em || 0, a: alpha || 0, p: prio === undefined ? PRIO : prio, z: z / v.length });
+    let z = 0, ax = 0, ay = 0;
+    for (const p of v) { z += p[2]; ax += p[0]; ay += p[1]; }
+    faces.push({
+      v, c: col, base: shade(col, v[0], v[1], v[2]), lit: '',
+      em: em || 0, a: alpha || 0, p: prio === undefined ? PRIO : prio,
+      z: z / v.length, mx: ax / v.length, my: ay / v.length
+    });
+  }
+
+  /* the lamps are the light: bake them into every surface once */
+  function bakeLight() {
+    for (const f of faces) {
+      if (f.em) continue;
+      let add = 0;
+      for (const L of lights) {
+        const dx = f.mx - L.x, dy = f.my - L.y, dz = f.z - L.z;
+        add += L.p / (1 + (dx * dx + dy * dy + dz * dz) * 2.6);
+      }
+      add = Math.min(add, 150);
+      const nz = 1 + Math.sin(f.z * 3.7 + f.mx * 5.1 + f.my * 2.3) * 0.025;
+      const r = clamp((f.base[0] + add) * nz, 0, 255) | 0;
+      const g = clamp((f.base[1] + add * 0.84) * nz, 0, 255) | 0;
+      const b = clamp((f.base[2] + add * 0.58) * nz, 0, 255) | 0;
+      f.lit = `rgb(${r},${g},${b})`;
+    }
   }
 
   /* axis aligned box: origin + size */
@@ -168,6 +194,7 @@
     addBox(lx - 0.15, by + 0.33, z - 0.15, 0.30, 0.035, 0.30, P.metal);
     addBox(lx - 0.17, by + 0.36, z - 0.17, 0.34, 0.06, 0.34, P.metal);
     addBox(lx - 0.025, by + 0.42, z - 0.025, 0.05, 0.05, 0.05, P.metal);
+    lights.push({ x: lx, y: by + 0.21, z, p: 44 });
     sprites.push({ x: lx, y: by + 0.21, z, r: 0.34, a: 0.40, c: [1, 0.80, 0.48] });
     sprites.push({ x: lx, y: H - 0.01, z, r: 0.90, a: 0.20, c: [1, 0.78, 0.46], sq: 0.32 });
   }
@@ -178,6 +205,7 @@
     addBox(Math.min(x, x - side * 0.16), y, z - 0.04, 0.16, 0.06, 0.08, P.metal);
     addBox(Math.min(x, x - side * 0.10) - 0.0, y - 0.035, z - 0.10, 0.10, 0.07, 0.20, P.metal);
     addBox(Math.min(x, x - side * 0.13), y + 0.02, z - 0.075, 0.13, 0.20, 0.15, P.glass, 1);
+    lights.push({ x: x - side * 0.26, y: y + 0.12, z, p: 22 });
     sprites.push({ x: x - side * 0.24, y: y + 0.12, z, r: 0.26, a: 0.34, c: [1, 0.84, 0.56] });
   }
 
@@ -204,50 +232,68 @@
   function buildScene() {
     faces.length = 0;
     sprites.length = 0;
+    lights.length = 0;
 
     const L = totalLen;
     const eye = 0.34 * H;
 
+    const SUB = 6;                    // slices per segment: soft light, no flat slabs
     for (let z0 = 0; z0 < L - 0.01; z0 += SEG) {
       const z1 = Math.min(L, z0 + SEG);
-      // ceiling + cornice
-      addPoly([[-W, -H, z0], [W, -H, z0], [W, -H, z1], [-W, -H, z1]], P.ceil);
-      // walls: plaster above, wainscot below
-      for (const sd of [-1, 1]) {
-        const x = sd * W;
-        addPoly([[x, -H, z0], [x, -H, z1], [x, eye, z1], [x, eye, z0]], P.wallHi);
-        addPoly([[x, eye, z0], [x, eye, z1], [x, H, z1], [x, H, z0]], P.wallLo);
-        addBox(x - (sd > 0 ? 0.055 : 0), -H, z0, 0.055, 0.10, z1 - z0, P.rail);
-        addBox(x - (sd > 0 ? 0.075 : 0), eye - 0.035, z0, 0.075, 0.07, z1 - z0, P.rail);
-        addBox(x - (sd > 0 ? 0.07 : 0), H - 0.11, z0, 0.07, 0.11, z1 - z0, P.base);
-      }
-      // the rail every painting hangs from
-      for (const sd of [-1, 1]) {
-        addBox(sd * (W - 0.03) - 0.02, -0.05, z0, 0.04, 0.035, z1 - z0, P.rail);
-      }
-      // a wooden rib across the ceiling
-      addBox(-W, -H, z0 - 0.08, 2 * W, 0.07, 0.16, P.rail);
-      addBox(-W, -H, z0 + (z1 - z0) * 0.5 - 0.06, 2 * W, 0.055, 0.12, P.rail);
-      // floor boards
-      let i = 0;
-      for (let x = -W; x < W - 0.02; x += 0.68, i++) {
-        const x2 = Math.min(W, x + 0.68);
-        addPoly([[x, H, z0], [x2, H, z0], [x2, H, z1], [x, H, z1]],
-          i % 3 === 0 ? P.plankA : i % 3 === 1 ? P.plankB : P.plankC);
-      }
-      // soft shadow where the floor meets the walls
-      for (const sd of [-1, 1]) {
-        addPoly([[sd * W, H - 0.002, z0], [sd * (W - 0.5), H - 0.002, z0],
-                 [sd * (W - 0.5), H - 0.002, z1], [sd * W, H - 0.002, z1]], P.base, 0, 0.14);
-      }
-      // the rug, slice by slice
-      if (z1 > 0.6 && z0 < L - 1.4) {
-        const a = Math.max(z0, 0.6), b = Math.min(z1, L - 1.4);
-        addPoly([[-RW, H - 0.004, a], [RW, H - 0.004, a], [RW, H - 0.004, b], [-RW, H - 0.004, b]], P.rug, 0, 0, 2);
-        for (const e of [-RW, RW - 0.24]) {
-          addPoly([[e, H - 0.007, a], [e + 0.24, H - 0.007, a], [e + 0.24, H - 0.007, b], [e, H - 0.007, b]], P.rugHi, 0, 0, 2);
+      const dz = (z1 - z0) / SUB;
+
+      for (let k = 0; k < SUB; k++) {
+        const a = z0 + k * dz, b = a + dz;
+
+        // ceiling, with a chamfered cove on both sides
+        addPoly([[-W + 0.30, -H + 0.16, a], [W - 0.30, -H + 0.16, a],
+                 [W - 0.30, -H + 0.16, b], [-W + 0.30, -H + 0.16, b]], P.ceil);
+        for (const sd of [-1, 1]) {
+          addPoly([[sd * W, -H, a], [sd * (W - 0.30), -H + 0.16, a],
+                   [sd * (W - 0.30), -H + 0.16, b], [sd * W, -H, b]], P.cove);
+        }
+
+        // walls: plaster above, wainscot below
+        for (const sd of [-1, 1]) {
+          const x = sd * W;
+          addPoly([[x, -H, a], [x, -H, b], [x, eye, b], [x, eye, a]], P.wallHi);
+          addPoly([[x, eye, a], [x, eye, b], [x, H, b], [x, H, a]], P.wallLo);
+        }
+
+        // floor boards
+        let i = 0;
+        for (let x = -W; x < W - 0.02; x += 0.68, i++) {
+          const x2 = Math.min(W, x + 0.68);
+          addPoly([[x, H, a], [x2, H, a], [x2, H, b], [x, H, b]],
+            i % 3 === 0 ? P.plankA : i % 3 === 1 ? P.plankB : P.plankC);
+        }
+
+        // shadow where the floor meets the walls
+        for (const sd of [-1, 1]) {
+          addPoly([[sd * W, H - 0.002, a], [sd * (W - 0.34), H - 0.002, a],
+                   [sd * (W - 0.34), H - 0.002, b], [sd * W, H - 0.002, b]], P.base, 0, 0.09);
+        }
+
+        // the rug, slice by slice
+        if (b > 0.6 && a < L - 1.4) {
+          const ra = Math.max(a, 0.6), rb = Math.min(b, L - 1.4);
+          addPoly([[-RW, H - 0.004, ra], [RW, H - 0.004, ra], [RW, H - 0.004, rb], [-RW, H - 0.004, rb]], P.rug, 0, 0, 2);
+          for (const e of [-RW, RW - 0.24]) {
+            addPoly([[e, H - 0.007, ra], [e + 0.24, H - 0.007, ra], [e + 0.24, H - 0.007, rb], [e, H - 0.007, rb]], P.rugHi, 0, 0, 2);
+          }
         }
       }
+
+      // rails, ribs and mouldings, one set per segment
+      for (const sd of [-1, 1]) {
+        const x = sd * W;
+        addBox(x - (sd > 0 ? 0.055 : 0), -H + 0.14, z0, 0.055, 0.09, z1 - z0, P.rail);
+        addBox(x - (sd > 0 ? 0.075 : 0), eye - 0.035, z0, 0.075, 0.07, z1 - z0, P.rail);
+        addBox(x - (sd > 0 ? 0.07 : 0), H - 0.11, z0, 0.07, 0.11, z1 - z0, P.base);
+        addBox(x - (sd > 0 ? 0.03 : 0), -0.06, z0, 0.03, 0.035, z1 - z0, P.rail);
+      }
+      addBox(-W + 0.3, -H + 0.16, z0 - 0.08, 2 * (W - 0.3), 0.07, 0.16, P.rail);
+      addBox(-W + 0.3, -H + 0.16, z0 + (z1 - z0) * 0.5 - 0.06, 2 * (W - 0.3), 0.055, 0.12, P.rail);
     }
 
     // lanterns between the paintings
@@ -277,6 +323,8 @@
     for (let k = 0; k < cards.length - 1; k++) {
       addPlant(k % 2 ? 1 : -1, 1.6 + k * GAP + 1.3);
     }
+
+    bakeLight();
 
     // dust
     dust.length = 0;
@@ -484,7 +532,7 @@
 
     for (let i = 0; i < cards.length; i++) {
       const el = cards[i];
-      const dist = (i + 1.15) * GAP - camZ;
+      const dist = (i + CARD_Z0) * GAP - camZ;
       const s = f / Math.max(NEAR, dist);
 
       /* pose 1: hanging on the wall */
@@ -502,6 +550,12 @@
       k = lerp(k, frontK, t);
       zIndex = Math.round(400 - dist * 4 + t * 600);
 
+      /* hinged on the wall: flat against it while you walk past,
+         swings round to face you when it is its turn */
+      const wf = clamp(1 - Math.abs(dist - STOP) / 1.05, 0, 1);
+      const tf = wf * wf * (3 - 2 * wf);
+      const ang = -sides[i] * WALL_ANGLE * (1 - tf);
+
       if (dist < 0.95) op = 0;
       else if (dist < 1.45) op = (dist - 0.95) / 0.5;
       const cover = (CARD_M * s) / vw;
@@ -511,10 +565,12 @@
 
       if (focusI > -1 && i !== focusI) op *= 1 - 0.86 * focusT;
 
+      let a = ang;
       if (i === focusI) {
         x = lerp(x, vw / 2, tFocus);
         y = lerp(y, vh / 2 - 6, tFocus);
         k = lerp(k, focusK, tFocus);
+        a = lerp(ang, 0, tFocus);
         op = 1;
         zIndex = 900;
       }
@@ -527,7 +583,8 @@
       el.style.opacity = op.toFixed(3);
       el.style.zIndex = zIndex;
       el.style.transform =
-        `translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${k.toFixed(4)})`;
+        `translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`
+        + ` perspective(${Math.round(vw * 1.6)}px) rotateY(${a.toFixed(2)}deg) scale(${k.toFixed(4)})`;
       el.style.pointerEvents = (focusI === -1 || focusI === i) && op > 0.25 ? 'auto' : 'none';
       el.style.cursor = t > 0.3 || dist < 6 || focusI === i ? 'pointer' : 'default';
     }
@@ -554,7 +611,7 @@
 
   function walkTo(i) {
     unfocus();
-    const target = clamp((i + 1.15) * GAP - 3.0, 0, camEnd);
+    const target = clamp((i + CARD_Z0) * GAP - STOP, 0, camEnd);
     scrollTo({ top: (target / camEnd) * scrollAmount(), behavior: reduced ? 'auto' : 'smooth' });
   }
 
@@ -680,8 +737,8 @@
 
       let best = 0, bestD = Infinity;
       for (let i = 0; i < cards.length; i++) {
-        const d = (i + 1.15) * GAP - camZ;
-        const score = Math.abs(d - 3.1);
+        const d = (i + CARD_Z0) * GAP - camZ;
+        const score = Math.abs(d - STOP);
         if (score < bestD) { bestD = score; best = i; }
       }
       const shown = focusI > -1 ? focusI : best;
@@ -704,7 +761,7 @@
   camZ = clamp(scrollY / scrollAmount(), 0, 1) * camEnd;
   const startAt = indexFromHash();
   if (startAt > -1) {
-    camZ = clamp((startAt + 1.15) * GAP - 3.0, 0, camEnd);
+    camZ = clamp((startAt + CARD_Z0) * GAP - STOP, 0, camEnd);
     scrollTo({ top: (camZ / camEnd) * scrollAmount(), behavior: 'auto' });
   }
   requestAnimationFrame(tick);
