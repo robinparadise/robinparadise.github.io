@@ -9,6 +9,10 @@
   --ink:    #241a12;
   --ink-70: rgba(36,26,18,.70);
   --ink-45: rgba(36,26,18,.45);
+  --light:      #f6f1e6;
+  --light-70:   rgba(246,241,230,.72);
+  --light-45:   rgba(246,241,230,.48);
+  --light-20:   rgba(246,241,230,.22);
   --ink-20: rgba(36,26,18,.20);
   --ink-10: rgba(36,26,18,.10);
 
@@ -64,6 +68,8 @@ body::after{
 /* ---------------- cards on the walls ---------------- */
 
 .js .card{
+  will-change:transform, opacity;
+  backface-visibility:hidden;
   position:fixed;
   left:0;
   top:0;
@@ -260,12 +266,14 @@ body::after{
   font-weight:600;
   letter-spacing:.2em;
   pointer-events:auto;
+  color:var(--light);
+  text-shadow:0 1px 10px rgba(0,0,0,.55);
 }
 
 .brand__mark{
   width:11px;
   height:11px;
-  border:1.5px solid var(--ink);
+  border:1.5px solid var(--light);
   background:var(--terra);
   box-shadow:3px 3px 0 var(--amber);
 }
@@ -278,15 +286,16 @@ body::after{
 
 .links a{
   text-decoration:none;
-  color:var(--ink-70);
+  color:var(--light-70);
   border-bottom:1.5px solid transparent;
   padding-bottom:2px;
+  text-shadow:0 1px 10px rgba(0,0,0,.55);
 }
 
 .links a:hover,
 .links a:focus-visible{
-  color:var(--ink);
-  border-color:var(--terra);
+  color:var(--light);
+  border-color:var(--amber);
 }
 
 .hint{
@@ -377,10 +386,11 @@ body.is-focus .hint{
   font-size:11px;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--ink-45);
+  color:var(--light-45);
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
 }
 
-.status__name{color:var(--ink);margin-left:.5em}
+.status__name{color:var(--light);margin-left:.5em}
 .status__sep{opacity:.5}
 
 /* rail of walls */
@@ -404,7 +414,7 @@ body.is-focus .hint{
   padding:2px 0;
   border:0;
   background:none;
-  color:var(--ink-45);
+  color:var(--light-45);
   font-family:var(--mono);
   font-size:9.5px;
   letter-spacing:.16em;
@@ -421,14 +431,14 @@ body.is-focus .hint{
 .rail__dot{
   width:9px;
   height:9px;
-  border:1.5px solid var(--ink);
+  border:1.5px solid var(--light-70);
   border-radius:2px;
   background:var(--dot, var(--paper));
   transition:transform .25s ease, box-shadow .25s ease;
 }
 
 .rail__btn:hover,
-.rail__btn:focus-visible{color:var(--ink)}
+.rail__btn:focus-visible{color:var(--light)}
 
 .rail__btn:hover .rail__label,
 .rail__btn:focus-visible .rail__label,
@@ -439,7 +449,7 @@ body.is-focus .hint{
 
 .rail__btn.is-active .rail__dot{
   transform:rotate(45deg) scale(1.15);
-  box-shadow:0 0 0 3px rgba(36,26,18,.1);
+  box-shadow:0 0 0 3px rgba(246,241,230,.16);
 }
 
 /* ---------------- scroll space ---------------- */

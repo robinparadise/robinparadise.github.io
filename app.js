@@ -36,29 +36,31 @@
 
   const totalLen = cards.length * GAP + BEYOND;
   const camEnd = (cards.length + 0.15) * GAP - 3.4;
+  const STOP = 3.05;      // where a painting stops to show itself
+  const SPREAD = 1.75;    // how long it stays in front
 
   const accents = cards.map((c) => c.dataset.accent || '#e4572e');
   const sides = cards.map((c) => (c.dataset.side === 'left' ? -1 : 1));
 
   /* ---- palette ---- */
   const P = {
-    ceil:   [0.83, 0.81, 0.88],
-    wallHi: [0.98, 0.95, 0.89],
-    wallLo: [0.87, 0.81, 0.73],
-    rail:   [0.56, 0.43, 0.33],
-    base:   [0.44, 0.33, 0.25],
-    plankA: [0.83, 0.69, 0.53],
-    plankB: [0.81, 0.67, 0.52],
-    plankC: [0.79, 0.65, 0.50],
-    rug:    [0.42, 0.54, 0.54],
-    rugHi:  [0.87, 0.83, 0.72],
-    wood:   [0.43, 0.30, 0.22],
-    metal:  [0.34, 0.29, 0.27],
+    ceil:   [0.15, 0.14, 0.20],
+    wallHi: [0.29, 0.26, 0.28],
+    wallLo: [0.21, 0.19, 0.20],
+    rail:   [0.36, 0.27, 0.20],
+    base:   [0.14, 0.12, 0.10],
+    plankA: [0.34, 0.25, 0.19],
+    plankB: [0.31, 0.23, 0.17],
+    plankC: [0.29, 0.22, 0.16],
+    rug:    [0.11, 0.22, 0.24],
+    rugHi:  [0.60, 0.53, 0.40],
+    wood:   [0.30, 0.21, 0.15],
+    metal:  [0.22, 0.19, 0.19],
     glass:  [1.00, 0.88, 0.60],
-    pot:    [0.70, 0.48, 0.38],
-    leafA:  [0.37, 0.56, 0.41],
-    leafB:  [0.50, 0.69, 0.52],
-    fog:    [0.84, 0.82, 0.91]
+    pot:    [0.46, 0.31, 0.25],
+    leafA:  [0.22, 0.35, 0.25],
+    leafB:  [0.29, 0.44, 0.30],
+    fog:    [0.12, 0.11, 0.17]
   };
   const LIGHT = (() => {
     const v = [0.34, -0.90, -0.27];
@@ -70,6 +72,7 @@
   let vw = 0, vh = 0, dpr = 1, f = 800, cx = 0, cy = 0;
   let pxPerM = 120, scrollRange = 1;
   let parX = 0, parY = 0, parXT = 0, parYT = 0;
+  let vigGrad = null;
   let portrait = false;
 
   /* ---- motion state ---- */
@@ -107,6 +110,7 @@
     spacer.style.height = Math.round(scrollRange + vh) + 'px';
 
     buildScene();
+    vigGrad = null;
   }
 
   const proj = (x, y, zr) => {
@@ -128,15 +132,19 @@
     return `rgb(${clamp(col[0] * k * 255, 0, 255) | 0},${clamp(col[1] * k * 255, 0, 255) | 0},${clamp(col[2] * k * 255, 0, 255) | 0})`;
   }
 
-  function addPoly(v, col, em, alpha) {
+  let PRIO = 0;
+
+  function addPoly(v, col, em, alpha, prio) {
     const lit = shade(col, v[0], v[1], v[2]);
     let z = 0;
     for (const p of v) z += p[2];
-    faces.push({ v, c: col, lit, em: em || 0, a: alpha || 0, z: z / v.length });
+    faces.push({ v, c: col, lit, em: em || 0, a: alpha || 0, p: prio === undefined ? PRIO : prio, z: z / v.length });
   }
 
   /* axis aligned box: origin + size */
   function addBox(x, y, z, w, h, d, col, em) {
+    const keep = PRIO;
+    PRIO = 1;
     const x2 = x + w, y2 = y + h, z2 = z + d;
     addPoly([[x, y, z], [x2, y, z], [x2, y2, z], [x, y2, z]], col, em);
     addPoly([[x, y, z2], [x2, y, z2], [x2, y2, z2], [x, y2, z2]], col, em);
@@ -144,6 +152,7 @@
     addPoly([[x, y2, z], [x2, y2, z], [x2, y2, z2], [x, y2, z2]], col, em);
     addPoly([[x, y, z], [x, y2, z], [x, y2, z2], [x, y, z2]], col, em);
     addPoly([[x2, y, z], [x2, y2, z], [x2, y2, z2], [x2, y, z2]], col, em);
+    PRIO = keep;
   }
 
   function addLamp(z, side) {
@@ -159,8 +168,8 @@
     addBox(lx - 0.15, by + 0.33, z - 0.15, 0.30, 0.035, 0.30, P.metal);
     addBox(lx - 0.17, by + 0.36, z - 0.17, 0.34, 0.06, 0.34, P.metal);
     addBox(lx - 0.025, by + 0.42, z - 0.025, 0.05, 0.05, 0.05, P.metal);
-    sprites.push({ x: lx, y: by + 0.21, z, r: 0.30, a: 0.26, c: [1, 0.82, 0.52] });
-    sprites.push({ x: lx, y: H - 0.01, z, r: 0.80, a: 0.11, c: [1, 0.80, 0.50], sq: 0.30 });
+    sprites.push({ x: lx, y: by + 0.21, z, r: 0.34, a: 0.40, c: [1, 0.80, 0.48] });
+    sprites.push({ x: lx, y: H - 0.01, z, r: 0.90, a: 0.20, c: [1, 0.78, 0.46], sq: 0.32 });
   }
 
   function addSconce(side, z) {
@@ -169,7 +178,7 @@
     addBox(Math.min(x, x - side * 0.16), y, z - 0.04, 0.16, 0.06, 0.08, P.metal);
     addBox(Math.min(x, x - side * 0.10) - 0.0, y - 0.035, z - 0.10, 0.10, 0.07, 0.20, P.metal);
     addBox(Math.min(x, x - side * 0.13), y + 0.02, z - 0.075, 0.13, 0.20, 0.15, P.glass, 1);
-    sprites.push({ x: x - side * 0.24, y: y + 0.12, z, r: 0.24, a: 0.22, c: [1, 0.84, 0.56] });
+    sprites.push({ x: x - side * 0.24, y: y + 0.12, z, r: 0.26, a: 0.34, c: [1, 0.84, 0.56] });
   }
 
   function addPlant(side, z) {
@@ -234,9 +243,9 @@
       // the rug, slice by slice
       if (z1 > 0.6 && z0 < L - 1.4) {
         const a = Math.max(z0, 0.6), b = Math.min(z1, L - 1.4);
-        addPoly([[-RW, H - 0.004, a], [RW, H - 0.004, a], [RW, H - 0.004, b], [-RW, H - 0.004, b]], P.rug);
+        addPoly([[-RW, H - 0.004, a], [RW, H - 0.004, a], [RW, H - 0.004, b], [-RW, H - 0.004, b]], P.rug, 0, 0, 2);
         for (const e of [-RW, RW - 0.24]) {
-          addPoly([[e, H - 0.007, a], [e + 0.24, H - 0.007, a], [e + 0.24, H - 0.007, b], [e, H - 0.007, b]], P.rugHi);
+          addPoly([[e, H - 0.007, a], [e + 0.24, H - 0.007, a], [e + 0.24, H - 0.007, b], [e, H - 0.007, b]], P.rugHi, 0, 0, 2);
         }
       }
     }
@@ -377,9 +386,9 @@
         dsum += p[2] - cam;
       }
       const dist = dsum / poly.length;
-      list.push({ pts, dist, fa });
+      list.push({ pts, dist, fa, d: Math.round(dist * 40) });
     }
-    list.sort((a, b) => b.dist - a.dist);
+    list.sort((a, b) => (b.d - a.d) || (a.fa.p - b.fa.p));
 
     const fogNear = 1.2, fogFar = L * 0.72;
     for (const it of list) {
@@ -469,32 +478,43 @@
   /* ----------------------------------------------------------- cards */
 
   function drawCards() {
-    const t = focusT * focusT * (3 - 2 * focusT);
+    const tFocus = focusT * focusT * (3 - 2 * focusT);
     const focusK = clamp(Math.min(vw * 0.82, 640) / CARD_W, 0.6, 1.7);
+    const frontK = clamp(Math.min(vw * 0.56, vh * 0.62) / CARD_W, 0.46, 1.35);
 
     for (let i = 0; i < cards.length; i++) {
       const el = cards[i];
-      const z = -(i + 1.15) * GAP + camZ;
-      const dist = -z;
+      const dist = (i + 1.15) * GAP - camZ;
       const s = f / Math.max(NEAR, dist);
-      let x = cx + (el.dataset.center ? 0 : sides[i] * CARD_X * s);
+
+      /* pose 1: hanging on the wall */
+      let x = cx + sides[i] * CARD_X * s;
       let y = cy - 0.02 * s;
       let k = (CARD_M * s) / CARD_W;
       let op = 1;
       let zIndex = Math.round(400 - dist * 4);
 
+      /* pose 2: taking its turn in the middle of the corridor */
+      const w = clamp(1 - Math.abs(dist - STOP) / SPREAD, 0, 1);
+      const t = w * w * (3 - 2 * w);
+      x = lerp(x, cx, t);
+      y = lerp(y, cy - vh * 0.03, t);
+      k = lerp(k, frontK, t);
+      zIndex = Math.round(400 - dist * 4 + t * 600);
+
       if (dist < 0.95) op = 0;
-      else if (dist < 1.4) op = (dist - 0.95) / 0.45;
+      else if (dist < 1.45) op = (dist - 0.95) / 0.5;
       const cover = (CARD_M * s) / vw;
       if (cover > 0.85) op *= clamp((1.15 - cover) / 0.3, 0, 1);
       if (dist > 20) op *= clamp(1 - (dist - 20) / 6, 0, 1);
+      op = Math.max(op, t);
 
       if (focusI > -1 && i !== focusI) op *= 1 - 0.86 * focusT;
 
       if (i === focusI) {
-        x = lerp(x, vw / 2, t);
-        y = lerp(y, vh / 2 - 6, t);
-        k = lerp(k, focusK, t);
+        x = lerp(x, vw / 2, tFocus);
+        y = lerp(y, vh / 2 - 6, tFocus);
+        k = lerp(k, focusK, tFocus);
         op = 1;
         zIndex = 900;
       }
@@ -509,7 +529,7 @@
       el.style.transform =
         `translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) scale(${k.toFixed(4)})`;
       el.style.pointerEvents = (focusI === -1 || focusI === i) && op > 0.25 ? 'auto' : 'none';
-      el.style.cursor = dist < 8 || focusI === i ? 'pointer' : 'default';
+      el.style.cursor = t > 0.3 || dist < 6 || focusI === i ? 'pointer' : 'default';
     }
   }
 
@@ -631,9 +651,9 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (!bgGrad || bgH !== vh) {
       bgGrad = ctx.createLinearGradient(0, 0, 0, vh);
-      bgGrad.addColorStop(0, '#c3bee0');
-      bgGrad.addColorStop(0.5, '#d9d2e6');
-      bgGrad.addColorStop(1, '#efdfcb');
+      bgGrad.addColorStop(0, '#0f0e16');
+      bgGrad.addColorStop(0.5, '#161320');
+      bgGrad.addColorStop(1, '#241a20');
       bgH = vh;
     }
     ctx.fillStyle = bgGrad;
@@ -641,6 +661,16 @@
 
     if (!document.hidden) {
       drawWorld(now);
+
+      if (!vigGrad) {
+        vigGrad = ctx.createRadialGradient(vw * 0.5, vh * 0.5, Math.min(vw, vh) * 0.18,
+          vw * 0.5, vh * 0.5, Math.max(vw, vh) * 0.78);
+        vigGrad.addColorStop(0, 'rgba(6,4,10,0)');
+        vigGrad.addColorStop(0.6, 'rgba(6,4,10,.32)');
+        vigGrad.addColorStop(1, 'rgba(4,3,8,.72)');
+      }
+      ctx.fillStyle = vigGrad;
+      ctx.fillRect(0, 0, vw, vh);
 
       if (focusT > 0.01) {
         ctx.fillStyle = `rgba(24,17,10,${(0.33 * focusT).toFixed(3)})`;
