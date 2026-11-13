@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — fuera del mapa</title>
+<meta name="theme-color" content="#06070a">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+:root{--ink:#06070a;--fg:#e9e7e1;--muted:#7b818b;--accent:#ff3b14;
+--mono:ui-monospace,"SF Mono",Menlo,monospace;--disp:"Helvetica Neue",Inter,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;
+background:var(--ink);color:var(--fg);font-family:var(--disp);
+background-image:repeating-linear-gradient(90deg,rgba(233,231,225,.13) 0 1px,transparent 1px 12.5vw)}
+header,footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+padding:14px clamp(18px,4vw,64px);border-bottom:1px solid rgba(233,231,225,.13);
+font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+footer{border:0;border-top:1px solid rgba(233,231,225,.13)}
+main{align-self:center;padding:0 clamp(18px,4vw,64px)}
+p.k{margin:0 0 18px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+h1{margin:0 0 28px;font-size:clamp(3rem,12vw,10rem);line-height:.86;letter-spacing:-.05em;font-weight:600;text-transform:lowercase}
+a{color:var(--fg);text-decoration:none;border-bottom:1px solid rgba(233,231,225,.25);
+padding-bottom:3px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+a:hover{color:var(--accent);border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header><span>Robin Giles</span><span>error 404</span></header>
+<main>
+  <p class="k">aquí no hay señal</p>
+  <h1>perdido el<br>pasillo.</h1>
+  <a href="/">volver al índice →</a>
+</main>
+<footer><span>web · producto · ia</span><span>madrid · cet</span></footer>
+</body>
+</html>

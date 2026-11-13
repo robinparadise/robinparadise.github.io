@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robin Giles — interfaces con peso</title>
+<meta name="description" content="Web, producto e IA hechos a mano en Madrid. Tres archivos, ninguna librería, ninguna plantilla.">
+<meta name="theme-color" content="#06070a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Robin Giles — interfaces con peso">
+<meta property="og:description" content="Web, producto e IA hechos a mano en Madrid.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#main">saltar al contenido</a>
+
+<header class="hud">
+  <p class="hud__cell hud__brand"><span class="mark" aria-hidden="true"></span>Robin Giles</p>
+  <p class="hud__cell hud__spec">web · producto · ia</p>
+  <p class="hud__cell hud__spec">madrid 40.41n 3.70w</p>
+  <p class="hud__cell hud__lang">
+    <a href="/localized/en/" data-lang="en">en</a>
+    <span aria-hidden="true">/</span>
+    <a href="/localized/es/" data-lang="es" aria-current="true">es</a>
+  </p>
+  <p class="hud__cell hud__tele" id="tele" aria-hidden="true">—</p>
+</header>
+
+<nav class="rail" id="rail" aria-label="Secciones"></nav>
+
+<main id="main">
+
+  <!-- 00 ─────────────────────────────────────────────── -->
+  <section class="panel panel--hero" id="s0" data-name="señal">
+    <p class="kicker"><span class="kicker__no">00</span> señal</p>
+    <h1 class="hero" id="hero">
+      <span class="hero__line">interfaces</span>
+      <span class="hero__line">con</span>
+      <span class="hero__line">peso.</span>
+    </h1>
+    <div class="hero__foot">
+      <p class="lede">Webs, productos, funciones de IA y chatbots — hechos a mano en Madrid. Estructura, peso, sentido del lugar. Nada en la pared que no hayas pedido.</p>
+      <ul class="facts" id="facts">
+        <li><b>3</b> archivos</li>
+        <li><b>0</b> dependencias</li>
+        <li><b id="f-kb">—</b> kb enviados</li>
+      </ul>
+    </div>
+    <p class="scrollhint" aria-hidden="true">desliza <i>↓</i></p>
+  </section>
+
+  <!-- 01 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s1" data-name="manifiesto">
+    <p class="kicker"><span class="kicker__no">01</span> manifiesto</p>
+    <div class="two">
+      <h2 class="statement">Casi todas las webs son <em>muebles</em>. Yo construyo habitaciones en las que se entra — con luz, distancia y un suelo que aguanta.</h2>
+      <div class="notes">
+        <p>Trabajo solo a propósito. Un par de manos desde el primer boceto hasta el despliegue, para que lo que se publica sea lo que acordamos.</p>
+        <p>Sin tiendas de plantillas, sin constructores de páginas, sin sistema de diseño para cuatro pantallas. HTML semántico, una hoja de estilos, un script — y el navegador hace el resto.</p>
+        <p>Si no abre en menos de un segundo en un móvil de un barrio malo, no está terminado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s2" data-name="capacidades">
+    <p class="kicker"><span class="kicker__no">02</span> capacidades</p>
+    <h2 class="panel__title">Qué construyo</h2>
+
+    <div class="rows">
+      <details class="row">
+        <summary>
+          <span class="row__no">01</span>
+          <span class="row__name">Webs</span>
+          <span class="row__tags">html · css · js</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Landings, webs de empresa, portfolios. Hechas a mano, rápidas, accesibles — y documentadas para que las edites sin llamarme cada semana.</p>
+          <p class="row__meta">diseño → despliegue · dos a cuatro semanas</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">02</span>
+          <span class="row__name">Producto</span>
+          <span class="row__tags">node · postgres · api</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>De la base de datos a la interfaz: APIs, accesos, pagos, paneles. Publico el conjunto y me quedo lo suficiente para arreglar lo que se rompe con usuarios de verdad.</p>
+          <p class="row__meta">de punta a punta · dueño del stack</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">03</span>
+          <span class="row__name">IA dentro de tu producto</span>
+          <span class="row__tags">llm · rag · agentes</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Modelos de lenguaje conectados a tus datos y a tus flujos: búsqueda, resúmenes, asistentes, automatizaciones. Herramientas útiles con techo de coste, no una demo pegada al menú.</p>
+          <p class="row__meta">tus datos, tus reglas</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">04</span>
+          <span class="row__name">Chatbots</span>
+          <span class="row__tags">whatsapp · telegram · web</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Asistentes que conocen tu negocio: tus documentos, tu stock, tu tono de voz. Responden, reservan y pasan los casos difíciles a una persona.</p>
+          <p class="row__meta">soporte · ventas · reservas</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">05</span>
+          <span class="row__name">Interfaces y movimiento</span>
+          <span class="row__tags">css · motion · 3d</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>La parte que casi todos se salta: tipografía, micro-interacciones, algo de profundidad. Esta página es un canvas, una hoja de estilos y un script.</p>
+          <p class="row__meta">la página en la que estás</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">06</span>
+          <span class="row__name">Arreglar lo que va lento</span>
+          <span class="row__tags">rendimiento · a11y · seo</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>¿Tu web tarda seis segundos en un móvil? Reviso rendimiento, accesibilidad y SEO, y te entrego una lista, un precio y el orden para hacerlo.</p>
+          <p class="row__meta">medio día · precio cerrado</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 03 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s3" data-name="método">
+    <p class="kicker"><span class="kicker__no">03</span> método</p>
+    <h2 class="panel__title">Cómo funciona</h2>
+    <ol class="steps">
+      <li>
+        <span class="steps__no">01</span>
+        <h3>Llamada</h3>
+        <p>Treinta minutos. Tú describes la cosa, yo te digo lo que cuesta de verdad y si soy la persona adecuada para hacerla.</p>
+      </li>
+      <li>
+        <span class="steps__no">02</span>
+        <h3>Boceto</h3>
+        <p>Una página estática en el navegador antes de que cuente una línea de código. Discutimos el boceto — ahí es barato y luego es caro.</p>
+      </li>
+      <li>
+        <span class="steps__no">03</span>
+        <h3>Construcción</h3>
+        <p>Contenido real, dispositivos reales, una versión por semana que abres en tu móvil. Sin documentos de estado que fingen ser avance.</p>
+      </li>
+      <li>
+        <span class="steps__no">04</span>
+        <h3>Salida</h3>
+        <p>Despliegue, entrega y un vídeo corto de cómo cambiar las cosas tú mismo. Dos semanas de arreglos por mi cuenta después del lanzamiento.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────────── -->
+  <section class="panel panel--contact" id="s4" data-name="contacto">
+    <p class="kicker"><span class="kicker__no">04</span> contacto</p>
+    <h2 class="mail-h">
+      <a class="mail" href="mailto:robinchogiles@gmail.com">dime qué construyo<i aria-hidden="true">↗</i></a>
+    </h2>
+
+    <div class="contact__grid">
+      <div>
+        <p class="label">correo</p>
+        <p class="val"><a href="mailto:robinchogiles@gmail.com">robinchogiles@gmail.com</a></p>
+      </div>
+      <div>
+        <p class="label">en otros sitios</p>
+        <p class="val"><a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github</a> <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin</a></p>
+      </div>
+      <div>
+        <p class="label">dónde</p>
+        <p class="val">Madrid · CET<br>abierto a proyectos</p>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>© <span id="year">2026</span> Robin Giles</span>
+      <span>hecho a mano · sin frameworks</span>
+      <button class="copy" id="copy" type="button">copiar mail</button>
+    </footer>
+  </section>
+
+</main>
+
+<p class="keys" aria-hidden="true">teclas <b>0–4</b> saltar · <b>c</b> copiar mail</p>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="bar"></div></div>
+<div class="boot" aria-hidden="true"></div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>

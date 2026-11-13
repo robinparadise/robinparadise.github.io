@@ -254,6 +254,35 @@
     el.textContent = bytes > 2000 ? Math.round(bytes / 1024) : '9';
   }
 
+  /* ──────────────────────── language switch ─────────────────────── */
+
+  const lang = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+  const store = (() => {
+    try { return window.sessionStorage; } catch { return null; }
+  })();
+
+  // After a switch: Firebase honours the override cookie and serves the right
+  // language at "/". A plain static host does not, so fall back to the folder.
+  const wanted = store?.getItem('lang-want');
+  if (wanted) {
+    store.removeItem('lang-want');
+    if (wanted !== lang && !location.pathname.includes('/localized/')) {
+      location.replace('/localized/' + wanted + '/');
+    }
+  }
+
+  document.querySelectorAll('[data-lang]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const next = a.dataset.lang;
+      if (!next || next === lang) return;
+      e.preventDefault();
+      document.cookie =
+        'firebase-language-override=' + next + ',en; path=/; max-age=31536000; samesite=lax';
+      store?.setItem('lang-want', next);
+      location.href = '/';
+    });
+  });
+
   /* ────────────────────── keyboard + clipboard ──────────────────── */
 
   const mail = 'robinchogiles@gmail.com';
