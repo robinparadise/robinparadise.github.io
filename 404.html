@@ -3,22 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dead end — Robin Lab</title>
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<title>404 — off the grid</title>
+<meta name="theme-color" content="#06070a">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <style>
-  :root{--paper:#e9e5db;--ink:#14120e;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
-  html,body{height:100%;margin:0}
-  body{background:var(--paper);color:var(--ink);display:grid;place-content:center;text-align:center;font-family:var(--mono);padding:32px}
-  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.55;margin:0 0 1.2em}
-  h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,11vw,96px);margin:0;line-height:.95;color:transparent;-webkit-text-stroke:1.6px var(--ink)}
-  p{margin:1.6em 0 0;font-size:12px;letter-spacing:.1em}
-  a{color:inherit;border-bottom:1px solid rgba(20,18,14,.35);text-decoration:none}
-  a:hover{border-color:var(--ink)}
+:root{--ink:#06070a;--fg:#e9e7e1;--muted:#7b818b;--accent:#ff3b14;
+--mono:ui-monospace,"SF Mono",Menlo,monospace;--disp:"Helvetica Neue",Inter,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;
+background:var(--ink);color:var(--fg);font-family:var(--disp);
+background-image:repeating-linear-gradient(90deg,rgba(233,231,225,.13) 0 1px,transparent 1px 12.5vw)}
+header,footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+padding:14px clamp(18px,4vw,64px);border-bottom:1px solid rgba(233,231,225,.13);
+font:10px/1.4 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+footer{border:0;border-top:1px solid rgba(233,231,225,.13)}
+main{align-self:center;padding:0 clamp(18px,4vw,64px)}
+p.k{margin:0 0 18px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+h1{margin:0 0 28px;font-size:clamp(3rem,12vw,10rem);line-height:.86;letter-spacing:-.05em;font-weight:600;text-transform:lowercase}
+a{color:var(--fg);text-decoration:none;border-bottom:1px solid rgba(233,231,225,.25);
+padding-bottom:3px;font:10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+a:hover{color:var(--accent);border-color:var(--accent)}
 </style>
 </head>
 <body>
-  <p class="kicker">404 — wrong corridor</p>
-  <h1>Dead end</h1>
-  <p><a href="/">← walk back to the entrance</a></p>
+<header><span>Robin Giles</span><span>error 404</span></header>
+<main>
+  <p class="k">no signal here</p>
+  <h1>lost the<br>corridor.</h1>
+  <a href="/">back to the index →</a>
+</main>
+<footer><span>web · product · ai</span><span>barcelona · cet</span></footer>
 </body>
 </html>

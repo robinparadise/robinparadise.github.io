@@ -3,119 +3,216 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Robin Lab — what I can build for you</title>
-<meta name="description" content="Websites, fullstack products, AI features and chatbots. Walk the corridor, pick a wall.">
-<meta name="theme-color" content="#fbf1df">
+<title>Robin Giles — interfaces with weight</title>
+<meta name="description" content="Web, product and AI work made by hand in Barcelona. Three files, no libraries, no templates.">
+<meta name="theme-color" content="#06070a">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Robin Lab — what I can build for you">
-<meta property="og:description" content="Websites, fullstack products, AI features and chatbots. Walk the corridor, pick a wall.">
+<meta property="og:title" content="Robin Giles — interfaces with weight">
+<meta property="og:description" content="Web, product and AI work made by hand in Barcelona.">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');</script>
 </head>
-<body id="top">
+<body>
 
-<canvas id="stage" aria-hidden="true"></canvas>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
 
-<header class="hud hud--top">
-  <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true"></span>Robin&nbsp;Lab</a>
-  <nav class="links" aria-label="Elsewhere">
-    <a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github</a>
-    <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin</a>
-    <a href="mailto:robinchogiles@gmail.com">mail</a>
-  </nav>
+<a class="skip" href="#main">skip to content</a>
+
+<header class="hud">
+  <p class="hud__cell hud__brand"><span class="mark" aria-hidden="true"></span>Robin Giles</p>
+  <p class="hud__cell hud__spec">web · product · ai</p>
+  <p class="hud__cell hud__spec">barcelona 41.38n 2.17e</p>
+  <p class="hud__cell hud__tele" id="tele" aria-hidden="true">—</p>
 </header>
 
-<div class="hint" id="hint">
-  <span class="hint__box" aria-hidden="true"></span>
-  <span class="hint__text"><b>walk in</b> scroll to go down the corridor</span>
-</div>
+<nav class="rail" id="rail" aria-label="Sections"></nav>
 
-<button class="back" id="back" type="button" hidden>← back to the corridor</button>
+<main id="main">
 
-<div class="status" id="status" aria-live="polite">
-  <span id="status-no">01</span><span class="status__sep">/</span><span id="status-total">08</span>
-  <span class="status__name" id="status-name">about</span>
-</div>
-
-<nav class="rail" id="rail" aria-label="Jump to a wall"></nav>
-
-<!-- the walls. without js this is a plain readable list -->
-<main id="deck">
-
-  <article class="card card--paper card--about" data-side="left" data-name="about" data-accent="#c98aa4">
-    <img class="card__face" src="assets/avatar.svg" width="140" height="140" alt="Ink drawing of Robin">
-    <div class="card__stack">
-      <p class="card__kicker">01 — about</p>
-      <h2 class="card__title">Robin Giles</h2>
-      <p class="card__text">Web developer in Barcelona. I build small, fast, hand-made things: sites, products, AI features, chatbots.</p>
-      <p class="card__foot">taking new work</p>
+  <!-- 00 ─────────────────────────────────────────────── -->
+  <section class="panel panel--hero" id="s0" data-name="signal">
+    <p class="kicker"><span class="kicker__no">00</span> signal</p>
+    <h1 class="hero" id="hero">
+      <span class="hero__line">interfaces</span>
+      <span class="hero__line">with</span>
+      <span class="hero__line">weight.</span>
+    </h1>
+    <div class="hero__foot">
+      <p class="lede">Sites, products, AI features and chatbots — built by hand in Barcelona. Structure, weight, a sense of place. Nothing on the wall you did not ask for.</p>
+      <ul class="facts" id="facts">
+        <li><b>3</b> files</li>
+        <li><b>0</b> dependencies</li>
+        <li><b id="f-kb">—</b> kb shipped</li>
+      </ul>
     </div>
-  </article>
+    <p class="scrollhint" aria-hidden="true">scroll <i>↓</i></p>
+  </section>
 
-  <article class="card card--terra" data-side="right" data-name="websites" data-accent="#cf8a6a">
-    <p class="card__kicker">02 — web</p>
-    <h2 class="card__title">Websites</h2>
-    <p class="card__text">Landing pages, company sites, portfolios. Hand-built, fast, accessible — and yours to edit without calling me every week.</p>
-    <ul class="card__tags"><li>html</li><li>css</li><li>js</li></ul>
-    <p class="card__foot">design → deploy</p>
-  </article>
+  <!-- 01 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s1" data-name="manifesto">
+    <p class="kicker"><span class="kicker__no">01</span> manifesto</p>
+    <div class="two">
+      <h2 class="statement">Most sites are <em>furniture</em>. I build rooms you walk into — with light, distance and a floor that holds.</h2>
+      <div class="notes">
+        <p>I work alone on purpose. One pair of hands from the first sketch to the deploy, so the thing that ships is the thing we agreed on.</p>
+        <p>No template shops, no page builders, no design system for four screens. Semantic HTML, one stylesheet, one script — and the browser does the rest.</p>
+        <p>If it does not open in under a second on a phone in a bad neighbourhood, it is not finished.</p>
+      </div>
+    </div>
+  </section>
 
-  <article class="card card--cobalt" data-side="left" data-name="product" data-accent="#818ac6">
-    <p class="card__kicker">03 — fullstack</p>
-    <h2 class="card__title">Product</h2>
-    <p class="card__text">From database to interface: APIs, logins, payments, dashboards. I ship the whole thing — and I stay to fix it.</p>
-    <ul class="card__tags"><li>node</li><li>postgres</li><li>api</li></ul>
-    <p class="card__foot">front to back</p>
-  </article>
+  <!-- 02 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s2" data-name="capabilities">
+    <p class="kicker"><span class="kicker__no">02</span> capabilities</p>
+    <h2 class="panel__title">What I build</h2>
 
-  <article class="card card--lime" data-side="right" data-name="ai" data-accent="#93ac63">
-    <p class="card__kicker">04 — ai</p>
-    <h2 class="card__title">AI inside your product</h2>
-    <p class="card__text">Language models wired to your data and your flows: search, summaries, assistants, automations. Useful, not decorative.</p>
-    <ul class="card__tags"><li>llm</li><li>rag</li><li>agents</li></ul>
-    <p class="card__foot">your data, your rules</p>
-  </article>
+    <div class="rows">
+      <details class="row">
+        <summary>
+          <span class="row__no">01</span>
+          <span class="row__name">Websites</span>
+          <span class="row__tags">html · css · js</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Landing pages, company sites, portfolios. Hand-built, fast, accessible — and documented so you can edit them without calling me every week.</p>
+          <p class="row__meta">design → deploy · two to four weeks</p>
+        </div>
+      </details>
 
-  <article class="card card--teal" data-side="left" data-name="chatbots" data-accent="#5f9c92">
-    <p class="card__kicker">05 — chatbots</p>
-    <h2 class="card__title">Chatbots</h2>
-    <p class="card__text">Assistants for web, WhatsApp or Telegram that know your business: your documents, your stock, your tone of voice.</p>
-    <ul class="card__tags"><li>whatsapp</li><li>telegram</li><li>web</li></ul>
-    <p class="card__foot">support · sales · booking</p>
-  </article>
+      <details class="row">
+        <summary>
+          <span class="row__no">02</span>
+          <span class="row__name">Product</span>
+          <span class="row__tags">node · postgres · api</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>From the database to the interface: APIs, logins, payments, dashboards. I ship the whole thing, then stay long enough to fix what breaks at real scale.</p>
+          <p class="row__meta">front to back · own the stack</p>
+        </div>
+      </details>
 
-  <article class="card card--pink" data-side="right" data-name="motion" data-accent="#c98aa4">
-    <p class="card__kicker">06 — craft</p>
-    <h2 class="card__title">Interfaces &amp; motion</h2>
-    <p class="card__text">The part most people skip: typography, micro-interactions, little bits of 3D. Sites that feel like something instead of loading.</p>
-    <ul class="card__tags"><li>css</li><li>motion</li><li>3d</li></ul>
-    <p class="card__foot">this whole page is one canvas</p>
-  </article>
+      <details class="row">
+        <summary>
+          <span class="row__no">03</span>
+          <span class="row__name">AI inside your product</span>
+          <span class="row__tags">llm · rag · agents</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Language models wired to your data and your flows: search, summaries, assistants, automations. Useful tools with a cost ceiling, not a demo glued to the menu.</p>
+          <p class="row__meta">your data, your rules</p>
+        </div>
+      </details>
 
-  <article class="card card--amber" data-side="left" data-name="audit" data-accent="#c2a45e">
-    <p class="card__kicker">07 — audit</p>
-    <h2 class="card__title">Fix what is slow</h2>
-    <p class="card__text">Your site takes six seconds on a phone? I go through performance, accessibility and SEO, then hand you a list and a price.</p>
-    <ul class="card__tags"><li>performance</li><li>a11y</li><li>seo</li></ul>
-    <p class="card__foot">half a day, fixed price</p>
-  </article>
+      <details class="row">
+        <summary>
+          <span class="row__no">04</span>
+          <span class="row__name">Chatbots</span>
+          <span class="row__tags">whatsapp · telegram · web</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Assistants that know your business: your documents, your stock, your tone of voice. They answer, book and pass the hard ones to a human.</p>
+          <p class="row__meta">support · sales · booking</p>
+        </div>
+      </details>
 
-  <article class="card card--paper card--say" data-side="right" data-name="hello" data-accent="#c2a45e">
-    <p class="card__kicker">08 — hello</p>
-    <h2 class="card__title">Tell me what you need to build</h2>
-    <p class="card__text">Web, fullstack, AI, chatbots. I answer every mail, and I say no when I am the wrong person for the job.</p>
-    <p class="card__links">
-      <a href="mailto:robinchogiles@gmail.com">mail ↗</a>
-      <a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github ↗</a>
-      <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin ↗</a>
-    </p>
-    <p class="card__foot">Barcelona · CET</p>
-  </article>
+      <details class="row">
+        <summary>
+          <span class="row__no">05</span>
+          <span class="row__name">Interfaces &amp; motion</span>
+          <span class="row__tags">css · motion · 3d</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>The part most people skip: typography, micro-interactions, a little depth. This page is one canvas, one stylesheet and one script.</p>
+          <p class="row__meta">the page you are standing in</p>
+        </div>
+      </details>
+
+      <details class="row">
+        <summary>
+          <span class="row__no">06</span>
+          <span class="row__name">Fix what is slow</span>
+          <span class="row__tags">performance · a11y · seo</span>
+          <span class="row__sign" aria-hidden="true"></span>
+        </summary>
+        <div class="row__body">
+          <p>Your site takes six seconds on a phone? I go through performance, accessibility and SEO, then hand you a list, a price and the order to do it in.</p>
+          <p class="row__meta">half a day · fixed price</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 03 ─────────────────────────────────────────────── -->
+  <section class="panel" id="s3" data-name="method">
+    <p class="kicker"><span class="kicker__no">03</span> method</p>
+    <h2 class="panel__title">How it runs</h2>
+    <ol class="steps">
+      <li>
+        <span class="steps__no">01</span>
+        <h3>Call</h3>
+        <p>Thirty minutes. You describe the thing, I tell you what it really costs and whether I am the right person for it.</p>
+      </li>
+      <li>
+        <span class="steps__no">02</span>
+        <h3>Sketch</h3>
+        <p>A static page in the browser before any code counts. We argue over the sketch — it is cheap there and expensive later.</p>
+      </li>
+      <li>
+        <span class="steps__no">03</span>
+        <h3>Build</h3>
+        <p>Real content, real devices, weekly build you can open on your phone. No status documents pretending to be progress.</p>
+      </li>
+      <li>
+        <span class="steps__no">04</span>
+        <h3>Ship</h3>
+        <p>Deploy, handover, a short video of how to change things yourself. Two weeks of fixes on me after launch.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 04 ─────────────────────────────────────────────── -->
+  <section class="panel panel--contact" id="s4" data-name="contact">
+    <p class="kicker"><span class="kicker__no">04</span> contact</p>
+    <h2 class="mail-h">
+      <a class="mail" href="mailto:robinchogiles@gmail.com">tell me what to build<i aria-hidden="true">↗</i></a>
+    </h2>
+
+    <div class="contact__grid">
+      <div>
+        <p class="label">mail</p>
+        <p class="val"><a href="mailto:robinchogiles@gmail.com">robinchogiles@gmail.com</a></p>
+      </div>
+      <div>
+        <p class="label">elsewhere</p>
+        <p class="val"><a href="https://github.com/robinparadise" target="_blank" rel="me noopener">github</a> <a href="https://www.linkedin.com/in/robingiles" target="_blank" rel="me noopener">linkedin</a></p>
+      </div>
+      <div>
+        <p class="label">where</p>
+        <p class="val">Barcelona · CET<br>taking new work</p>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>© <span id="year">2026</span> Robin Giles</span>
+      <span>built by hand · no frameworks</span>
+      <button class="copy" id="copy" type="button">copy mail</button>
+    </footer>
+  </section>
 
 </main>
 
-<div id="spacer" aria-hidden="true"></div>
+<p class="keys" aria-hidden="true">keys <b>0–4</b> jump · <b>c</b> copy mail</p>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="bar"></div></div>
+<div class="boot" aria-hidden="true"></div>
 
 <script src="app.js" defer></script>
 </body>

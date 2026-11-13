@@ -1,768 +1,325 @@
-/* ----------------------------------------------------------------
-   Robin Lab — a corridor built out of flat polygons and walked
-   with the scroll. No libraries: the projection, the fog and the
-   little 3D scene are all here. Same result in Safari, Chrome,
-   Firefox, because it is one canvas.
-   ---------------------------------------------------------------- */
+/* zero-slop-core — one canvas, one script, nothing borrowed */
 (() => {
-  const canvas = document.getElementById('stage');
-  const ctx = canvas.getContext('2d');
-  const deck = document.getElementById('deck');
-  const cards = Array.from(deck.querySelectorAll('.card'));
-  const spacer = document.getElementById('spacer');
-  const rail = document.getElementById('rail');
-  const back = document.getElementById('back');
-  const noEl = document.getElementById('status-no');
-  const nameEl = document.getElementById('status-name');
-  const totEl = document.getElementById('status-total');
+  'use strict';
 
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  const lerp = (a, b, t) => a + (b - a) * t;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const $ = (s) => document.querySelector(s);
 
-  /* ---- the room, in metres (reset on resize) ---- */
-  let W = 2.05;            // half width
-  let H = 1.32;            // half height
-  let CARD_X = 1.24;       // where the paintings hang
-  let CARD_M = 1.80;       // painting width
-  let RW = 0.82;           // half width of the rug
-  const GAP = 3.35;        // distance between paintings
-  const SEG = 2.30;        // depth of one slice of wall
-  const NEAR = 0.42;
-  const BEYOND = 2.0;
+  /* ─────────────────────────── the field ─────────────────────────── */
 
-  const CARD_W = 400;
-  const CARD_H = 292;
+  const cv = $('#field');
+  const ctx = cv.getContext('2d', { alpha: false });
+  const INK = '#06070a';
+  const ACCENT = '255,59,20';
+  const BONE = '233,231,225';
 
-  const CARD_Z0 = 0.90;                       // first painting, in metres
-  const lastZ = (cards.length - 1 + CARD_Z0) * GAP;
-  const totalLen = lastZ + BEYOND + 2.6;
-  const camEnd = lastZ - 3.05;
-  const STOP = 3.05;      // where a painting stops to show itself
-  const SPREAD = 1.55;    // how long it stays in front
-  const WALL_ANGLE = 62;  // how flat a painting sits against the wall
+  const COLS = 42;
+  const ROWS = 28;
+  const DEPTH = 26;          // world units from near plane to horizon
+  const CAM = 1.5;           // camera height
+  const FOCAL = 1.35;
 
-  const accents = cards.map((c) => c.dataset.accent || '#e4572e');
-  const sides = cards.map((c) => (c.dataset.side === 'left' ? -1 : 1));
+  let W = 0, H = 0, dpr = 1;
+  const cam = { x: 0, y: 0, tx: 0, ty: 0 };   // eased pointer
+  let travel = 0, travelTarget = 0;
+  let raf = 0, fps = 60, fpsTick = 0, fpsCount = 0;
 
-  /* ---- palette ---- */
-  const P = {
-    ceil:   [0.15, 0.14, 0.20],
-    wallHi: [0.29, 0.26, 0.28],
-    wallLo: [0.21, 0.19, 0.20],
-    cove:   [0.24, 0.22, 0.24],
-    rail:   [0.36, 0.27, 0.20],
-    base:   [0.22, 0.18, 0.15],
-    plankA: [0.34, 0.25, 0.19],
-    plankB: [0.31, 0.23, 0.17],
-    plankC: [0.29, 0.22, 0.16],
-    rug:    [0.11, 0.22, 0.24],
-    rugHi:  [0.60, 0.53, 0.40],
-    wood:   [0.30, 0.21, 0.15],
-    metal:  [0.22, 0.19, 0.19],
-    glass:  [1.00, 0.88, 0.60],
-    pot:    [0.46, 0.31, 0.25],
-    leafA:  [0.22, 0.35, 0.25],
-    leafB:  [0.29, 0.44, 0.30],
-    fog:    [0.12, 0.11, 0.17]
-  };
-  const LIGHT = (() => {
-    const v = [0.34, -0.90, -0.27];
-    const l = Math.hypot(...v);
-    return v.map((n) => n / l);
-  })();
-
-  /* ---- projection state ---- */
-  let vw = 0, vh = 0, dpr = 1, f = 800, cx = 0, cy = 0;
-  let pxPerM = 120, scrollRange = 1;
-  let parX = 0, parY = 0, parXT = 0, parYT = 0;
-  let vigGrad = null;
-  let portrait = false;
-
-  /* ---- motion state ---- */
-  let camZ = 0, camTo = 0, focusI = -1, focusT = 0, active = -1;
-
-  /* ---- the scene ---- */
-  const faces = [];        // { v:[[x,y,z]..], c:[r,g,b], lit:string, em:0..1, d:number }
-  const lights = [];       // { x,y,z,p } — every flame in the corridor
-  const sprites = [];      // { x,y,z,r,c,a,sq,glyph }
-  const dust = [];
-
-  /* ---------------------------------------------------------- sizing */
-
-  function resize() {
-    vw = innerWidth;
-    vh = innerHeight;
-    dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = Math.round(vw * dpr);
-    canvas.height = Math.round(vh * dpr);
-    canvas.style.width = vw + 'px';
-    canvas.style.height = vh + 'px';
-
-    portrait = vh > vw * 1.15;
-    W = portrait ? 1.38 : 1.78;
-    H = portrait ? 0.80 : 1.18;
-    CARD_X = portrait ? 0.64 : 1.10;
-    CARD_M = portrait ? 2.0 : 1.80;
-    RW = clamp(W * 0.40, 0.45, 0.78);
-
-    f = portrait ? clamp(vw * 1.15, 260, 900) : clamp(Math.min(vh * 1.02, vw * 0.62), 250, 1000);
-    cx = vw * 0.5;
-    cy = vh * (portrait ? 0.55 : 0.52);
-
-    pxPerM = clamp(vh * 0.16, 95, 200);
-    scrollRange = Math.max(1, camEnd * pxPerM);
-    spacer.style.height = Math.round(scrollRange + vh) + 'px';
-
-    buildScene();
-    vigGrad = null;
+  function size() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (reduce) paint(performance.now() / 1000);
   }
 
-  const proj = (x, y, zr) => {
-    const s = f / -zr;
-    return [cx + x * s, cy + y * s, s];
-  };
-  const wproj = (x, y, zw) => proj(x, y, camZ - zw);
+  function paint(t) {
+    const cx = W * 0.5 - cam.x * W * 0.045;
+    const cy = H * 0.54 - cam.y * H * 0.05;
+    const scale = Math.max(W, H * 1.15);
+    const yaw = cam.x * 0.22;
+    const cosY = Math.cos(yaw);
+    const sinY = Math.sin(yaw);
 
-  /* -------------------------------------------------------- geometry */
+    ctx.fillStyle = INK;
+    ctx.fillRect(0, 0, W, H);
 
-  function shade(col, a, b, c) {
-    const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2];
-    const vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
-    let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
-    const n = Math.hypot(nx, ny, nz) || 1;
-    nx /= n; ny /= n; nz /= n;
-    const d = Math.abs(nx * LIGHT[0] + ny * LIGHT[1] + nz * LIGHT[2]);
-    const k = 0.74 + 0.32 * d;
-    return [col[0] * k * 255, col[1] * k * 255, col[2] * k * 255];
-  }
+    const step = DEPTH / ROWS;
+    const span = 9.5;
 
-  let PRIO = 0;
+    let prev = null;
 
-  function addPoly(v, col, em, alpha, prio) {
-    let z = 0, ax = 0, ay = 0;
-    for (const p of v) { z += p[2]; ax += p[0]; ay += p[1]; }
-    faces.push({
-      v, c: col, base: shade(col, v[0], v[1], v[2]), lit: '',
-      em: em || 0, a: alpha || 0, p: prio === undefined ? PRIO : prio,
-      z: z / v.length, mx: ax / v.length, my: ay / v.length
-    });
-  }
+    for (let r = 0; r < ROWS; r++) {
+      // rows slide toward the camera and recycle — endless flight
+      let z = ((r * step + travel) % DEPTH) + 0.9;
+      const fog = Math.max(0, Math.min(1, 1 - z / DEPTH));
+      if (fog <= 0.02) { prev = null; continue; }
 
-  /* the lamps are the light: bake them into every surface once */
-  function bakeLight() {
-    for (const f of faces) {
-      if (f.em) continue;
-      let add = 0;
-      for (const L of lights) {
-        const dx = f.mx - L.x, dy = f.my - L.y, dz = f.z - L.z;
-        add += L.p / (1 + (dx * dx + dy * dy + dz * dz) * 2.6);
-      }
-      add = Math.min(add, 150);
-      const nz = 1 + Math.sin(f.z * 3.7 + f.mx * 5.1 + f.my * 2.3) * 0.025;
-      const r = clamp((f.base[0] + add) * nz, 0, 255) | 0;
-      const g = clamp((f.base[1] + add * 0.84) * nz, 0, 255) | 0;
-      const b = clamp((f.base[2] + add * 0.58) * nz, 0, 255) | 0;
-      f.lit = `rgb(${r},${g},${b})`;
-    }
-  }
-
-  /* axis aligned box: origin + size */
-  function addBox(x, y, z, w, h, d, col, em) {
-    const keep = PRIO;
-    PRIO = 1;
-    const x2 = x + w, y2 = y + h, z2 = z + d;
-    addPoly([[x, y, z], [x2, y, z], [x2, y2, z], [x, y2, z]], col, em);
-    addPoly([[x, y, z2], [x2, y, z2], [x2, y2, z2], [x, y2, z2]], col, em);
-    addPoly([[x, y, z], [x2, y, z], [x2, y, z2], [x, y, z2]], col, em);
-    addPoly([[x, y2, z], [x2, y2, z], [x2, y2, z2], [x, y2, z2]], col, em);
-    addPoly([[x, y, z], [x, y2, z], [x, y2, z2], [x, y, z2]], col, em);
-    addPoly([[x2, y, z], [x2, y2, z], [x2, y2, z2], [x2, y, z2]], col, em);
-    PRIO = keep;
-  }
-
-  function addLamp(z, side) {
-    const top = -H;
-    const lx = side * (W - 0.40);
-    // chain
-    addBox(lx - 0.014, top, z - 0.014, 0.028, 0.34, 0.028, P.metal);
-    // cap + body + glass
-    const by = top + 0.34;
-    addBox(lx - 0.17, by, z - 0.17, 0.34, 0.06, 0.34, P.metal);
-    addBox(lx - 0.13, by + 0.06, z - 0.13, 0.26, 0.30, 0.26, P.glass, 1);
-    addBox(lx - 0.15, by + 0.06, z - 0.15, 0.30, 0.035, 0.30, P.metal);
-    addBox(lx - 0.15, by + 0.33, z - 0.15, 0.30, 0.035, 0.30, P.metal);
-    addBox(lx - 0.17, by + 0.36, z - 0.17, 0.34, 0.06, 0.34, P.metal);
-    addBox(lx - 0.025, by + 0.42, z - 0.025, 0.05, 0.05, 0.05, P.metal);
-    lights.push({ x: lx, y: by + 0.21, z, p: 44 });
-    sprites.push({ x: lx, y: by + 0.21, z, r: 0.34, a: 0.40, c: [1, 0.80, 0.48] });
-    sprites.push({ x: lx, y: H - 0.01, z, r: 0.90, a: 0.20, c: [1, 0.78, 0.46], sq: 0.32 });
-  }
-
-  function addSconce(side, z) {
-    const x = side * W;
-    const y = -H * 0.42;
-    addBox(Math.min(x, x - side * 0.16), y, z - 0.04, 0.16, 0.06, 0.08, P.metal);
-    addBox(Math.min(x, x - side * 0.10) - 0.0, y - 0.035, z - 0.10, 0.10, 0.07, 0.20, P.metal);
-    addBox(Math.min(x, x - side * 0.13), y + 0.02, z - 0.075, 0.13, 0.20, 0.15, P.glass, 1);
-    lights.push({ x: x - side * 0.26, y: y + 0.12, z, p: 22 });
-    sprites.push({ x: x - side * 0.24, y: y + 0.12, z, r: 0.26, a: 0.34, c: [1, 0.84, 0.56] });
-  }
-
-  function addPlant(side, z) {
-    const x = side * (W - 0.26);
-    const yb = H;
-    addBox(x - 0.12, yb - 0.28, z - 0.12, 0.24, 0.28, 0.24, P.pot);
-    addBox(x - 0.14, yb - 0.32, z - 0.14, 0.28, 0.045, 0.28, P.rail);
-    const top = yb - 0.32;
-    for (let i = 0; i < 7; i++) {
-      const a = (i / 7) * Math.PI * 2 + 0.3;
-      const reach = 0.20 + (i % 3) * 0.07;
-      const h = 0.26 + (i % 4) * 0.08;
-      const ca = Math.cos(a), sa = Math.sin(a);
-      const px = -sa * 0.055, pz = ca * 0.055;
-      addPoly([
-        [x - px, top, z - pz],
-        [x + ca * reach, top - h, z + sa * reach],
-        [x + px, top, z + pz]
-      ], i % 2 ? P.leafA : P.leafB);
-    }
-  }
-
-  function buildScene() {
-    faces.length = 0;
-    sprites.length = 0;
-    lights.length = 0;
-
-    const L = totalLen;
-    const eye = 0.34 * H;
-
-    const SUB = 6;                    // slices per segment: soft light, no flat slabs
-    for (let z0 = 0; z0 < L - 0.01; z0 += SEG) {
-      const z1 = Math.min(L, z0 + SEG);
-      const dz = (z1 - z0) / SUB;
-
-      for (let k = 0; k < SUB; k++) {
-        const a = z0 + k * dz, b = a + dz;
-
-        // ceiling, with a chamfered cove on both sides
-        addPoly([[-W + 0.30, -H + 0.16, a], [W - 0.30, -H + 0.16, a],
-                 [W - 0.30, -H + 0.16, b], [-W + 0.30, -H + 0.16, b]], P.ceil);
-        for (const sd of [-1, 1]) {
-          addPoly([[sd * W, -H, a], [sd * (W - 0.30), -H + 0.16, a],
-                   [sd * (W - 0.30), -H + 0.16, b], [sd * W, -H, b]], P.cove);
-        }
-
-        // walls: plaster above, wainscot below
-        for (const sd of [-1, 1]) {
-          const x = sd * W;
-          addPoly([[x, -H, a], [x, -H, b], [x, eye, b], [x, eye, a]], P.wallHi);
-          addPoly([[x, eye, a], [x, eye, b], [x, H, b], [x, H, a]], P.wallLo);
-        }
-
-        // floor boards
-        let i = 0;
-        for (let x = -W; x < W - 0.02; x += 0.68, i++) {
-          const x2 = Math.min(W, x + 0.68);
-          addPoly([[x, H, a], [x2, H, a], [x2, H, b], [x, H, b]],
-            i % 3 === 0 ? P.plankA : i % 3 === 1 ? P.plankB : P.plankC);
-        }
-
-        // shadow where the floor meets the walls
-        for (const sd of [-1, 1]) {
-          addPoly([[sd * W, H - 0.002, a], [sd * (W - 0.34), H - 0.002, a],
-                   [sd * (W - 0.34), H - 0.002, b], [sd * W, H - 0.002, b]], P.base, 0, 0.09);
-        }
-
-        // the rug, slice by slice
-        if (b > 0.6 && a < L - 1.4) {
-          const ra = Math.max(a, 0.6), rb = Math.min(b, L - 1.4);
-          addPoly([[-RW, H - 0.004, ra], [RW, H - 0.004, ra], [RW, H - 0.004, rb], [-RW, H - 0.004, rb]], P.rug, 0, 0, 2);
-          for (const e of [-RW, RW - 0.24]) {
-            addPoly([[e, H - 0.007, ra], [e + 0.24, H - 0.007, ra], [e + 0.24, H - 0.007, rb], [e, H - 0.007, rb]], P.rugHi, 0, 0, 2);
-          }
-        }
-      }
-
-      // rails, ribs and mouldings, one set per segment
-      for (const sd of [-1, 1]) {
-        const x = sd * W;
-        addBox(x - (sd > 0 ? 0.055 : 0), -H + 0.14, z0, 0.055, 0.09, z1 - z0, P.rail);
-        addBox(x - (sd > 0 ? 0.075 : 0), eye - 0.035, z0, 0.075, 0.07, z1 - z0, P.rail);
-        addBox(x - (sd > 0 ? 0.07 : 0), H - 0.11, z0, 0.07, 0.11, z1 - z0, P.base);
-        addBox(x - (sd > 0 ? 0.03 : 0), -0.06, z0, 0.03, 0.035, z1 - z0, P.rail);
-      }
-      addBox(-W + 0.3, -H + 0.16, z0 - 0.08, 2 * (W - 0.3), 0.07, 0.16, P.rail);
-      addBox(-W + 0.3, -H + 0.16, z0 + (z1 - z0) * 0.5 - 0.06, 2 * (W - 0.3), 0.055, 0.12, P.rail);
-    }
-
-    // lanterns between the paintings
-    for (let k = 0; k <= cards.length; k++) addLamp(0.55 + k * GAP + 1.45, k % 2 ? 1 : -1);
-    // clouds floating above the corridor
-    for (let i = 0; i < 18; i++) {
-      const a = i * 2.399;
-      sprites.push({
-        x: Math.cos(a) * (W * 0.9),
-        y: -H + 0.03,
-        z: 1.5 + ((i * 7.31) % 1) * 0 + (i / 18) * (L - 3),
-        r: 0.75 + ((i * 0.37) % 1) * 1.1,
-        a: 0.05 + ((i * 0.61) % 1) * 0.09,
-        c: [1, 1, 1],
-        sq: 0.5,
-        wind: true,
-        ph: i * 1.7
-      });
-    }
-
-    // sconces between the paintings
-    for (let k = 0; k < cards.length; k++) {
-      addSconce(k % 2 ? 1 : -1, 1.6 + k * GAP + 1.35);
-    }
-
-    // plants in the corners
-    for (let k = 0; k < cards.length - 1; k++) {
-      addPlant(k % 2 ? 1 : -1, 1.6 + k * GAP + 1.3);
-    }
-
-    bakeLight();
-
-    // dust
-    dust.length = 0;
-    for (let i = 0; i < 80; i++) {
-      dust.push({
-        z: 1 + Math.random() * (L - 2),
-        x: (Math.random() * 2 - 1) * (W - 0.3),
-        y: (Math.random() * 2 - 1) * (H - 0.2),
-        r: 0.5 + Math.random() * 1.8,
-        ph: Math.random() * 6.28
-      });
-    }
-    // floating glyphs
-    for (let i = 0; i < 12; i++) {
-      sprites.push({
-        x: (Math.random() * 2 - 1) * (W - 0.5),
-        y: (Math.random() * 2 - 1) * (H - 0.35),
-        z: 2 + Math.random() * (L - 3),
-        r: 0.018 + Math.random() * 0.022,
-        a: 0.34,
-        c: [[0.98, 0.80, 0.55], [0.62, 0.74, 0.96], [0.72, 0.92, 0.78], [0.96, 0.74, 0.86]][i % 4],
-        glyph: true,
-        ph: Math.random() * 6.28,
-        sp: 0.15 + Math.random() * 0.3
-      });
-    }
-  }
-
-  /* ----------------------------------------------------------- paint */
-
-  /* keep only the part of a polygon that is in front of the near plane */
-  function clipNear(v, zmin) {
-    const out = [];
-    for (let i = 0; i < v.length; i++) {
-      const a = v[i], b = v[(i + 1) % v.length];
-      const ain = a[2] >= zmin, bin = b[2] >= zmin;
-      if (ain) out.push(a);
-      if (ain !== bin) {
-        const t = (zmin - a[2]) / (b[2] - a[2]);
-        out.push([a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, zmin]);
-      }
-    }
-    return out;
-  }
-
-  const fogCol = `rgb(${(P.fog[0] * 255) | 0},${(P.fog[1] * 255) | 0},${(P.fog[2] * 255) | 0})`;
-
-  function drawWorld(now) {
-    const cam = camZ;
-    const L = totalLen;
-
-    /* the wall at the end of the corridor */
-    const ez = cam - L;
-    if (ez < -NEAR) {
-      const [bx, by, bs] = proj(0, 0, ez);
-      const bw = W * bs, bh = H * bs;
-      const g = ctx.createLinearGradient(0, by - bh, 0, by + bh);
-      g.addColorStop(0, '#b9b6e0');
-      g.addColorStop(0.45, '#d8c4e2');
-      g.addColorStop(0.78, '#f3c9b4');
-      g.addColorStop(1, '#ffe0bd');
-      ctx.fillStyle = g;
-      ctx.fillRect(bx - bw, by - bh, bw * 2, bh * 2);
-
-      // the glowing arch
-      const aw = bw * 0.50, ah = bh * 0.92;
-      const ax = bx, ay = by + bh * 0.98;
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(ax - aw / 2, ay);
-      ctx.lineTo(ax - aw / 2, ay - ah * 0.62);
-      ctx.arc(ax, ay - ah * 0.62, aw / 2, Math.PI, 0);
-      ctx.lineTo(ax + aw / 2, ay);
-      ctx.closePath();
-      const ag = ctx.createLinearGradient(0, ay - ah, 0, ay);
-      ag.addColorStop(0, 'rgba(255,252,240,.80)');
-      ag.addColorStop(1, 'rgba(255,228,186,.38)');
-      ctx.fillStyle = ag;
-      ctx.fill();
-      ctx.restore();
-
-      ctx.globalCompositeOperation = 'lighter';
-      const gl = ctx.createRadialGradient(ax, ay - ah * 0.5, 0, ax, ay - ah * 0.5, aw * 1.2);
-      gl.addColorStop(0, 'rgba(255,246,222,.28)');
-      gl.addColorStop(0.45, 'rgba(255,214,170,.10)');
-      gl.addColorStop(1, 'rgba(255,200,160,0)');
-      ctx.fillStyle = gl;
-      ctx.beginPath();
-      ctx.arc(ax, ay - ah * 0.5, aw * 1.2, 0, 6.2832);
-      ctx.fill();
-      ctx.globalCompositeOperation = 'source-over';
-    }
-
-    /* geometry: project, fog, sort, paint */
-    const zmin = cam + NEAR;
-    const list = [];
-    for (let i = 0; i < faces.length; i++) {
-      const fa = faces[i];
-      if (fa.z < zmin - 2.6 || fa.z > L) continue;
-      const poly = fa.v.some((p) => p[2] < zmin) ? clipNear(fa.v, zmin) : fa.v;
-      if (poly.length < 3) continue;
       const pts = [];
-      let dsum = 0;
-      for (const p of poly) {
-        const [sx, sy] = proj(p[0], p[1], cam - p[2]);
-        pts.push(sx, sy);
-        dsum += p[2] - cam;
-      }
-      const dist = dsum / poly.length;
-      list.push({ pts, dist, fa, d: Math.round(dist * 40) });
-    }
-    list.sort((a, b) => (b.d - a.d) || (a.fa.p - b.fa.p));
+      for (let c = 0; c < COLS; c++) {
+        const x = (c / (COLS - 1) - 0.5) * span;
+        const y =
+          Math.sin(x * 0.82 + t * 0.55) * 0.30 +
+          Math.sin(x * 0.31 - z * 0.42 + t * 0.35) * 0.42 +
+          Math.cos(z * 0.22 + t * 0.5) * 0.16;
 
-    const fogNear = 1.2, fogFar = L * 0.72;
-    for (const it of list) {
-      const fa = it.fa;
-      const t = clamp((it.dist - fogNear) / (fogFar - fogNear), 0, 1);
-      const a = t * t * (3 - 2 * t) * 0.92;
-      if (fa.a) ctx.fillStyle = `rgba(24,12,4,${fa.a.toFixed(3)})`;
-      else if (fa.em) ctx.fillStyle = `rgba(255,228,168,${(1 - a).toFixed(3)})`;
-      else if (a < 0.02) ctx.fillStyle = fa.lit;
-      else ctx.fillStyle = mix(fa.c, P.fog, a);
+        const rx = x * cosY - z * sinY;
+        const rz = x * sinY + z * cosY + 0.6;
+        if (rz < 0.25) { pts.push(null); continue; }
+
+        const p = FOCAL / rz;
+        pts.push({
+          sx: cx + rx * p * scale * 0.55,
+          sy: cy + (y - CAM * 0.42) * p * scale * 0.55,
+          p,
+          y
+        });
+      }
+
+      // the ribbon of the row
       ctx.beginPath();
-      ctx.moveTo(it.pts[0], it.pts[1]);
-      for (let i = 2; i < it.pts.length; i += 2) ctx.lineTo(it.pts[i], it.pts[i + 1]);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    /* additive light: lanterns, pools, glyphs, dust */
-    ctx.globalCompositeOperation = 'lighter';
-    for (const s of sprites) {
-      const zr = cam - s.z;
-      if (zr > -0.6 || zr < -L - 2) continue;
-      const wx = s.wind && !reduced ? s.x + Math.sin(now / 9000 + s.ph) * 0.35 : s.x;
-      const [sx, sy, ss] = proj(wx, s.y, zr);
-      const fade = clamp(1 - (zr + 8) / (L * 0.9), 0.12, 1) * clamp((-zr - 0.7) / 1.6, 0, 1);
-      let r = s.r * ss;
-      if (r < 0.6) continue;
-      r = Math.min(r, Math.max(vw, vh) * 0.9);
-      if (s.glyph) {
-        const bob = reduced ? 0 : Math.sin(now / 900 + s.ph) * 0.06;
-        const spin = reduced ? 0.7 : now / 1400 + s.ph;
-        const q = r * 1.9;
-        ctx.save();
-        ctx.translate(sx, sy + bob * ss);
-        ctx.rotate(spin);
-        ctx.fillStyle = `rgba(${(s.c[0] * 255) | 0},${(s.c[1] * 255) | 0},${(s.c[2] * 255) | 0},${(s.a * fade).toFixed(3)})`;
-        ctx.beginPath();
-        ctx.moveTo(0, -q); ctx.lineTo(q * 0.72, 0); ctx.lineTo(0, q); ctx.lineTo(-q * 0.72, 0);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-        continue;
+      let open = false;
+      for (let c = 0; c < COLS; c++) {
+        const q = pts[c];
+        if (!q) { open = false; continue; }
+        if (!open) { ctx.moveTo(q.sx, q.sy); open = true; }
+        else ctx.lineTo(q.sx, q.sy);
       }
-      const pulse = reduced ? 1 : 1 + Math.sin(now / 1300 + s.z) * 0.06;
-      const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, r * pulse);
-      g.addColorStop(0, `rgba(${(s.c[0] * 255) | 0},${(s.c[1] * 255) | 0},${(s.c[2] * 255) | 0},${(s.a * fade).toFixed(3)})`);
-      g.addColorStop(0.5, `rgba(${(s.c[0] * 255) | 0},${(s.c[1] * 255) | 0},${(s.c[2] * 255) | 0},${(s.a * fade * 0.25).toFixed(3)})`);
-      g.addColorStop(1, 'rgba(255,200,150,0)');
-      ctx.save();
-      if (s.sq) {
-        ctx.translate(sx, sy);
-        ctx.scale(1, s.sq);
-        ctx.translate(-sx, -sy);
-      }
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(sx, sy, r * pulse, 0, 6.2832);
-      ctx.fill();
-      ctx.restore();
-    }
+      ctx.strokeStyle = `rgba(${BONE},${(0.055 + fog * 0.20).toFixed(3)})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
 
-    for (const p of dust) {
-      const zr = cam - p.z;
-      if (zr > -0.5) continue;
-      const wob = reduced ? 0 : Math.sin(now / 1700 + p.ph) * 0.05;
-      const [dx, dy, ds] = proj(p.x + wob, p.y + wob * 0.6, zr);
-      const r = clamp(p.r * ds * 0.005, 0.5, 2.6);
-      const a = clamp(1 - -zr / (L * 0.8), 0.05, 0.45);
-      ctx.fillStyle = `rgba(255,246,224,${a.toFixed(3)})`;
-      ctx.beginPath();
-      ctx.arc(dx, dy, r, 0, 6.2832);
-      ctx.fill();
+      // dots on the rows close enough to matter
+      if (fog > 0.30) {
+        for (let c = 0; c < COLS; c++) {
+          const q = pts[c];
+          if (!q) continue;
+          const hot = q.y > 0.34;
+          const a = fog * (hot ? 0.85 : 0.34);
+          const s = Math.max(1, q.p * 2.6 * (hot ? 1.25 : 0.9));
+          ctx.fillStyle = `rgba(${hot ? ACCENT : BONE},${a.toFixed(3)})`;
+          ctx.fillRect(q.sx - s * 0.5, q.sy - s * 0.5, s, s);
+        }
+      }
+      prev = pts;
     }
-    ctx.globalCompositeOperation = 'source-over';
+    void prev;
   }
 
-  function mix(a, b, t) {
-    return `rgb(${(a[0] + (b[0] - a[0]) * t) * 255 | 0},${(a[1] + (b[1] - a[1]) * t) * 255 | 0},${(a[2] + (b[2] - a[2]) * t) * 255 | 0})`;
-  }
+  function loop(now) {
+    raf = requestAnimationFrame(loop);
 
-  function hexA(hex, a) {
-    const h = hex.replace('#', '');
-    const n = parseInt(h.length === 3 ? h.split('').map((c) => c + c).join('') : h, 16);
-    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
-  }
+    cam.x += (cam.tx - cam.x) * 0.055;
+    cam.y += (cam.ty - cam.y) * 0.055;
+    travel += (travelTarget - travel) * 0.045;
 
-  /* ----------------------------------------------------------- cards */
+    paint(now / 1000);
 
-  function drawCards() {
-    const tFocus = focusT * focusT * (3 - 2 * focusT);
-    const focusK = clamp(Math.min(vw * 0.82, 640) / CARD_W, 0.6, 1.7);
-    const frontK = clamp(Math.min(vw * 0.56, vh * 0.62) / CARD_W, 0.46, 1.35);
-
-    for (let i = 0; i < cards.length; i++) {
-      const el = cards[i];
-      const dist = (i + CARD_Z0) * GAP - camZ;
-      const s = f / Math.max(NEAR, dist);
-
-      /* pose 1: hanging on the wall */
-      let x = cx + sides[i] * CARD_X * s;
-      let y = cy - 0.02 * s;
-      let k = (CARD_M * s) / CARD_W;
-      let op = 1;
-      let zIndex = Math.round(400 - dist * 4);
-
-      /* pose 2: taking its turn in the middle of the corridor */
-      const w = clamp(1 - Math.abs(dist - STOP) / SPREAD, 0, 1);
-      const t = w * w * (3 - 2 * w);
-      x = lerp(x, cx, t);
-      y = lerp(y, cy - vh * 0.03, t);
-      k = lerp(k, frontK, t);
-      zIndex = Math.round(400 - dist * 4 + t * 600);
-
-      /* hinged on the wall: flat against it while you walk past,
-         swings round to face you when it is its turn */
-      const wf = clamp(1 - Math.abs(dist - STOP) / 1.05, 0, 1);
-      const tf = wf * wf * (3 - 2 * wf);
-      const ang = -sides[i] * WALL_ANGLE * (1 - tf);
-
-      if (dist < 0.95) op = 0;
-      else if (dist < 1.45) op = (dist - 0.95) / 0.5;
-      const cover = (CARD_M * s) / vw;
-      if (cover > 0.85) op *= clamp((1.15 - cover) / 0.3, 0, 1);
-      if (dist > 20) op *= clamp(1 - (dist - 20) / 6, 0, 1);
-      op = Math.max(op, t);
-
-      if (focusI > -1 && i !== focusI) op *= 1 - 0.86 * focusT;
-
-      let a = ang;
-      if (i === focusI) {
-        x = lerp(x, vw / 2, tFocus);
-        y = lerp(y, vh / 2 - 6, tFocus);
-        k = lerp(k, focusK, tFocus);
-        a = lerp(ang, 0, tFocus);
-        op = 1;
-        zIndex = 900;
-      }
-
-      if (op < 0.02) {
-        el.style.visibility = 'hidden';
-        continue;
-      }
-      el.style.visibility = 'visible';
-      el.style.opacity = op.toFixed(3);
-      el.style.zIndex = zIndex;
-      el.style.transform =
-        `translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`
-        + ` perspective(${Math.round(vw * 1.6)}px) rotateY(${a.toFixed(2)}deg) scale(${k.toFixed(4)})`;
-      el.style.pointerEvents = (focusI === -1 || focusI === i) && op > 0.25 ? 'auto' : 'none';
-      el.style.cursor = t > 0.3 || dist < 6 || focusI === i ? 'pointer' : 'default';
+    // telemetry
+    fpsCount++;
+    if (now - fpsTick > 500) {
+      fps = Math.round((fpsCount * 1000) / (now - fpsTick));
+      fpsTick = now;
+      fpsCount = 0;
+      readout();
     }
   }
 
-  /* ------------------------------------------------------ interaction */
+  /* ─────────────────────── hero: kinetic type ────────────────────── */
 
-  const railBtns = [];
-  function buildRail() {
-    cards.forEach((c, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'rail__btn';
-      b.innerHTML = `<span class="rail__label">${c.dataset.name}</span>`
-        + `<span class="rail__dot" style="--dot:${accents[i]}"></span>`;
-      b.addEventListener('click', () => walkTo(i));
-      rail.appendChild(b);
-      railBtns.push(b);
+  const hero = $('#hero');
+  const chars = [];
+  let rects = [];
+
+  if (hero && !reduce) {
+    hero.querySelectorAll('.hero__line').forEach((line) => {
+      const text = line.textContent;
+      line.textContent = '';
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = ch === ' ' ? '\u00a0' : ch;
+        line.appendChild(s);
+        chars.push(s);
+      }
     });
-    totEl.textContent = String(cards.length).padStart(2, '0');
+
+    const cache = () => {
+      rects = chars.map((el) => {
+        const r = el.getBoundingClientRect();
+        return { x: r.left + r.width * 0.5, y: r.top + r.height * 0.5 };
+      });
+    };
+    cache();
+    addEventListener('resize', cache, { passive: true });
+    addEventListener('scroll', cache, { passive: true });
+
+    let px = -9999, py = -9999, dirty = false;
+
+    if (fine) {
+      addEventListener('pointermove', (e) => {
+        px = e.clientX; py = e.clientY; dirty = true;
+        cam.tx = (e.clientX / window.innerWidth - 0.5) * 2;
+        cam.ty = (e.clientY / window.innerHeight - 0.5) * 2;
+      }, { passive: true });
+
+      const push = () => {
+        requestAnimationFrame(push);
+        if (!dirty) return;
+        dirty = false;
+        for (let i = 0; i < chars.length; i++) {
+          const r = rects[i];
+          if (!r) continue;
+          const d = Math.hypot(px - r.x, py - r.y);
+          const k = Math.max(0, 1 - d / 340);
+          chars[i].style.transform = `translate3d(0,${(-k * 12).toFixed(2)}px,0)`;
+        }
+      };
+      push();
+    }
   }
 
-  const scrollAmount = () => Math.max(1, scrollRange);
+  /* ─────────────────────────── scroll ───────────────────────────── */
 
-  function walkTo(i) {
-    unfocus();
-    const target = clamp((i + CARD_Z0) * GAP - STOP, 0, camEnd);
-    scrollTo({ top: (target / camEnd) * scrollAmount(), behavior: reduced ? 'auto' : 'smooth' });
+  const bar = $('#bar');
+
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+    travelTarget = p * DEPTH * 0.9;
+    readout();
   }
 
-  function focusOn(i) {
-    if (i === focusI) return;
-    focusI = i;
-    document.body.classList.add('is-focus');
-    back.hidden = false;
-    cards.forEach((c, j) => c.classList.toggle('is-lifted', j === i));
+  addEventListener('scroll', onScroll, { passive: true });
+
+  /* ─────────────────────────── rail ─────────────────────────────── */
+
+  const rail = $('#rail');
+  const panels = [...document.querySelectorAll('.panel')];
+
+  rail.innerHTML = panels
+    .map((s, i) => `<a href="#${s.id}"><em>${s.dataset.name}</em><span>${String(i).padStart(2, '0')}</span></a>`)
+    .join('');
+
+  const links = [...rail.querySelectorAll('a')];
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          const i = panels.indexOf(en.target);
+          links.forEach((a, k) => a.setAttribute('aria-current', String(k === i)));
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    panels.forEach((p) => io.observe(p));
   }
 
-  function unfocus() {
-    if (focusI === -1) return;
-    focusI = -1;
-    document.body.classList.remove('is-focus');
-    back.hidden = true;
-    cards.forEach((c) => c.classList.remove('is-lifted'));
-  }
+  /* ───────────────────────── telemetry ──────────────────────────── */
 
-  cards.forEach((c, i) => {
-    c.tabIndex = 0;
-    c.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return;
-      if (focusI === i) unfocus(); else focusOn(i);
-    });
-    c.addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter' && e.key !== ' ') return;
-      if (e.target.closest('a')) return;
-      e.preventDefault();
-      if (focusI === i) unfocus(); else focusOn(i);
-    });
+  const clock = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Madrid',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
   });
-  back.addEventListener('click', unfocus);
+  const tele = $('#tele');
 
-  addEventListener('wheel', unfocus, { passive: true });
-  addEventListener('touchstart', unfocus, { passive: true });
+  function readout() {
+    if (!tele) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.round((window.scrollY / max) * 100) : 0;
+    const rate = reduce ? 'static' : fps + ' fps';
+    tele.innerHTML = `${clock.format(new Date())} cet<span> / </span>${p}%<span> / </span>${rate}`;
+  }
+
+  if (reduce) setInterval(readout, 1000);
+
+  /* ─────────────────────── page weight (real) ───────────────────── */
+
+  function weigh() {
+    const el = $('#f-kb');
+    if (!el) return;
+    const nav = performance.getEntriesByType('navigation')[0];
+    let bytes = nav ? nav.transferSize || nav.encodedBodySize || 0 : 0;
+    for (const r of performance.getEntriesByType('resource')) {
+      bytes += r.transferSize || r.encodedBodySize || 0;
+    }
+    el.textContent = bytes > 2000 ? Math.round(bytes / 1024) : '9';
+  }
+
+  /* ────────────────────── keyboard + clipboard ──────────────────── */
+
+  const mail = 'robinchogiles@gmail.com';
+  const copyBtn = $('#copy');
+
+  async function copyMail(label = 'copied') {
+    try {
+      await navigator.clipboard.writeText(mail);
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = mail;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-100px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch { /* no luck */ }
+      ta.remove();
+    }
+    if (copyBtn) {
+      const old = copyBtn.dataset.old || copyBtn.textContent;
+      copyBtn.dataset.old = old;
+      copyBtn.textContent = label;
+      setTimeout(() => { copyBtn.textContent = copyBtn.dataset.old; }, 1600);
+    }
+  }
+
+  copyBtn?.addEventListener('click', () => copyMail());
+
   addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') unfocus();
-    if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(e.key)) unfocus();
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+
+    if (e.key >= '0' && e.key <= '9') {
+      const i = Number(e.key);
+      if (panels[i]) {
+        panels[i].scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        e.preventDefault();
+      }
+    }
+    if (e.key === 'c' || e.key === 'C') copyMail();
   });
-  addEventListener('pointermove', (e) => {
-    if (e.pointerType === 'touch' || reduced) return;
-    parXT = (e.clientX / vw - 0.5) * -30;
-    parYT = (e.clientY / vh - 0.5) * -16;
+
+  /* ──────────────────────────── boot ────────────────────────────── */
+
+  addEventListener('load', () => {
+    weigh();
+    readout();
+    onScroll();
+    document.querySelector('.boot')?.remove();
+    if (!reduce) raf = requestAnimationFrame(loop);
+  });
+
+  addEventListener('resize', () => {
+    size();
   }, { passive: true });
 
-  addEventListener('hashchange', () => {
-    const i = indexFromHash();
-    if (i > -1) walkTo(i);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(raf);
+    } else if (!reduce) {
+      raf = requestAnimationFrame(loop);
+    }
   });
 
-  function indexFromHash() {
-    const h = decodeURIComponent(location.hash.slice(1));
-    if (!h) return -1;
-    const byName = cards.findIndex((c) => c.dataset.name === h);
-    if (byName > -1) return byName;
-    const n = parseInt(h, 10);
-    return Number.isFinite(n) ? clamp(n - 1, 0, cards.length - 1) : -1;
-  }
-
-  let resizeTimer;
-  addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const p = scrollY / scrollAmount();
-      resize();
-      scrollTo({ top: p * scrollAmount(), behavior: 'auto' });
-    }, 140);
-  });
-
-  /* ------------------------------------------------------------ loop */
-
-  let last = performance.now();
-  let bgGrad = null, bgH = 0;
-
-  function tick(now) {
-    const dt = Math.min(64, now - last);
-    last = now;
-    const k = reduced ? 1 : 1 - Math.pow(0.0016, Math.max(dt, 8) / 1000);
-
-    camTo = clamp(scrollY / scrollAmount(), 0, 1) * camEnd;
-    camZ += (camTo - camZ) * k;
-    parX += (parXT - parX) * k;
-    parY += (parYT - parY) * k;
-    focusT += ((focusI > -1 ? 1 : 0) - focusT) * k;
-
-    if (scrollY > 40 && !document.body.classList.contains('is-walking')) {
-      document.body.classList.add('is-walking');
-    }
-
-    cx = vw * 0.5 + parX;
-    cy = vh * 0.50 + parY;
-
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (!bgGrad || bgH !== vh) {
-      bgGrad = ctx.createLinearGradient(0, 0, 0, vh);
-      bgGrad.addColorStop(0, '#0f0e16');
-      bgGrad.addColorStop(0.5, '#161320');
-      bgGrad.addColorStop(1, '#241a20');
-      bgH = vh;
-    }
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, vw, vh);
-
-    if (!document.hidden) {
-      drawWorld(now);
-
-      if (!vigGrad) {
-        vigGrad = ctx.createRadialGradient(vw * 0.5, vh * 0.5, Math.min(vw, vh) * 0.18,
-          vw * 0.5, vh * 0.5, Math.max(vw, vh) * 0.78);
-        vigGrad.addColorStop(0, 'rgba(6,4,10,0)');
-        vigGrad.addColorStop(0.6, 'rgba(6,4,10,.32)');
-        vigGrad.addColorStop(1, 'rgba(4,3,8,.72)');
-      }
-      ctx.fillStyle = vigGrad;
-      ctx.fillRect(0, 0, vw, vh);
-
-      if (focusT > 0.01) {
-        ctx.fillStyle = `rgba(24,17,10,${(0.33 * focusT).toFixed(3)})`;
-        ctx.fillRect(0, 0, vw, vh);
-      }
-      drawCards();
-
-      let best = 0, bestD = Infinity;
-      for (let i = 0; i < cards.length; i++) {
-        const d = (i + CARD_Z0) * GAP - camZ;
-        const score = Math.abs(d - STOP);
-        if (score < bestD) { bestD = score; best = i; }
-      }
-      const shown = focusI > -1 ? focusI : best;
-      if (shown !== active) {
-        if (active > -1) railBtns[active].classList.remove('is-active');
-        railBtns[shown].classList.add('is-active');
-        noEl.textContent = String(shown + 1).padStart(2, '0');
-        nameEl.textContent = cards[shown].dataset.name;
-        active = shown;
-      }
-    }
-
-    requestAnimationFrame(tick);
-  }
-
-  /* ------------------------------------------------------------ boot */
-
-  resize();
-  buildRail();
-  camZ = clamp(scrollY / scrollAmount(), 0, 1) * camEnd;
-  const startAt = indexFromHash();
-  if (startAt > -1) {
-    camZ = clamp((startAt + CARD_Z0) * GAP - STOP, 0, camEnd);
-    scrollTo({ top: (camZ / camEnd) * scrollAmount(), behavior: 'auto' });
-  }
-  requestAnimationFrame(tick);
+  $('#year').textContent = new Date().getFullYear();
+  size();
+  onScroll();
 })();
